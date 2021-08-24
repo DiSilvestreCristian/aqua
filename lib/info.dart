@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aqua/main.dart';
+
 
 class Info extends StatelessWidget {
   @override

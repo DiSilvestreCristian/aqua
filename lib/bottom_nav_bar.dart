@@ -1,8 +1,5 @@
+import 'package:aqua/tab_navigator.dart';
 import 'package:flutter/material.dart';
-import 'package:aqua/home.dart';
-import 'package:aqua/favourites.dart';
-import 'package:aqua/rank.dart';
-import 'package:aqua/info.dart';
 
 class BottomNavBar extends StatefulWidget{
   @override
@@ -10,26 +7,52 @@ class BottomNavBar extends StatefulWidget{
 }
 
 class _BottomNavBar extends State<BottomNavBar>{
-
+  String _currentPage = "Home";
+  List<String> pageKeys = ["Home", "Favourites", "Rank", "Info"];
+  Map<String, GlobalKey<NavigatorState>> _navigatorKeys = {
+    "Home": GlobalKey<NavigatorState>(),
+    "Favourites": GlobalKey<NavigatorState>(),
+    "Rank": GlobalKey<NavigatorState>(),
+    "Info": GlobalKey<NavigatorState>(),
+  };
   int _currentIndex =0;
 
-  List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Favourites(),
-    Rank(),
-    Info()
-  ];
-
-  void _onItemTap (int index){
-    setState(() {
-      _currentIndex = index;
-    });
+  void _selectTab (String tabItem, int index){
+    if (tabItem== _currentPage){
+      _navigatorKeys[tabItem]!.currentState!.popUntil((route) => route.isFirst);
+    } else{
+      setState(() {
+        _currentIndex = index;
+        _currentPage = pageKeys[index];
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
-      body: _widgetOptions.elementAt(_currentIndex),
+    return WillPopScope(
+        onWillPop: () async {
+      final isFirstRouteInCurrentTab =
+      !await _navigatorKeys[_currentPage]!.currentState!.maybePop();
+      if (isFirstRouteInCurrentTab) {
+        if (_currentPage != "Home") {
+          _selectTab("Home", 1);
+
+          return false;
+        }
+      }
+      // let system handle back button if we're on the first route
+      return isFirstRouteInCurrentTab;
+    },
+      child: Scaffold (
+      body: Stack(
+          children:<Widget>[
+            _buildOffstageNavigator("Home"),
+            _buildOffstageNavigator("Favourites"),
+            _buildOffstageNavigator("Rank"),
+            _buildOffstageNavigator("Info"),
+          ]
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue[600],
@@ -37,23 +60,35 @@ class _BottomNavBar extends State<BottomNavBar>{
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              title: Text('Home')
+              label: 'Home'
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
-              title: Text('Preferiti')
+              label: 'Preferiti'
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.grade),
-              title: Text('Classifica')
+              label: 'Classifica'
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.info),
-              title: Text('Info')
+              label: 'Info'
           ),
         ],
         currentIndex: _currentIndex,
-        onTap: _onItemTap,
+        onTap: (int index) {_selectTab(pageKeys[index], index);},
+      ),
+    )
+    );
+  }
+
+
+  Widget _buildOffstageNavigator(String tabItem) {
+    return Offstage(
+      offstage: _currentPage != tabItem,
+      child: TabNavigator(
+        navigatorKey: _navigatorKeys[tabItem]!,
+        tabItem: tabItem,
       ),
     );
   }
