@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final spiaggia = spiaggiaFromJson(jsonString);
-
 import 'dart:convert';
 
 List<Spiaggia> spiaggiaFromJson(String str) => List<Spiaggia>.from(json.decode(str).map((x) => Spiaggia.fromJson(x)));
