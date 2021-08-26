@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:aqua/bottom_nav_bar.dart';
-import 'package:aqua/info_details.dart';
-
-import 'home.dart';
 
 void main() {
   runApp(MyApp());
