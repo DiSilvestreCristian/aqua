@@ -1,3 +1,4 @@
+import 'package:aqua/info_details.dart';
 import 'package:flutter/material.dart';
 
 
@@ -23,9 +24,13 @@ class Info extends StatelessWidget {
                   SizedBox(height: 8),
                   GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/info_details',);
+                    Navigator.push(
+                      context,
+                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: "ostreopsis")),
+                    );
                   },
                     child: Card(
+                      color: Colors.grey[300],
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -54,7 +59,7 @@ class Info extends StatelessWidget {
                                         style: TextStyle(fontSize: 18),
                                         softWrap: true,)
                                   ),
-                                  Icon(Icons.arrow_forward_ios, color: Colors.blue[500],)
+                                  Icon(Icons.arrow_forward_ios, color: Colors.blue[600],)
                                 ]
                             )
                         )
@@ -62,65 +67,83 @@ class Info extends StatelessWidget {
                     ),
                   ),
                   ),
-                  Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                              'images/escherichia.jpg',
-                              height: 170,
-                              width: 420,
-                              fit: BoxFit.cover
-                          ),
-                          Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                  children: [
-                                    Expanded(
-                                        child: Text (
-                                          "Escherichia Coli. Che cos’é? Quanti tipi ce ne sono?",
-                                          style: TextStyle(fontSize: 18),
-                                          softWrap: true,)
-                                    ),
-                                    Icon(Icons.arrow_forward_ios, color: Colors.blue[500],)
-                                  ]
-                              )
-                          )
-                        ],
-                      )
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: "escherichia")),
+                      );
+                    },
+                    child: Card(
+                        color: Colors.grey[300],
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                                'images/escherichia.jpg',
+                                height: 170,
+                                width: 420,
+                                fit: BoxFit.cover
+                            ),
+                            Container(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Text (
+                                            "Escherichia Coli. Che cos’é? Quanti tipi ce ne sono?",
+                                            style: TextStyle(fontSize: 18),
+                                            softWrap: true,)
+                                      ),
+                                      Icon(Icons.arrow_forward_ios, color: Colors.blue[600],)
+                                    ]
+                                )
+                            )
+                          ],
+                        )
+                    ),
                   ),
-                  Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                              'images/enterococcus.jpg',
-                              height: 170,
-                              width: 420,
-                              fit: BoxFit.cover
-                          ),
-                          Container(
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
-                                  children: [
-                                    Expanded(
-                                        child: Text (
-                                          "Enterococchi. Perché ci impediscono di fare il bagno?",
-                                          style: TextStyle(fontSize: 18),
-                                          softWrap: true,)
-                                    ),
-                                    Icon(Icons.arrow_forward_ios, color: Colors.blue[500],)
-                                  ]
-                              )
-                          )
-                        ],
-                      )
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: "enterococcus")),
+                      );
+                    },
+                    child: Card(
+                        color: Colors.grey[300],
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                                'images/enterococcus.jpg',
+                                height: 170,
+                                width: 420,
+                                fit: BoxFit.cover
+                            ),
+                            Container(
+                                padding: EdgeInsets.all(8.0),
+                                child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Text (
+                                            "Enterococchi. Perché ci impediscono di fare il bagno?",
+                                            style: TextStyle(fontSize: 18),
+                                            softWrap: true,)
+                                      ),
+                                      Icon(Icons.arrow_forward_ios, color: Colors.blue[600],)
+                                    ]
+                                )
+                            )
+                          ],
+                        )
+                    ),
                   )
                 ],
               ),
