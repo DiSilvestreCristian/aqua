@@ -4,7 +4,7 @@ class ListaSpiagge {
  final List<Spiaggia> lista;
 
  ListaSpiagge({
-   required this.lista;
+   required this.lista,
  });
 }
 
