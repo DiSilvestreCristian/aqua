@@ -7,7 +7,8 @@ class Info extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
         body: Center(
-            child: Padding(padding: EdgeInsets.only(top: 50.0),
+            child: Padding(
+              padding: EdgeInsets.only(top: 50.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
