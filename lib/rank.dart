@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'spiaggia.dart';
 import 'services.dart';
+import 'beach_details.dart';
 
 class Rank extends StatefulWidget {
   const Rank({Key? key}) : super(key: key);
@@ -131,9 +132,17 @@ class _RankState extends State<Rank> {
                           ),
                             Padding(
                               padding: EdgeInsets.only(right: 20.0,),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.blue[600],)
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(pageBuilder: (_, __, ___) => BeachDetails(spiaggia: spiaggia)),
+                                    );
+                                  },
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.blue[600],),
+                                )
                             ),
                         ],
                         ),
