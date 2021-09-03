@@ -360,7 +360,7 @@ class FavIcon extends StatefulWidget {
 
 class _FavIconState extends State<FavIcon> {
 
-  IconData _icon = Icons.favorite_border;
+  late IconData _icon;
   int _provaVal = 0;
 
   _setFavourites() async{
@@ -368,15 +368,11 @@ class _FavIconState extends State<FavIcon> {
 
     if (await _getFavValue() == 0) {
       prefs.setInt(widget.id, 1);
-      setState(() {
-        _icon = Icons.favorite;
-      });
+      _setIcon();
     }
     else {
       prefs.setInt(widget.id, 0);
-      setState(() {
-        _icon = Icons.favorite_border;
-      });
+      _setIcon();
     }
   }
 
@@ -387,8 +383,21 @@ class _FavIconState extends State<FavIcon> {
     return value;
   }
 
+  _setIcon () async {
+    if (await _getFavValue() == 0) {
+      setState(() {
+        _icon = Icons.favorite_border;
+      });
+    } else {
+      setState(() {
+        _icon = Icons.favorite;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    _setIcon();
     return  GestureDetector(
         child: Icon(_icon,
           size: 45,
