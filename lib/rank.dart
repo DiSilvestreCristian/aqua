@@ -15,8 +15,6 @@ class _RankState extends State<Rank> {
 
   late List<Spiaggia> _spiagge;
 
-  late List<String> _rank;
-
   String pollutantChose = "Ostreopsis cf. ovata";
   List listItem =[
     "Ostreopsis cf. ovata", "Escherichia coli", "Eterococchi"
