@@ -305,20 +305,20 @@ class BeachDetails extends StatelessWidget {
 }
 
 double getPercentage(int val, String pollutant){
-  int tolerance_level;
+  int toleranceLevel;
   switch(pollutant){
-    case "ostreopsis": tolerance_level = 30000;
+    case "ostreopsis": toleranceLevel = 30000;
     break;
-    case "escherichia": tolerance_level = 500;
+    case "escherichia": toleranceLevel = 500;
     break;
-    case "enterococcus": tolerance_level = 200;
+    case "enterococcus": toleranceLevel = 200;
     break;
-    default: tolerance_level = 30000;
+    default: toleranceLevel = 30000;
   }
 
-  if (val/tolerance_level == 0) return 0.1;
-  if (val/tolerance_level > 1) return 1;
-  return (val/tolerance_level);
+  if (val/toleranceLevel == 0) return 0.1;
+  if (val/toleranceLevel > 1) return 1;
+  return (val/toleranceLevel);
 }
 
 String getQuality (String value){
@@ -361,7 +361,6 @@ class FavIcon extends StatefulWidget {
 class _FavIconState extends State<FavIcon> {
 
   late IconData _icon;
-  int _provaVal = 0;
 
   _setFavourites() async{
     final prefs = await SharedPreferences.getInstance();

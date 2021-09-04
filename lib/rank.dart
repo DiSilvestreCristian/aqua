@@ -1,8 +1,8 @@
 import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/services.dart';
 import 'package:flutter/material.dart';
-
+import 'package:singleton/singleton.dart';
 import 'spiaggia.dart';
-import 'services.dart';
 import 'beach_details.dart';
 
 class Rank extends StatefulWidget {
@@ -21,12 +21,29 @@ class _RankState extends State<Rank> {
     "Ostreopsis cf. ovata", "Escherichia coli", "Eterococchi"
   ];
 
+  /*@override
+  void initState(){
+    super.initState();
+    asyncMethod().then((spiagge) {
+      setState(() {
+        _spiagge = spiagge;
+      });
+    });
+  }
+
+  Future<List<Spiaggia>> asyncMethod() async{
+    List<Spiaggia> spiagge = await Singleton.ensureInstanceFor(FutureService);
+    return spiagge;
+  }*/
+
   @override
   void initState(){
     super.initState();
+    Services.getSpiagge().then((spiagge) {
       setState(() {
-        _spiagge = FutureService().getInstanceSpiagge();
+        _spiagge = spiagge;
       });
+    });
   }
 
   createList(){
@@ -94,7 +111,7 @@ class _RankState extends State<Rank> {
                   ),
                   Expanded(
                   child: ListView.builder(
-                  itemCount: null == _spiagge ? 0 : _spiagge.length,
+                  itemCount: _spiagge.length,
                   itemBuilder: (context, index) {
                     Spiaggia spiaggia = _spiagge[index];
                     return ListTile(
