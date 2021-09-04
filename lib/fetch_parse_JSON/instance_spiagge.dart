@@ -1,5 +1,5 @@
-import 'package:aqua/services.dart';
-import 'package:aqua/spiaggia.dart';
+import 'package:aqua/fetch_parse_JSON/services.dart';
+import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
 import 'package:singleton/singleton.dart';
 
 class SingletonSpiagge {

@@ -1,6 +1,6 @@
-import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
 import 'package:flutter/material.dart';
-import 'package:aqua/bottom_nav_bar.dart';
+import 'package:aqua/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:singleton/singleton.dart';
 
 void main() {

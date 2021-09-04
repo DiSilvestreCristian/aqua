@@ -1,5 +1,5 @@
-import 'package:aqua/map_utils.dart';
-import 'package:aqua/spiaggia.dart';
+import 'package:aqua/beach_details/map_utils.dart';
+import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';

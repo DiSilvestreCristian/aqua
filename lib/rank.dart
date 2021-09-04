@@ -1,9 +1,9 @@
-import 'package:aqua/instance_spiagge.dart';
-import 'package:aqua/services.dart';
+import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
+import 'package:aqua/fetch_parse_JSON/services.dart';
 import 'package:flutter/material.dart';
 import 'package:singleton/singleton.dart';
-import 'spiaggia.dart';
-import 'beach_details.dart';
+import 'fetch_parse_JSON/spiaggia.dart';
+import 'beach_details/beach_details.dart';
 
 class Rank extends StatefulWidget {
   const Rank({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class Rank extends StatefulWidget {
 
 class _RankState extends State<Rank> {
 
-  late List<Spiaggia> _spiagge;
+  late List<Spiaggia> _spiagge ;
 
   String pollutantChose = "Ostreopsis cf. ovata";
   List listItem =[
