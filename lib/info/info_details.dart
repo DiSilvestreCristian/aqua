@@ -1,3 +1,4 @@
+import 'package:aqua/value/string.dart';
 import 'package:flutter/material.dart';
 
 class InfoDetails extends StatelessWidget {
@@ -13,11 +14,11 @@ class InfoDetails extends StatelessWidget {
 
     Widget infoPollutant ;
     switch (pollutant){
-      case "ostreopsis" : infoPollutant = InfoOstreopsis();
+      case ostreopsisName : infoPollutant = InfoOstreopsis();
       break;
-      case "escherichia" : infoPollutant = InfoEscherichia();
+      case escherichiaName : infoPollutant = InfoEscherichia();
       break;
-      case "enterococcus" : infoPollutant = InfoEnterococcus();
+      case enterococcusName : infoPollutant = InfoEnterococcus();
       break;
       default : infoPollutant = InfoOstreopsis();
     }
@@ -48,40 +49,7 @@ class InfoOstreopsis extends StatelessWidget{
         padding: EdgeInsets.all(8.0),
       child: Expanded(
           child: Text.rich (
-            TextSpan(text: "Ostreopsis ", style: TextStyle(fontStyle: FontStyle.italic),
-                children:<TextSpan>[
-                  TextSpan(text: "cf. ", style: TextStyle(fontStyle: FontStyle.normal)),
-                  TextSpan(text: "ovata", style: TextStyle(fontStyle: FontStyle.italic)),
-                  TextSpan(text: "- Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. ", style: TextStyle(fontStyle: FontStyle.normal)),
-                ]
-            ),
+            ostreopsisInfo,
             style: TextStyle(fontSize: 18),
             softWrap: true,)
       ),
@@ -97,36 +65,9 @@ class InfoEscherichia extends StatelessWidget{
       padding: EdgeInsets.all(8.0),
       child: Expanded(
           child: Text.rich (
-            TextSpan(text: "Escherichia coli ", style: TextStyle(fontStyle: FontStyle.italic),
+            TextSpan(text: escherichiaName, style: TextStyle(fontStyle: FontStyle.italic),
                 children:<TextSpan>[
-                  TextSpan(text: "- Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. ", style: TextStyle(fontStyle: FontStyle.normal)),
+                  TextSpan(text: escherichiaInfo, style: TextStyle(fontStyle: FontStyle.normal)),
                 ]
             ),
             style: TextStyle(fontSize: 18),
@@ -144,36 +85,9 @@ class InfoEnterococcus extends StatelessWidget{
       padding: EdgeInsets.all(8.0),
       child: Expanded(
           child: Text.rich (
-            TextSpan(text: "Enterococchi ", style: TextStyle(fontStyle: FontStyle.italic),
+            TextSpan(text: enterococcusName, style: TextStyle(fontStyle: FontStyle.italic),
                 children:<TextSpan>[
-                  TextSpan(text: "- Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. "
-                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                      "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi "
-                      "ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit "
-                      "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
-                      "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
-                      "mollit anim id est laborum. ", style: TextStyle(fontStyle: FontStyle.normal)),
+                  TextSpan(text: enterococcusInfo, style: TextStyle(fontStyle: FontStyle.normal)),
                 ]
             ),
             style: TextStyle(fontSize: 18),

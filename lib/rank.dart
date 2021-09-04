@@ -1,5 +1,6 @@
 import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
 import 'package:aqua/fetch_parse_JSON/services.dart';
+import 'package:aqua/value/string.dart';
 import 'package:flutter/material.dart';
 import 'package:singleton/singleton.dart';
 import 'fetch_parse_JSON/spiaggia.dart';
@@ -16,9 +17,9 @@ class _RankState extends State<Rank> {
 
   late List<Spiaggia> _spiagge ;
 
-  String pollutantChose = "Ostreopsis cf. ovata";
+  String pollutantChose = ostreopsisName;
   List listItem =[
-    "Ostreopsis cf. ovata", "Escherichia coli", "Eterococchi"
+    ostreopsisName, escherichiaName, enterococcusName
   ];
 
   /*@override
@@ -48,11 +49,11 @@ class _RankState extends State<Rank> {
 
   createList(){
     switch(pollutantChose){
-      case "Ostreopsis cf. ovata" : _spiagge.sort((a,b)=>a.ostreopsis[0].value.compareTo(b.ostreopsis[0].value));
+      case ostreopsisName : _spiagge.sort((a,b)=>a.ostreopsis[0].value.compareTo(b.ostreopsis[0].value));
       break;
-      case "Escherichia coli": _spiagge.sort((a,b)=>a.escherichia[0].value.compareTo(b.escherichia[0].value));
+      case escherichiaName: _spiagge.sort((a,b)=>a.escherichia[0].value.compareTo(b.escherichia[0].value));
       break;
-      case "Eterococchi": _spiagge.sort((a,b)=>a.enterococcus[0].value.compareTo(b.enterococcus[0].value));
+      case enterococcusName: _spiagge.sort((a,b)=>a.enterococcus[0].value.compareTo(b.enterococcus[0].value));
       break;
     }
   }
@@ -70,7 +71,7 @@ class _RankState extends State<Rank> {
                     child: Container(
                       padding: (EdgeInsets.only(left: 15.0)),
                       child: Text(
-                        "Classifica",
+                        titoloRank,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
                       ),
                     ),

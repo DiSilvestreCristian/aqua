@@ -1,4 +1,5 @@
 import 'package:aqua/info/info_details.dart';
+import 'package:aqua/value/string.dart';
 import 'package:flutter/material.dart';
 
 
@@ -17,7 +18,7 @@ class Info extends StatelessWidget {
                     child: Container(
                       padding: (EdgeInsets.only(left: 15.0)),
                       child: Text(
-                        "Info",
+                        titoloInfo,
                         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
                       ),
                     ),
@@ -27,7 +28,7 @@ class Info extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: "ostreopsis")),
+                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: ostreopsisName)),
                     );
                   },
                     child: Card(
@@ -50,13 +51,7 @@ class Info extends StatelessWidget {
                                 children: [
                                   Expanded(
                                       child: Text.rich (
-                                        TextSpan(text: "Ostreopsis ", style: TextStyle(fontStyle: FontStyle.italic),
-                                            children:<TextSpan>[
-                                              TextSpan(text: "cf. ", style: TextStyle(fontStyle: FontStyle.normal)),
-                                              TextSpan(text: "ovata", style: TextStyle(fontStyle: FontStyle.italic)),
-                                              TextSpan(text: ": tutto quello che devi sapere sull'alga tossica", style: TextStyle(fontStyle: FontStyle.normal)),
-                                            ]
-                                        ),
+                                        ostreopsisPreview,
                                         style: TextStyle(fontSize: 18),
                                         softWrap: true,)
                                   ),
@@ -72,7 +67,7 @@ class Info extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: "escherichia")),
+                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: escherichiaName)),
                       );
                     },
                     child: Card(
@@ -95,7 +90,7 @@ class Info extends StatelessWidget {
                                     children: [
                                       Expanded(
                                           child: Text (
-                                            "Escherichia Coli. Che cos’é? Quanti tipi ce ne sono?",
+                                            escherichiaPreview,
                                             style: TextStyle(fontSize: 18),
                                             softWrap: true,)
                                       ),
@@ -111,7 +106,7 @@ class Info extends StatelessWidget {
                     onTap: () {
                       Navigator.push(
                         context,
-                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: "enterococcus")),
+                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: enterococcusName)),
                       );
                     },
                     child: Card(
@@ -134,7 +129,7 @@ class Info extends StatelessWidget {
                                     children: [
                                       Expanded(
                                           child: Text (
-                                            "Enterococchi. Perché ci impediscono di fare il bagno?",
+                                            enterococcusPreview,
                                             style: TextStyle(fontSize: 18),
                                             softWrap: true,)
                                       ),

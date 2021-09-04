@@ -1,5 +1,6 @@
 import 'package:aqua/beach_details/map_utils.dart';
 import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
+import 'package:aqua/value/string.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,20 +54,20 @@ class BeachDetails extends StatelessWidget {
                 CircularPercentIndicator(
                   radius: 250,
                   lineWidth: 25,
-                  percent: getPercentage(spiaggia.ostreopsis[0].value, "ostreopsis"),
+                  percent: getPercentage(spiaggia.ostreopsis[0].value, ostreopsisName),
                   progressColor: Colors.green[700],
                   circularStrokeCap: CircularStrokeCap.round,
                   center: CircularPercentIndicator(
                     radius: 180,
                     lineWidth: 25,
-                    percent: getPercentage(spiaggia.escherichia[0].value, "escherichia"),
+                    percent: getPercentage(spiaggia.escherichia[0].value, escherichiaName),
                     progressColor: Colors.blue[700],
                     circularStrokeCap: CircularStrokeCap.round,
                     center:
                     CircularPercentIndicator(
                       radius: 110,
                       lineWidth: 25,
-                      percent: getPercentage(spiaggia.enterococcus[0].value, "enterococcus"),
+                      percent: getPercentage(spiaggia.enterococcus[0].value, enterococcusName),
                       progressColor: Colors.red[700],
                       circularStrokeCap: CircularStrokeCap.round,
                     ),
@@ -100,7 +101,7 @@ class BeachDetails extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Qualità dell'acqua:",
+                        Text(qualitaAcqua,
                           style: TextStyle(fontSize: 20),),
                         Text(getQuality(spiaggia.quality),
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
@@ -119,7 +120,7 @@ class BeachDetails extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Sistuazione alga:",
+                        Text(situazioneAlga,
                           style: TextStyle(fontSize: 20),),
                         Text(getSituationOstreopsis(spiaggia.ostreopsis[0].value),
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
@@ -152,12 +153,7 @@ class BeachDetails extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text.rich (
-                                TextSpan(text: "Ostreopsis ", style: TextStyle(fontStyle: FontStyle.italic),
-                                  children:<TextSpan>[
-                                    TextSpan(text: "cf. ", style: TextStyle(fontStyle: FontStyle.normal)),
-                                    TextSpan(text: "ovata", style: TextStyle(fontStyle: FontStyle.italic)),
-                                  ]
-                                ),
+                                ostreopsisLabel,
                                   style: TextStyle(
                                       fontSize: 25,
                                   color: Colors.green[700],
@@ -170,9 +166,9 @@ class BeachDetails extends StatelessWidget {
                                       style: TextStyle(fontSize: 40)
                                   ),
                                   Text.rich(
-                                    TextSpan(text: "/30000 ", style: TextStyle(fontSize: 25),
+                                    TextSpan(text: sogliaOstreopsis, style: TextStyle(fontSize: 25),
                                         children:<TextSpan>[
-                                        TextSpan(text: "[cell/L]", style: TextStyle(fontSize: 15)),
+                                        TextSpan(text: unitaOstreopsis, style: TextStyle(fontSize: 15)),
                                       ],
                                   ),
                               )
@@ -210,7 +206,7 @@ class BeachDetails extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                      "Escherichia coli",
+                                      escherichiaName,
                                       style: TextStyle(
                                           fontSize: 25,
                                           color: Colors.blue[700],
@@ -223,9 +219,9 @@ class BeachDetails extends StatelessWidget {
                                           style: TextStyle(fontSize: 40)
                                       ),
                                       Text.rich(
-                                        TextSpan(text: "/500 ", style: TextStyle(fontSize: 25),
+                                        TextSpan(text: sogliaEscherichia, style: TextStyle(fontSize: 25),
                                           children:<TextSpan>[
-                                            TextSpan(text: "[ufc/100ml]", style: TextStyle(fontSize: 15)),
+                                            TextSpan(text: unitaEscherichia, style: TextStyle(fontSize: 15)),
                                           ],
                                         ),
                                       )
@@ -263,7 +259,7 @@ class BeachDetails extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                      "Enterococchi",
+                                      enterococcusName,
                                       style: TextStyle(
                                           fontSize: 25,
                                           color: Colors.red[700],
@@ -276,9 +272,9 @@ class BeachDetails extends StatelessWidget {
                                           style: TextStyle(fontSize: 40)
                                       ),
                                       Text.rich(
-                                        TextSpan(text: "/200 ", style: TextStyle(fontSize: 25),
+                                        TextSpan(text: sogliaEnterococcus, style: TextStyle(fontSize: 25),
                                           children:<TextSpan>[
-                                            TextSpan(text: "[ufc/100ml]", style: TextStyle(fontSize: 15)),
+                                            TextSpan(text: unitaEnterococcus, style: TextStyle(fontSize: 15)),
                                           ],
                                         ),
                                       )
@@ -307,11 +303,11 @@ class BeachDetails extends StatelessWidget {
 double getPercentage(int val, String pollutant){
   int toleranceLevel;
   switch(pollutant){
-    case "ostreopsis": toleranceLevel = 30000;
+    case ostreopsisName: toleranceLevel = 30000;
     break;
-    case "escherichia": toleranceLevel = 500;
+    case escherichiaName: toleranceLevel = 500;
     break;
-    case "enterococcus": toleranceLevel = 200;
+    case enterococcusName: toleranceLevel = 200;
     break;
     default: toleranceLevel = 30000;
   }
@@ -324,24 +320,24 @@ double getPercentage(int val, String pollutant){
 String getQuality (String value){
 String quality;
 switch(value){
-  case "0": quality = "SCARSA";
+  case qualityJSONBad: quality = qualityBad;
   break;
-  case "1": quality = "SUFFICIENTE";
+  case qualityJSONSufficient: quality = qualitySufficient;
   break;
-  case "2": quality = "BUONA";
+  case qualityJSONGood: quality = qualityGood;
   break;
-  case "3": quality = "ECCELLENTE";
+  case qualityJSONExelent: quality = qualityExelent;
   break;
-  default: quality = "ECCELLENTE";
+  default: quality = qualityExelent;
 }
 return quality;
 }
 
 String getSituationOstreopsis (int value){
   String situation;
-  if (value>=0 && value<15000) situation = "REGOLARE";
-  else if (value>=15000 && value<30000) situation = "ALLERTA";
-  else (situation="EMERGENZA");
+  if (value>=0 && value<15000) situation = regularSituation;
+  else if (value>=15000 && value<30000) situation = allertSituation;
+  else (situation=emergencySituation);
   return situation;
 }
 
