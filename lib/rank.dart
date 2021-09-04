@@ -1,3 +1,4 @@
+import 'package:aqua/instance_spiagge.dart';
 import 'package:flutter/material.dart';
 
 import 'spiaggia.dart';
@@ -23,11 +24,9 @@ class _RankState extends State<Rank> {
   @override
   void initState(){
     super.initState();
-    Services.getSpiagge().then((spiagge) {
       setState(() {
-        _spiagge = spiagge;
+        _spiagge = FutureService().getInstanceSpiagge();
       });
-    });
   }
 
   createList(){
