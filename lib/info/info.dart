@@ -26,6 +26,7 @@ class Info extends StatelessWidget {
                   SizedBox(height: 8),
                   GestureDetector(
                   onTap: () {
+                    //Navigator.of(context).pushNamed('/home');
                     Navigator.push(
                       context,
                         PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: ostreopsisName)),

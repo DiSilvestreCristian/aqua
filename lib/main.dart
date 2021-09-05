@@ -1,6 +1,6 @@
 import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
+import 'package:aqua/route/route.dart';
 import 'package:flutter/material.dart';
-import 'package:aqua/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:singleton/singleton.dart';
 
 void main() {
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BottomNavBar(),
+      initialRoute: '/bootomNavBar',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

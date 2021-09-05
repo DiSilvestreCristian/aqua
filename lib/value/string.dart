@@ -163,3 +163,8 @@ TextSpan ostreopsisInfo = TextSpan(text: "Ostreopsis ", style: TextStyle(fontSty
           "mollit anim id est laborum. ", style: TextStyle(fontStyle: FontStyle.normal)),
     ]
 );
+
+/* -- SCREEN ERROR ROUTE -- */
+
+//Error message
+const String errorMessage = "ERROR";
