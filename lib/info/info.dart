@@ -1,5 +1,6 @@
 import 'package:aqua/info/info_details.dart';
-import 'package:aqua/value/string.dart';
+import 'package:aqua/value/colors.dart';
+import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 
 
@@ -33,7 +34,7 @@ class Info extends StatelessWidget {
                     );
                   },
                     child: Card(
-                      color: Colors.grey[300],
+                      color: colorItemBackground,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -56,7 +57,9 @@ class Info extends StatelessWidget {
                                         style: TextStyle(fontSize: 18),
                                         softWrap: true,)
                                   ),
-                                  Icon(Icons.arrow_forward_ios, color: Colors.blue[600],)
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: colorPrimary)
                                 ]
                             )
                         )
@@ -72,7 +75,7 @@ class Info extends StatelessWidget {
                       );
                     },
                     child: Card(
-                        color: Colors.grey[300],
+                        color: colorItemBackground,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -95,7 +98,9 @@ class Info extends StatelessWidget {
                                             style: TextStyle(fontSize: 18),
                                             softWrap: true,)
                                       ),
-                                      Icon(Icons.arrow_forward_ios, color: Colors.blue[600],)
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: colorPrimary)
                                     ]
                                 )
                             )
@@ -111,7 +116,7 @@ class Info extends StatelessWidget {
                       );
                     },
                     child: Card(
-                        color: Colors.grey[300],
+                        color: colorItemBackground,
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -134,7 +139,9 @@ class Info extends StatelessWidget {
                                             style: TextStyle(fontSize: 18),
                                             softWrap: true,)
                                       ),
-                                      Icon(Icons.arrow_forward_ios, color: Colors.blue[600],)
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: colorPrimary)
                                     ]
                                 )
                             )

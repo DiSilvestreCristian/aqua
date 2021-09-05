@@ -1,6 +1,7 @@
 import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
 import 'package:aqua/fetch_parse_JSON/services.dart';
-import 'package:aqua/value/string.dart';
+import 'package:aqua/value/colors.dart';
+import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:singleton/singleton.dart';
 import 'fetch_parse_JSON/spiaggia.dart';
@@ -82,16 +83,16 @@ class _RankState extends State<Rank> {
                     child: Container(
                       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
+                        border: Border.all(color: colorSecondary),
                         borderRadius: BorderRadius.circular(30)
                       ),
                       child: DropdownButton(
                         icon: Icon(Icons.arrow_drop_down,),
                         iconSize: 30,
-                        iconEnabledColor: Colors.blue[600],
+                        iconEnabledColor: colorPrimary,
                         isExpanded: true,
                         style: TextStyle(
-                          color: Colors.black,
+                          color: colorTextPrimary,
                           fontSize: 22
                         ),
                         value: pollutantChose,
@@ -121,12 +122,12 @@ class _RankState extends State<Rank> {
                         height: 50,
                         decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: Colors.blue[600],
+                        color: colorPrimary,
                         ),
                         child: Center(
                           child: Text(
                             (index+1).toString(),
-                            style: TextStyle(color: Colors.white, fontSize: 30,),
+                            style: TextStyle(color: colorTextSecondary, fontSize: 30,),
                           ),
                         )
                     ),
@@ -134,7 +135,7 @@ class _RankState extends State<Rank> {
                         height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
-                          color: Colors.grey[300],
+                          color: colorItemBackground,
                         ),
                       child: Padding(
                         padding: EdgeInsets.only(left: 20.0,),
@@ -156,7 +157,7 @@ class _RankState extends State<Rank> {
                                   },
                                   child: Icon(
                                     Icons.arrow_forward_ios,
-                                    color: Colors.blue[600],),
+                                    color: colorPrimary,),
                                 )
                             ),
                         ],

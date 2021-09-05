@@ -1,7 +1,8 @@
 import 'package:aqua/beach_details/map_utils.dart';
 import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
-import 'package:aqua/value/number.dart';
-import 'package:aqua/value/string.dart';
+import 'package:aqua/value/colors.dart';
+import 'package:aqua/value/numbers.dart';
+import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,7 +46,7 @@ class BeachDetails extends StatelessWidget {
                       GestureDetector(
                         child: Icon(Icons.place,
                           size: 45,
-                          color: Colors.blue[600],
+                          color: colorPrimary,
                         ),
                         onTap: () => MapUtils.openMap(spiaggia.coordinates.x, spiaggia.coordinates.y),
                       ),
@@ -56,20 +57,20 @@ class BeachDetails extends StatelessWidget {
                   radius: 250,
                   lineWidth: 25,
                   percent: getPercentage(spiaggia.ostreopsis[0].value, ostreopsisName),
-                  progressColor: Colors.green[700],
+                  progressColor: colorOstreopsis,
                   circularStrokeCap: CircularStrokeCap.round,
                   center: CircularPercentIndicator(
                     radius: 180,
                     lineWidth: 25,
                     percent: getPercentage(spiaggia.escherichia[0].value, escherichiaName),
-                    progressColor: Colors.blue[700],
+                    progressColor: colorEscherichia,
                     circularStrokeCap: CircularStrokeCap.round,
                     center:
                     CircularPercentIndicator(
                       radius: 110,
                       lineWidth: 25,
                       percent: getPercentage(spiaggia.enterococcus[0].value, enterococcusName),
-                      progressColor: Colors.red[700],
+                      progressColor: colorEnterococcus,
                       circularStrokeCap: CircularStrokeCap.round,
                     ),
                   ),
@@ -92,7 +93,7 @@ class BeachDetails extends StatelessWidget {
             child: Column(
               children: [
                 Card(
-                  color: Colors.grey[300],
+                  color: colorItemBackground,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
@@ -111,7 +112,7 @@ class BeachDetails extends StatelessWidget {
                   ),
                 ),
                 Card(
-                  color: Colors.grey[300],
+                  color: colorItemBackground,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
@@ -138,7 +139,7 @@ class BeachDetails extends StatelessWidget {
               child: Column(
                 children: [
                   Card(
-                    color: Colors.grey[300],
+                    color: colorItemBackground,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -157,7 +158,7 @@ class BeachDetails extends StatelessWidget {
                                 ostreopsisLabel,
                                   style: TextStyle(
                                       fontSize: 25,
-                                  color: Colors.green[700],
+                                  color: colorOstreopsis,
                                   fontWeight: FontWeight.bold)
                               ),
                               Row(
@@ -179,14 +180,14 @@ class BeachDetails extends StatelessWidget {
                       ),
                           Icon(
                             Icons.arrow_forward_ios,
-                            color: Colors.blue[600],
+                            color: colorPrimary,
                           ),
                       ]
                     ),
                   )
                   ),
                   Card(
-                      color: Colors.grey[300],
+                      color: colorItemBackground,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -210,7 +211,7 @@ class BeachDetails extends StatelessWidget {
                                       escherichiaName,
                                       style: TextStyle(
                                           fontSize: 25,
-                                          color: Colors.blue[700],
+                                          color: colorEscherichia,
                                           fontWeight: FontWeight.bold)
                                   ),
                                   Row(
@@ -232,14 +233,14 @@ class BeachDetails extends StatelessWidget {
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                color: Colors.blue[600],
+                                color: colorPrimary,
                               ),
                             ]
                         ),
                       )
                   ),
                   Card(
-                      color: Colors.grey[300],
+                      color: colorItemBackground,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -263,7 +264,7 @@ class BeachDetails extends StatelessWidget {
                                       enterococcusName,
                                       style: TextStyle(
                                           fontSize: 25,
-                                          color: Colors.red[700],
+                                          color: colorEnterococcus,
                                           fontWeight: FontWeight.bold)
                                   ),
                                   Row(
@@ -285,7 +286,7 @@ class BeachDetails extends StatelessWidget {
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                color: Colors.blue[600],
+                                color: colorPrimary,
                               ),
                             ]
                         ),
@@ -397,7 +398,7 @@ class _FavIconState extends State<FavIcon> {
     return  GestureDetector(
         child: Icon(_icon,
           size: 45,
-          color: Colors.blue[600],
+          color: colorPrimary,
         ),
         onTap: (){
           _setFavourites();

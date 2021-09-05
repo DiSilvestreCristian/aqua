@@ -1,4 +1,4 @@
-import 'package:aqua/value/string.dart';
+import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 
 class ErrorPage extends StatelessWidget {

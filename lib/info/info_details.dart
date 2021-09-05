@@ -1,4 +1,5 @@
-import 'package:aqua/value/string.dart';
+import 'package:aqua/value/colors.dart';
+import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 
 class InfoDetails extends StatelessWidget {
@@ -28,7 +29,7 @@ class InfoDetails extends StatelessWidget {
           padding: EdgeInsets.only(top: 50.0, right: 8.0, bottom: 0.0, left: 8.0),
         child: SingleChildScrollView(
           child: Card(
-            color: Colors.grey[300],
+            color: colorItemBackground,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),

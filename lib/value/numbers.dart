@@ -1,4 +1,4 @@
-library number.globals;
+library numbers.globals;
 
 const int ostreopsisAllertTheshold = 15000;
 const int ostreopsisEmergencyTheshold = 30000;

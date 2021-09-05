@@ -1,4 +1,5 @@
 import 'package:aqua/bottom_nav_bar/tab_navigator.dart';
+import 'package:aqua/value/colors.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget{
@@ -55,8 +56,8 @@ class _BottomNavBar extends State<BottomNavBar>{
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue[600],
-        unselectedItemColor: Colors.grey[700],
+        selectedItemColor: colorPrimary,
+        unselectedItemColor: colorSecondary,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
