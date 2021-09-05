@@ -1,5 +1,6 @@
 import 'package:aqua/beach_details/map_utils.dart';
 import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
+import 'package:aqua/value/number.dart';
 import 'package:aqua/value/string.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -303,13 +304,13 @@ class BeachDetails extends StatelessWidget {
 double getPercentage(int val, String pollutant){
   int toleranceLevel;
   switch(pollutant){
-    case ostreopsisName: toleranceLevel = 30000;
+    case ostreopsisName: toleranceLevel = ostreopsisEmergencyTheshold;
     break;
-    case escherichiaName: toleranceLevel = 500;
+    case escherichiaName: toleranceLevel = escherichiaTheshold;
     break;
-    case enterococcusName: toleranceLevel = 200;
+    case enterococcusName: toleranceLevel = enterococcusTheshold;
     break;
-    default: toleranceLevel = 30000;
+    default: toleranceLevel = ostreopsisEmergencyTheshold;
   }
 
   if (val/toleranceLevel == 0) return 0.1;
@@ -335,8 +336,8 @@ return quality;
 
 String getSituationOstreopsis (int value){
   String situation;
-  if (value>=0 && value<15000) situation = regularSituation;
-  else if (value>=15000 && value<30000) situation = allertSituation;
+  if (value>=0 && value<ostreopsisAllertTheshold) situation = regularSituation;
+  else if (value>=ostreopsisAllertTheshold && value<ostreopsisEmergencyTheshold) situation = allertSituation;
   else (situation=emergencySituation);
   return situation;
 }
