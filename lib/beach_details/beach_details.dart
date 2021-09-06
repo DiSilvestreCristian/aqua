@@ -358,7 +358,7 @@ class FavIcon extends StatefulWidget {
 
 class _FavIconState extends State<FavIcon> {
 
-  late IconData _icon;
+  IconData _icon = Icons.favorite_border;
 
   _setFavourites() async{
     final prefs = await SharedPreferences.getInstance();
