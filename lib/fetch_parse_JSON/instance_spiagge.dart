@@ -3,7 +3,7 @@ import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
 import 'package:singleton/singleton.dart';
 
 class SingletonSpiagge {
-  static Future<List<Spiaggia>> loadAppSettings() async {
+  static Future<List<Spiaggia>> loadAppSettings() {
     Future<List<Spiaggia>> _spiagge = Services.getSpiagge();
     return _spiagge;
   }

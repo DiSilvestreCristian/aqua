@@ -1,9 +1,7 @@
-import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
 import 'package:aqua/fetch_parse_JSON/services.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:singleton/singleton.dart';
 import 'fetch_parse_JSON/spiaggia.dart';
 import 'beach_details/beach_details.dart';
 
@@ -16,37 +14,27 @@ class Rank extends StatefulWidget {
 
 class _RankState extends State<Rank> {
 
-  late List<Spiaggia> _spiagge ;
+  late List<Spiaggia> _spiagge;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      Services.getSpiagge().then((spiagge){
+        _spiagge = spiagge;
+      });
+    });
+  }
 
   String pollutantChose = ostreopsisName;
   List listItem =[
     ostreopsisName, escherichiaName, enterococcusName
   ];
 
-  /*@override
-  void initState(){
-    super.initState();
-    asyncMethod().then((spiagge) {
-      setState(() {
-        _spiagge = spiagge;
-      });
-    });
-  }
-
-  Future<List<Spiaggia>> asyncMethod() async{
+  /*Future<List<Spiaggia>> asyncMethod() async{
     List<Spiaggia> spiagge = await Singleton.ensureInstanceFor(FutureService);
     return spiagge;
   }*/
-
-  @override
-  void initState(){
-    super.initState();
-    Services.getSpiagge().then((spiagge) {
-      setState(() {
-        _spiagge = spiagge;
-      });
-    });
-  }
 
   createList(){
     switch(pollutantChose){

@@ -1,7 +1,7 @@
+import 'package:aqua/home/home.dart';
 import 'package:aqua/rank.dart';
 import 'package:flutter/material.dart';
 import '../favourites/favourites.dart';
-import '../home.dart';
 import '../info/info.dart';
 
 class TabNavigator extends StatelessWidget {

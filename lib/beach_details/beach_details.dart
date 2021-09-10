@@ -48,7 +48,7 @@ class BeachDetails extends StatelessWidget {
                           size: 45,
                           color: colorPrimary,
                         ),
-                        onTap: () => MapUtils.openMap(spiaggia.coordinates.x, spiaggia.coordinates.y),
+                        onTap: () => MapUtils.openMap(spiaggia.coordinates.x as String, spiaggia.coordinates.y as String),
                       ),
                     ],
                   ),

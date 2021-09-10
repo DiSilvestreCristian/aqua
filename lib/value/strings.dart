@@ -27,6 +27,23 @@ const String unitaOstreopsis = "[cell/L]";
 const String unitaEscherichia = "[ufc/100ml]";
 const String unitaEnterococcus = "[ufc/100ml]";
 
+/* -- SCREEN NOTIFICHE - SIDEBAR HOME -- */
+
+//Titolo
+const String titoloNotifiche = "Notifiche";
+
+//nomi delle notifiche
+const String notificaPreferiti = "Notifiche preferiti";
+const String notificaPosizione = "Notifiche in base alla posizione";
+
+//descrizioni delle notifiche
+const String descrizioneNotificaPreferiti = "Ricevi notifiche se il livello "
+    "di inquinamento delle località indicate tra i preferiti supera uno o più "
+    "valori di soglia.";
+const String descrizioneNotificaPosizione = "Ricevi notifiche se il livello "
+    "di inquinamento delle località vicine alla tua posizione supera uno o più "
+    "valori di soglia.";
+
 /* -- SCREEN CLASSIFICA -- */
 
 //Titolo

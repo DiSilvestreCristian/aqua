@@ -19,18 +19,18 @@ class Spiaggia {
   String name;
   Coordinates coordinates;
   String quality;
-  List<Enterococcus> ostreopsis;
-  List<Enterococcus> escherichia;
-  List<Enterococcus> enterococcus;
+  List<Value> ostreopsis;
+  List<Value> escherichia;
+  List<Value> enterococcus;
 
   factory Spiaggia.fromJson(Map<String, dynamic> json) => Spiaggia(
     id: json["id"],
     name: json["name"],
     coordinates: Coordinates.fromJson(json["coordinates"]),
     quality: json["quality"],
-    ostreopsis: List<Enterococcus>.from(json["ostreopsis"].map((x) => Enterococcus.fromJson(x))),
-    escherichia: List<Enterococcus>.from(json["escherichia"].map((x) => Enterococcus.fromJson(x))),
-    enterococcus: List<Enterococcus>.from(json["enterococcus"].map((x) => Enterococcus.fromJson(x))),
+    ostreopsis: List<Value>.from(json["ostreopsis"].map((x) => Value.fromJson(x))),
+    escherichia: List<Value>.from(json["escherichia"].map((x) => Value.fromJson(x))),
+    enterococcus: List<Value>.from(json["enterococcus"].map((x) => Value.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -64,8 +64,8 @@ class Coordinates {
   };
 }
 
-class Enterococcus {
-  Enterococcus({
+class Value {
+  Value({
     required this.date,
     required this.value,
   });
@@ -73,7 +73,7 @@ class Enterococcus {
   int date;
   int value;
 
-  factory Enterococcus.fromJson(Map<String, dynamic> json) => Enterococcus(
+  factory Value.fromJson(Map<String, dynamic> json) => Value(
     date: json["date"],
     value: json["value"],
   );

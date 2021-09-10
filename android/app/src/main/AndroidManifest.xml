@@ -3,6 +3,8 @@
    <application
         android:label="aqua"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyBvxiuwK6QtpYBISr62W3KJ6xMTjcXb6HI"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
