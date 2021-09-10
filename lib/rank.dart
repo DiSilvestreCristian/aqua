@@ -13,15 +13,15 @@ class Rank extends StatefulWidget {
 }
 
 class _RankState extends State<Rank> {
-
-  late List<Spiaggia> _spiagge;
+  bool _loading = false;
+  List<Spiaggia> _spiagge = [];
 
   @override
   void initState() {
     super.initState();
     setState(() {
       Services.getSpiagge().then((spiagge){
-        _spiagge = spiagge;
+        _spiagge = new List<Spiaggia>.from(spiagge);
       });
     });
   }
@@ -30,11 +30,11 @@ class _RankState extends State<Rank> {
   List listItem =[
     ostreopsisName, escherichiaName, enterococcusName
   ];
-
   /*Future<List<Spiaggia>> asyncMethod() async{
     List<Spiaggia> spiagge = await Singleton.ensureInstanceFor(FutureService);
     return spiagge;
   }*/
+
 
   createList(){
     switch(pollutantChose){
