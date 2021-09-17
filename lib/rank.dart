@@ -15,7 +15,7 @@ class Rank extends StatefulWidget {
 
 class _RankState extends State<Rank> {
 
-  late List<Spiaggia> _spiagge;
+  List<Spiaggia> _spiagge = [];
 
   String pollutantChose = ostreopsisName;
   List listItem =[
@@ -27,7 +27,7 @@ class _RankState extends State<Rank> {
     super.initState();
       Services.getSpiagge().then((spiagge){
         setState(() {
-        _spiagge = spiagge;
+        //_spiagge = spiagge;
       });
     });
   }

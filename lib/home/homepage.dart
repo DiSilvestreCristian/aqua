@@ -1,5 +1,7 @@
 import 'package:aqua/fetch_parse_JSON/services.dart';
-import 'package:aqua/spiagge_ridotto.dart';
+import 'package:aqua/fetch_parse_JSON/services_ridotto.dart';
+import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
+import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -13,29 +15,30 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  late List<Spiaggia> _spiagge;
   Set<Marker> _markers = {};
-
-
-  late List<SpiaggiaRidotto> _spiaggeRidotto;
-
+  late String nome;
   @override
   void initState() {
     super.initState();
-    setState(() {
-      Services.getSpiaggeRidotto().then((spiagge){
-        _spiaggeRidotto = spiagge;
-        for (SpiaggiaRidotto elem in spiagge){
+      ServicesRidotto.getSpiaggeRidotto().then((spiaggeRidotto){
+        setState(() {
+
+        //_spiagge = spiagge;
+        nome = spiaggeRidotto[0].id;
+        //for (SpiaggiaRidotto elem in _spiagge){
           _markers.add(
             Marker(
-              markerId: MarkerId(elem.id),
-              position: LatLng(elem.coordinates.x, elem.coordinates.y),
-              infoWindow: InfoWindow(
-                  title: elem.name,
-                  snippet: getQuality(elem.quality)
-              )
+                markerId: MarkerId(nome),
+                position: LatLng(43.5, 13.4),
+                infoWindow: InfoWindow(
+                    title: "ciao",
+                    snippet: "hello"
+                )
             ),
           );
-        }
+        //}
+
       });
     });
   }
