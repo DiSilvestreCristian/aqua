@@ -27,6 +27,11 @@ const String unitaOstreopsis = "[cell/L]";
 const String unitaEscherichia = "[ufc/100ml]";
 const String unitaEnterococcus = "[ufc/100ml]";
 
+/* -- MAPPA - HOME -- */
+
+//InfoBox
+const String infoBoxMarker = "Qualità acqua: ";
+
 /* -- SCREEN NOTIFICHE - SIDEBAR HOME -- */
 
 //Titolo

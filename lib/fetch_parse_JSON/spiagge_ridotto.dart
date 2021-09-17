@@ -20,7 +20,7 @@ class SpiaggiaRidotto {
   String name;
   Coordinates coordinates;
   int lastCheck;
-  int quality;
+  String quality;
   int ostreopsis;
   int escherichia;
   int enterococcus;
