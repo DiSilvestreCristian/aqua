@@ -1,9 +1,9 @@
-import 'package:aqua/fetch_parse_JSON/services_ridotto.dart';
+import 'package:aqua/beach_details/beach_details.dart';
+import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
 import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,7 +50,13 @@ class _HomePageState extends State<HomePage> {
                 position: LatLng(elem.coordinates.x, elem.coordinates.y),
                 infoWindow: InfoWindow(
                     title: elem.name,
-                    snippet: "$infoBoxMarker $_quality"
+                    snippet: "$infoBoxMarker $_quality",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(pageBuilder: (_, __, ___) => BeachDetails(spiaggia: elem)),
+                    );
+                  },
                 ),
                 icon:
                 BitmapDescriptor.defaultMarkerWithHue(color),
@@ -60,7 +66,6 @@ class _HomePageState extends State<HomePage> {
                       target: LatLng(elem.coordinates.x, elem.coordinates.y),
                       zoom: 12.0,
                       tilt: 50.0,
-
                     )
                   )
                 )

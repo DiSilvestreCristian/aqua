@@ -1,9 +1,7 @@
-import 'package:aqua/fetch_parse_JSON/services.dart';
-import 'package:aqua/value/colors.dart';
+import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
+import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
-import 'fetch_parse_JSON/instance_spiagge.dart';
-import 'fetch_parse_JSON/spiaggia.dart';
 import 'beach_details/beach_details.dart';
 
 class Rank extends StatefulWidget {
@@ -15,7 +13,7 @@ class Rank extends StatefulWidget {
 
 class _RankState extends State<Rank> {
 
-  List<Spiaggia> _spiagge = [];
+  List<SpiaggiaRidotto> _spiagge = [];
 
   String pollutantChose = ostreopsisName;
   List listItem =[
@@ -25,9 +23,9 @@ class _RankState extends State<Rank> {
   @override
   void initState() {
     super.initState();
-      Services.getSpiagge().then((spiagge){
+      ServicesRidotto.getSpiaggeRidotto().then((spiagge){
         setState(() {
-        //_spiagge = spiagge;
+        _spiagge = spiagge;
       });
     });
   }
@@ -45,11 +43,11 @@ class _RankState extends State<Rank> {
 
   createList(){
     switch(pollutantChose){
-      case ostreopsisName : _spiagge.sort((a,b)=>a.ostreopsis[0].value.compareTo(b.ostreopsis[0].value));
+      case ostreopsisName : _spiagge.sort((a,b)=>a.ostreopsis.compareTo(b.ostreopsis));
       break;
-      case escherichiaName: _spiagge.sort((a,b)=>a.escherichia[0].value.compareTo(b.escherichia[0].value));
+      case escherichiaName: _spiagge.sort((a,b)=>a.escherichia.compareTo(b.escherichia));
       break;
-      case enterococcusName: _spiagge.sort((a,b)=>a.enterococcus[0].value.compareTo(b.enterococcus[0].value));
+      case enterococcusName: _spiagge.sort((a,b)=>a.enterococcus.compareTo(b.enterococcus));
       break;
     }
   }
@@ -110,7 +108,7 @@ class _RankState extends State<Rank> {
               child: ListView.builder(
                 itemCount: null == _spiagge ? 0 : _spiagge.length,
                 itemBuilder: (context, index) {
-                  Spiaggia spiaggia = _spiagge[index];
+                  SpiaggiaRidotto spiaggia = _spiagge[index];
                   return ListTile(
                     leading: Container(
                         width: 50,

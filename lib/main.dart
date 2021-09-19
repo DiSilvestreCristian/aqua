@@ -1,7 +1,5 @@
-import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
 import 'package:aqua/route/route.dart';
 import 'package:flutter/material.dart';
-import 'package:singleton/singleton.dart';
 
 void main() /*async*/{
   //Singleton.register(SingletonSpiagge.loadAppSettings());

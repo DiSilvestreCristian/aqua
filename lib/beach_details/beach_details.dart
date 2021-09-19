@@ -1,5 +1,5 @@
 import 'package:aqua/beach_details/map_utils.dart';
-import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
+import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/numbers.dart';
 import 'package:aqua/value/strings.dart';
@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class BeachDetails extends StatelessWidget {
 
-  final Spiaggia spiaggia;
+  final SpiaggiaRidotto spiaggia;
 
   const BeachDetails({
     Key? key,
@@ -56,20 +56,20 @@ class BeachDetails extends StatelessWidget {
                 CircularPercentIndicator(
                   radius: 250,
                   lineWidth: 25,
-                  percent: getPercentage(spiaggia.ostreopsis[0].value, ostreopsisName),
+                  percent: getPercentage(spiaggia.ostreopsis, ostreopsisName),
                   progressColor: colorOstreopsis,
                   circularStrokeCap: CircularStrokeCap.round,
                   center: CircularPercentIndicator(
                     radius: 180,
                     lineWidth: 25,
-                    percent: getPercentage(spiaggia.escherichia[0].value, escherichiaName),
+                    percent: getPercentage(spiaggia.escherichia, escherichiaName),
                     progressColor: colorEscherichia,
                     circularStrokeCap: CircularStrokeCap.round,
                     center:
                     CircularPercentIndicator(
                       radius: 110,
                       lineWidth: 25,
-                      percent: getPercentage(spiaggia.enterococcus[0].value, enterococcusName),
+                      percent: getPercentage(spiaggia.enterococcus, enterococcusName),
                       progressColor: colorEnterococcus,
                       circularStrokeCap: CircularStrokeCap.round,
                     ),
@@ -124,7 +124,7 @@ class BeachDetails extends StatelessWidget {
                       children: [
                         Text(situazioneAlga,
                           style: TextStyle(fontSize: 20),),
-                        Text(getSituationOstreopsis(spiaggia.ostreopsis[0].value),
+                        Text(getSituationOstreopsis(spiaggia.ostreopsis),
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                       ],
                     ),
@@ -164,7 +164,7 @@ class BeachDetails extends StatelessWidget {
                               Row(
                                 children: [
                                   Text(
-                                    spiaggia.ostreopsis[0].value.toString(),
+                                    spiaggia.ostreopsis.toString(),
                                       style: TextStyle(fontSize: 40)
                                   ),
                                   Text.rich(
@@ -217,7 +217,7 @@ class BeachDetails extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                          spiaggia.escherichia[0].value.toString(),
+                                          spiaggia.escherichia.toString(),
                                           style: TextStyle(fontSize: 40)
                                       ),
                                       Text.rich(
@@ -270,7 +270,7 @@ class BeachDetails extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                          spiaggia.enterococcus[0].value.toString(),
+                                          spiaggia.enterococcus.toString(),
                                           style: TextStyle(fontSize: 40)
                                       ),
                                       Text.rich(

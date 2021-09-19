@@ -3,7 +3,6 @@ import 'package:aqua/info/info.dart';
 import 'package:aqua/rank.dart';
 import 'package:aqua/route/error_route.dart';
 import 'package:flutter/material.dart';
-import 'package:aqua/main.dart';
 import '../bottom_nav_bar/bottom_nav_bar.dart';
 import '../home/homepage.dart';
 
