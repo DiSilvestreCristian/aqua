@@ -1,7 +1,7 @@
+import 'package:aqua/home/searchbar.dart';
 import 'package:aqua/home/sidebar.dart';
 import 'package:flutter/material.dart';
-
-import 'homepage.dart';
+import 'map.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,7 +10,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
           children: <Widget> [
-            HomePage(),
+            HomeMap(),
+            SearchBar(),
             SideBar(),
           ]
     );

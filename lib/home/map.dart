@@ -6,14 +6,14 @@ import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomeMap extends StatefulWidget {
+  const HomeMap({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeMapState createState() => _HomeMapState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeMapState extends State<HomeMap> {
 
   late List<SpiaggiaRidotto> _spiagge;
 

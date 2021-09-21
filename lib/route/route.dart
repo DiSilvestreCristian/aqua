@@ -4,7 +4,7 @@ import 'package:aqua/rank.dart';
 import 'package:aqua/route/error_route.dart';
 import 'package:flutter/material.dart';
 import '../bottom_nav_bar/bottom_nav_bar.dart';
-import '../home/homepage.dart';
+import '../home/map.dart';
 
 class RouteGenerator{
   static Route<dynamic> generateRoute(RouteSettings settings){
@@ -15,7 +15,7 @@ class RouteGenerator{
       case '/bottomNavBar':
         return MaterialPageRoute(builder: (_) => BottomNavBar());
       case '/home':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => HomeMap());
       case '/favourites':
         return MaterialPageRoute(builder: (_) => Favourites());
       case '/rank':
