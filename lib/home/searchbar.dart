@@ -19,11 +19,12 @@ class SearchBar extends StatelessWidget {
        width: 600,
        elevation: 0,
        backdropColor: Color(0x00FFFFFF),
+       borderRadius: BorderRadius.circular(30.0),
        debounceDelay: const Duration(milliseconds: 500),
+       clearQueryOnClose: true,
        onQueryChanged: (query) {
          // Call your model, bloc, controller here.
        },
-       transition: CircularFloatingSearchBarTransition(),
        actions: [
          FloatingSearchBarAction(
            showIfOpened: false,
@@ -44,9 +45,9 @@ class SearchBar extends StatelessWidget {
              elevation: 4.0,
              child: Column(
                mainAxisSize: MainAxisSize.min,
-               children: Colors.accents.map((color) {
-                 return Container(height: 112, color: color);
-               }).toList(),
+               children: [
+                 Container()
+               ]
              ),
            ),
          );
