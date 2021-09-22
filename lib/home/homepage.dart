@@ -1,16 +1,20 @@
+import 'package:aqua/beach_details/beach_details.dart';
 import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
 import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/value/colors.dart';
+import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
-class SearchBar extends StatefulWidget {
-  const SearchBar({Key? key}) : super(key: key);
+class HomaPage extends StatefulWidget {
+  const HomaPage({Key? key}) : super(key: key);
 
   @override
-  _SearchBarState createState() => _SearchBarState();
+  _HomaPageState createState() => _HomaPageState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _HomaPageState extends State<HomaPage> {
 
   List<SpiaggiaRidotto> _spiagge = [];
   List<SpiaggiaRidotto> _filteredSearchResults = [];
@@ -28,22 +32,65 @@ class _SearchBarState extends State<SearchBar> {
     }
   }
 
+  Set<Marker> _markers = {};
+  static const _initialcameraPosition = CameraPosition(
+    target : LatLng(43.5, 13.3),
+    zoom : 8.7,
+  );
+
   late FloatingSearchBarController controller;
+  late GoogleMapController googleMapController;
 
   @override
   void initState() {
     super.initState();
     controller = FloatingSearchBarController();
     _filteredSearchResults = filterSearchTerms(filter: "");
-    ServicesRidotto.getSpiaggeRidotto().then((spiagge) {
+    ServicesRidotto.getSpiaggeRidotto().then((spiaggeRidotto) {
+      String _quality ="";
       setState(() {
-        _spiagge = spiagge;
+        _spiagge = spiaggeRidotto;
+        for (SpiaggiaRidotto elem in spiaggeRidotto){
+          _quality = elem.quality;
+          double color = BitmapDescriptor.hueGreen;
+          if (_quality == "Buona") color = BitmapDescriptor.hueYellow;
+          else if (_quality == "Sufficiente") color = BitmapDescriptor.hueOrange;
+          else if (_quality == "Scarsa") color = BitmapDescriptor.hueRed;
+          _markers.add(
+            Marker(
+                markerId: MarkerId(elem.id),
+                position: LatLng(elem.coordinates.x, elem.coordinates.y),
+                infoWindow: InfoWindow(
+                  title: elem.name,
+                  snippet: "$infoBoxMarker $_quality",
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(pageBuilder: (_, __, ___) => BeachDetails(spiaggia: elem)),
+                    );
+                  },
+                ),
+                icon:
+                BitmapDescriptor.defaultMarkerWithHue(color),
+                onTap: () => googleMapController.animateCamera(
+                    CameraUpdate.newCameraPosition(
+                        CameraPosition(
+                          target: LatLng(elem.coordinates.x, elem.coordinates.y),
+                          zoom: 12.0,
+                          tilt: 50.0,
+                        )
+                    )
+                )
+            ),
+          );
+        };
       });
     });
   }
 
   @override
   void dispose() {
+    googleMapController.dispose();
     controller.dispose();
     super.dispose();
   }
@@ -51,6 +98,23 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return FloatingSearchBar(
+      body: Scaffold(
+          body: GoogleMap(
+            markers: _markers,
+            zoomControlsEnabled: false,
+            myLocationButtonEnabled: false,
+            initialCameraPosition: _initialcameraPosition,
+            onMapCreated: (controller) => googleMapController = controller,
+          ),
+          floatingActionButton: FloatingActionButton (
+            backgroundColor: colorItemBackgroundSecondary,
+            foregroundColor: colorPrimary,
+            onPressed: () => googleMapController.animateCamera(
+              CameraUpdate.newCameraPosition(_initialcameraPosition),
+            ),
+            child: Icon (Icons.center_focus_strong),
+          )
+      ),
       controller: controller,
       transition: CircularFloatingSearchBarTransition(),
       physics: BouncingScrollPhysics(),
@@ -119,7 +183,18 @@ class _SearchBarState extends State<SearchBar> {
                           overflow: TextOverflow.ellipsis,
                       ),
                       leading: const Icon(Icons.place),
-                      onTap: (){},
+                      onTap: (){
+                        _filteredSearchResults = filterSearchTerms(filter: "");
+                        googleMapController.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                                CameraPosition(
+                                  target: LatLng(term.coordinates.x, term.coordinates.y),
+                                  zoom: 12.0,
+                                  tilt: 50.0,
+                                )
+                            )
+                        );
+                      }
                     )).toList(),
                   );
                 }
@@ -131,86 +206,3 @@ class _SearchBarState extends State<SearchBar> {
     );
   }
 }
-
-/*
-return Container(
-        child: FloatingSearchBar(
-            margins: const EdgeInsets.only(top: 68.0, left: 45.0, right: 10.0),
-            hint: 'Cerca...',
-            scrollPadding: const EdgeInsets.only(top: 16, bottom: 56),
-            transitionDuration: const Duration(milliseconds: 800),
-            transitionCurve: Curves.easeInOut,
-            physics: const BouncingScrollPhysics(),
-            axisAlignment: 0.0,
-            openAxisAlignment: 0.0,
-            width: 600,
-            elevation: 0,
-            backdropColor: Color(0x00FFFFFF),
-            borderRadius: BorderRadius.circular(30.0),
-            debounceDelay: const Duration(milliseconds: 500),
-            clearQueryOnClose: true,
-            onQueryChanged: (query) {
-              // Call your model, bloc, controller here.
-            },
-            actions: [
-              FloatingSearchBarAction(
-                showIfOpened: false,
-                child: CircularButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {},
-                ),
-              ),
-              FloatingSearchBarAction.searchToClear(
-                showIfClosed: false,
-              ),
-            ],
-            builder: (context, transition) {
-              return ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Material(
-                    color: Colors.white,
-                    elevation: 4.0,
-                    child: Container(
-                      child: Column(
-                        children: [
-                          ListView.builder(
-                              itemCount: null == _spiagge ? 0 : _spiagge.length,
-                              itemBuilder: (context, index) => ListTile(
-                                  title: Text(_spiagge[index].name),
-                                )
-                              ),
-                        ],
-                      ),
-                    )
-                  ));
-            }));
-
-
-
-ListView.builder(
-                        itemCount: null == _spiagge ? 0 : _spiagge.length,
-                        itemBuilder: (context, index) {
-                          SpiaggiaRidotto spiaggia = _spiagge[index];
-                          return ListTile(
-                            title: Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: Colors.grey[300],
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  left: 20.0,
-                                ),
-                                child: Expanded(
-                                  child: Text(
-                                    spiaggia.name,
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),*/
