@@ -72,18 +72,22 @@ class _HomaPageState extends State<HomaPage> {
                 ),
                 icon:
                 BitmapDescriptor.defaultMarkerWithHue(color),
-                onTap: () => googleMapController.animateCamera(
-                    CameraUpdate.newCameraPosition(
-                        CameraPosition(
-                          target: LatLng(elem.coordinates.x, elem.coordinates.y),
-                          zoom: 12.0,
-                          tilt: 50.0,
-                        )
-                    )
-                )
+                onTap: () {
+                  _filteredSearchResults = filterSearchTerms(filter: "");
+                  googleMapController.animateCamera(
+                      CameraUpdate.newCameraPosition(
+                          CameraPosition(
+                            target: LatLng(
+                                elem.coordinates.x, elem.coordinates.y),
+                            zoom: 12.0,
+                            tilt: 50.0,
+                          )
+                      )
+                  );
+                }
             ),
           );
-        };
+        }
       });
     });
   }
