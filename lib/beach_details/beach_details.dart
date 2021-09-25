@@ -149,35 +149,49 @@ class BeachDetails extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          //!!INSERIRE IMMAGINE ICONA INQUINANTE!!
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Text.rich (
-                                ostreopsisLabel,
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                  color: colorOstreopsis,
-                                  fontWeight: FontWeight.bold)
-                              ),
-                              Row(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    spiaggia.ostreopsis.toString(),
-                                      style: TextStyle(fontSize: 40)
+                                  Image(
+                                    image: AssetImage('images/icon_ostreopsis.png'),
+                                    height: 40,
+                                    width: 40,
                                   ),
-                                  Text.rich(
-                                    TextSpan(text: sogliaOstreopsis, style: TextStyle(fontSize: 25),
-                                        children:<TextSpan>[
-                                        TextSpan(text: unitaOstreopsis, style: TextStyle(fontSize: 15)),
-                                      ],
+                                ],
+                              ),
+                              SizedBox(width: 15.0,),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text.rich (
+                                    ostreopsisLabel,
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                      color: colorOstreopsis,
+                                      fontWeight: FontWeight.bold)
                                   ),
-                              )
-                            ],
-                          ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        spiaggia.ostreopsis.toString(),
+                                          style: TextStyle(fontSize: 40)
+                                      ),
+                                      Text.rich(
+                                        TextSpan(text: sogliaOstreopsis, style: TextStyle(fontSize: 25),
+                                            children:<TextSpan>[
+                                            TextSpan(text: unitaOstreopsis, style: TextStyle(fontSize: 15)),
+                                          ],
+                                      ),
+                                  )
+                                ],
+                              ),
                         ],
                       ),
+                            ],
+                          ),
                           Icon(
                             Icons.arrow_forward_ios,
                             color: colorPrimary,
@@ -197,40 +211,49 @@ class BeachDetails extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              /* !!INSERIRE IMMAGINE ICONA INQUINANTE!!
-                            Image(
-                             image: AssetImage('images/icon_ostreopsis.png'),
-                              height: 30,
-                              width: 30,
-                          ),*/
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      escherichiaName,
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          color: colorEscherichia,
-                                          fontWeight: FontWeight.bold)
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                          spiaggia.escherichia.toString(),
-                                          style: TextStyle(fontSize: 40)
-                                      ),
-                                      Text.rich(
-                                        TextSpan(text: sogliaEscherichia, style: TextStyle(fontSize: 25),
-                                          children:<TextSpan>[
-                                            TextSpan(text: unitaEscherichia, style: TextStyle(fontSize: 15)),
-                                          ],
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image(
+                                     image: AssetImage('images/icon_escherichia.png'),
+                                      height: 40,
+                                      width: 40,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(width: 15.0,),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        escherichiaName,
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            color: colorEscherichia,
+                                            fontWeight: FontWeight.bold)
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                            spiaggia.escherichia.toString(),
+                                            style: TextStyle(fontSize: 40)
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
+                                        Text.rich(
+                                          TextSpan(text: sogliaEscherichia, style: TextStyle(fontSize: 25),
+                                            children:<TextSpan>[
+                                              TextSpan(text: unitaEscherichia, style: TextStyle(fontSize: 15)),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                               Icon(
                                 Icons.arrow_forward_ios,
                                 color: colorPrimary,
@@ -250,36 +273,46 @@ class BeachDetails extends StatelessWidget {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              /* !!INSERIRE IMMAGINE ICONA INQUINANTE!!
-                            Image(
-                             image: AssetImage('images/icon_ostreopsis.png'),
-                              height: 30,
-                              width: 30,
-                          ),*/
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                              Row(
                                 children: [
-                                  Text(
-                                      enterococcusName,
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          color: colorEnterococcus,
-                                          fontWeight: FontWeight.bold)
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Image(
+                                        image: AssetImage('images/icon_enterococcus.png'),
+                                        height: 40,
+                                        width: 40,
+                                      ),
+                                    ],
                                   ),
-                                  Row(
+                                  SizedBox(width: 15.0,),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          spiaggia.enterococcus.toString(),
-                                          style: TextStyle(fontSize: 40)
+                                          enterococcusName,
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              color: colorEnterococcus,
+                                              fontWeight: FontWeight.bold)
                                       ),
-                                      Text.rich(
-                                        TextSpan(text: sogliaEnterococcus, style: TextStyle(fontSize: 25),
-                                          children:<TextSpan>[
-                                            TextSpan(text: unitaEnterococcus, style: TextStyle(fontSize: 15)),
-                                          ],
-                                        ),
-                                      )
+                                      Row(
+                                        children: [
+                                          Text(
+                                              spiaggia.enterococcus.toString(),
+                                              style: TextStyle(fontSize: 40)
+                                          ),
+                                          Text.rich(
+                                            TextSpan(text: sogliaEnterococcus, style: TextStyle(fontSize: 25),
+                                              children:<TextSpan>[
+                                                TextSpan(text: unitaEnterococcus, style: TextStyle(fontSize: 15)),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ],

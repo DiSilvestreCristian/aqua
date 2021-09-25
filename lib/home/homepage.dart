@@ -33,6 +33,18 @@ class _HomaPageState extends State<HomaPage> {
   }
 
   Set<Marker> _markers = {};
+  late BitmapDescriptor iconMarker;
+
+  Future<void> setCustomMarker(String quality) async {
+    iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_verde');
+    if (quality == "Buona")
+      iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_giallo');
+    else if (quality == "Sufficiente")
+      iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_arancione');
+    else if (quality == "Scarsa")
+      iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_rosso');
+  }
+
   static const _initialcameraPosition = CameraPosition(
     target : LatLng(43.5, 13.3),
     zoom : 8.7,
@@ -40,6 +52,13 @@ class _HomaPageState extends State<HomaPage> {
 
   late FloatingSearchBarController controller;
   late GoogleMapController googleMapController;
+
+  @override
+  void dispose() {
+    googleMapController.dispose();
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -51,11 +70,7 @@ class _HomaPageState extends State<HomaPage> {
       setState(() {
         _spiagge = spiaggeRidotto;
         for (SpiaggiaRidotto elem in spiaggeRidotto){
-          _quality = elem.quality;
-          double color = BitmapDescriptor.hueGreen;
-          if (_quality == "Buona") color = BitmapDescriptor.hueYellow;
-          else if (_quality == "Sufficiente") color = BitmapDescriptor.hueOrange;
-          else if (_quality == "Scarsa") color = BitmapDescriptor.hueRed;
+          setCustomMarker(elem.quality);
           _markers.add(
             Marker(
                 markerId: MarkerId(elem.id),
@@ -70,10 +85,8 @@ class _HomaPageState extends State<HomaPage> {
                     );
                   },
                 ),
-                icon:
-                BitmapDescriptor.defaultMarkerWithHue(color),
+                icon: iconMarker,
                 onTap: () {
-                  _filteredSearchResults = filterSearchTerms(filter: "");
                   googleMapController.animateCamera(
                       CameraUpdate.newCameraPosition(
                           CameraPosition(
@@ -90,13 +103,6 @@ class _HomaPageState extends State<HomaPage> {
         }
       });
     });
-  }
-
-  @override
-  void dispose() {
-    googleMapController.dispose();
-    controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -139,6 +145,7 @@ class _HomaPageState extends State<HomaPage> {
           showIfClosed: false,
         ),
       ],
+      clearQueryOnClose: true,
       onQueryChanged: (query){
         setState(() {
           _filteredSearchResults = filterSearchTerms(filter: query);
@@ -188,7 +195,7 @@ class _HomaPageState extends State<HomaPage> {
                       ),
                       leading: const Icon(Icons.place),
                       onTap: (){
-                        _filteredSearchResults = filterSearchTerms(filter: "");
+                        controller.close();
                         googleMapController.animateCamera(
                             CameraUpdate.newCameraPosition(
                                 CameraPosition(
