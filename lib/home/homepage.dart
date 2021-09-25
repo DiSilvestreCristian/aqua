@@ -34,16 +34,19 @@ class _HomaPageState extends State<HomaPage> {
 
   Set<Marker> _markers = {};
   late BitmapDescriptor iconMarker;
+  late BitmapDescriptor iconMarkerGreen;
+  late BitmapDescriptor iconMarkerYellow;
+  late BitmapDescriptor iconMarkerOrange;
+  late BitmapDescriptor iconMarkerRed;
 
-  Future<void> setCustomMarker(String quality) async {
-    iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_verde');
-    if (quality == "Buona")
-      iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_giallo');
-    else if (quality == "Sufficiente")
-      iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_arancione');
-    else if (quality == "Scarsa")
-      iconMarker = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_rosso');
+
+  Future<void> setCustomMarker() async {
+    iconMarkerGreen = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_verde.png');
+    iconMarkerYellow = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_giallo');
+    iconMarkerOrange = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_arancione');
+    iconMarkerRed = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_rosso');
   }
+
 
   static const _initialcameraPosition = CameraPosition(
     target : LatLng(43.5, 13.3),
@@ -63,6 +66,7 @@ class _HomaPageState extends State<HomaPage> {
   @override
   void initState() {
     super.initState();
+    setCustomMarker();
     controller = FloatingSearchBarController();
     _filteredSearchResults = filterSearchTerms(filter: "");
     ServicesRidotto.getSpiaggeRidotto().then((spiaggeRidotto) {
@@ -70,7 +74,11 @@ class _HomaPageState extends State<HomaPage> {
       setState(() {
         _spiagge = spiaggeRidotto;
         for (SpiaggiaRidotto elem in spiaggeRidotto){
-          setCustomMarker(elem.quality);
+          _quality = elem.quality;
+          iconMarker = iconMarkerGreen;
+          if (_quality == "Buona") iconMarker = iconMarkerYellow;
+          else if (_quality == "Sufficiente") iconMarker = iconMarkerOrange;
+          else if (_quality == "Scarsa") iconMarker = iconMarkerRed;
           _markers.add(
             Marker(
                 markerId: MarkerId(elem.id),
@@ -86,6 +94,8 @@ class _HomaPageState extends State<HomaPage> {
                   },
                 ),
                 icon: iconMarker,
+
+                //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
                 onTap: () {
                   googleMapController.animateCamera(
                       CameraUpdate.newCameraPosition(
