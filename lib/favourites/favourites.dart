@@ -16,6 +16,7 @@ class _FavouritesState extends State<Favourites>{
 
   List<SpiaggiaRidotto> _spiagge = [];
   List<SpiaggiaRidotto> listFav = [];
+  List<SpiaggiaRidotto> list = [];
 
   List<SpiaggiaRidotto> createListFav () {
     int x = 0;
@@ -32,12 +33,11 @@ class _FavouritesState extends State<Favourites>{
 
   Future<int> _getFavValue (String id) async{
     final prefs = await SharedPreferences.getInstance();
-
     return (prefs.getInt(id) ?? 0);
   }
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     ServicesRidotto.getSpiaggeRidotto().then((spiagge){
       for (SpiaggiaRidotto spiaggia in spiagge){
@@ -45,6 +45,7 @@ class _FavouritesState extends State<Favourites>{
           listFav.add(spiaggia);
       }
       setState(() {
+        list = listFav;
         _spiagge = spiagge;
       });
     });
@@ -64,7 +65,7 @@ class _FavouritesState extends State<Favourites>{
             });
           }
         ),
-        items: listFav.map((item) {
+        items: list.map((item) {
           return Builder(
               builder: (BuildContext contex){
                 return Container(
