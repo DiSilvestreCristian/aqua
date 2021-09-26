@@ -4,6 +4,7 @@ import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
@@ -63,10 +64,21 @@ class _HomaPageState extends State<HomaPage> {
     super.dispose();
   }
 
+  late LatLng currentPosition;
+  void _getUserLocation() async {
+    var position = await GeolocatorPlatform.instance
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+    setState(() {
+      currentPosition = LatLng(position.latitude, position.longitude);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     setCustomMarker();
+    _getUserLocation();
     controller = FloatingSearchBarController();
     _filteredSearchResults = filterSearchTerms(filter: "");
     ServicesRidotto.getSpiaggeRidotto().then((spiaggeRidotto) {
@@ -94,7 +106,6 @@ class _HomaPageState extends State<HomaPage> {
                   },
                 ),
                 icon: iconMarker,
-
                 //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
                 onTap: () {
                   googleMapController.animateCamera(
@@ -126,14 +137,32 @@ class _HomaPageState extends State<HomaPage> {
             initialCameraPosition: _initialcameraPosition,
             onMapCreated: (controller) => googleMapController = controller,
           ),
-          floatingActionButton: FloatingActionButton (
-            backgroundColor: colorItemBackgroundSecondary,
-            foregroundColor: colorPrimary,
-            onPressed: () => googleMapController.animateCamera(
-              CameraUpdate.newCameraPosition(_initialcameraPosition),
-            ),
-            child: Icon (Icons.center_focus_strong),
-          )
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton (
+                backgroundColor: colorItemBackgroundSecondary,
+                foregroundColor: colorPrimary,
+                onPressed: () => googleMapController.animateCamera(
+                  CameraUpdate.newCameraPosition( CameraPosition(
+                    target: currentPosition,
+                    zoom: 8.7,
+                  )
+                  ),
+                ),
+                child: Icon (Icons.location_on),
+              ),
+              SizedBox(height: 15.0,),
+              FloatingActionButton (
+                backgroundColor: colorItemBackgroundSecondary,
+                foregroundColor: colorPrimary,
+                onPressed: () => googleMapController.animateCamera(
+                  CameraUpdate.newCameraPosition(_initialcameraPosition),
+                ),
+                child: Icon (Icons.center_focus_strong),
+              ),
+            ],
+          ),
       ),
       controller: controller,
       transition: CircularFloatingSearchBarTransition(),
