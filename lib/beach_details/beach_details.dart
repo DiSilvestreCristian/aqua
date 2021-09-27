@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../pollutant_details.dart';
+
 class BeachDetails extends StatelessWidget {
 
   final SpiaggiaRidotto spiaggia;
@@ -192,9 +194,21 @@ class BeachDetails extends StatelessWidget {
                       ),
                             ],
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: colorPrimary,
+                          GestureDetector(
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: colorPrimary,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(pageBuilder: (_, __, ___) =>
+                                    PollutantDetails(
+                                      inquinante: ostreopsisName,
+                                      spiaggia: spiaggia,
+                                    )),
+                              );
+                            },
                           ),
                       ]
                     ),
@@ -254,9 +268,21 @@ class BeachDetails extends StatelessWidget {
                                 ),
                               ],
                             ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: colorPrimary,
+                              GestureDetector(
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: colorPrimary,
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageRouteBuilder(pageBuilder: (_, __, ___) =>
+                                        PollutantDetails(
+                                          inquinante: escherichiaName,
+                                          spiaggia: spiaggia,
+                                        )),
+                                  );
+                                },
                               ),
                             ]
                         ),
@@ -317,9 +343,21 @@ class BeachDetails extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: colorPrimary,
+                              GestureDetector(
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: colorPrimary,
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageRouteBuilder(pageBuilder: (_, __, ___) =>
+                                        PollutantDetails(
+                                          inquinante: enterococcusName,
+                                          spiaggia: spiaggia,
+                                        )),
+                                  );
+                                },
                               ),
                             ]
                         ),
