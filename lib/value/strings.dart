@@ -76,6 +76,20 @@ const String qualityExelent = "OTTIMA";
 const String regularSituation = "REGOLARE";
 const String allertSituation = "ALLERTA";
 const String emergencySituation = "EMERGENZA";
+
+/* -- SCREEN DETTAGLI_INQUINANTE -- */
+
+//Schede situazione attuale
+const String labelSituazioneAttuale = "Valore attuale";
+
+//Schede medie mensili
+const String labelMedieMensili = "Medie mensili";
+
+//Nomi mesi
+const List<String> nomiMesi = [
+  "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+  "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+
 /* -- SCREEN INFO-- */
 
 //Titolo

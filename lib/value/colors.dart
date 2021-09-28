@@ -16,3 +16,5 @@ Color colorEnterococcus = Color(0xFFDB4437);
 
 Color colorSideBarPrimary = Color(0xFFD8DDE3);
 Color colorSideBarSecondary = Color(0xFF0066FF);
+
+Color colorLinearProgressBarBackground = Color(0xFFB7BEC6);
