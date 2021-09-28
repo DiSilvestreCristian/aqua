@@ -89,6 +89,12 @@ const String labelMedieMensili = "Medie mensili";
 const List<String> nomiMesi = [
   "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
   "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+const mesiIniziali = [
+  "Gen", "Feb", "Mar", "Apr", "Mag", "Giu",
+  "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+
+//Storico valori
+const String labelStoricoValori = "Storico Valori";
 
 /* -- SCREEN INFO-- */
 
