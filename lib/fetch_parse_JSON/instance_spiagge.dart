@@ -1,11 +1,12 @@
-import 'package:aqua/fetch_parse_JSON/services.dart';
-import 'package:aqua/fetch_parse_JSON/spiaggia.dart';
-import 'package:singleton/singleton.dart';
+import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
+import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+/*class SingletonSpiagge {
+  late Future<List<Spiaggia>> _spiagge;
 
-class SingletonSpiagge {
-  static Future<List<Spiaggia>> loadAppSettings() {
-    Future<List<Spiaggia>> _spiagge = Services.getSpiagge();
-    return _spiagge;
+  static Future<SingletonSpiagge> loadAppSettings() {
+    Future<SingletonSpiagge> singleton = new Future<SingletonSpiagge>();
+    singleton._spiagge = Services.getSpiagge();
+    return singleton;
   }
 }
 
@@ -35,4 +36,12 @@ class FutureService {
     List<Spiaggia> instance = httpClient.spiagge as List<Spiaggia>;
     return instance;
   }
+}*/
+
+class SingletonSpiagge {
+  static final SingletonSpiagge theOne = new SingletonSpiagge._internal(ServicesRidotto.getSpiaggeRidotto());
+  Future<List<SpiaggiaRidotto>> spiagge;
+  factory SingletonSpiagge() => theOne;
+
+  SingletonSpiagge._internal(this.spiagge);
 }

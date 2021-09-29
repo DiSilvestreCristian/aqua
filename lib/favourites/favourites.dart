@@ -1,5 +1,7 @@
+import 'package:aqua/beach_details/beach_details.dart';
 import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
 import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,6 @@ class Favourites extends StatefulWidget {
 class _FavouritesState extends State<Favourites>{
 
   List<SpiaggiaRidotto> _spiagge = [];
-  List<SpiaggiaRidotto> listFav = [];
   List<SpiaggiaRidotto> list = [];
 
   List<SpiaggiaRidotto> createListFav () {
@@ -33,20 +34,27 @@ class _FavouritesState extends State<Favourites>{
 
   Future<int> _getFavValue (String id) async{
     final prefs = await SharedPreferences.getInstance();
-    return (prefs.getInt(id) ?? 0);
+    var value = (prefs.getInt(id) ?? 0);
+    return value;
   }
 
   @override
   void initState(){
+    List<SpiaggiaRidotto> listFav= [];
     super.initState();
     ServicesRidotto.getSpiaggeRidotto().then((spiagge){
-      for (SpiaggiaRidotto spiaggia in spiagge){
-        if (_getFavValue(spiaggia.id) == 1)
-          listFav.add(spiaggia);
-      }
+      spiagge.forEach((spiaggia){
+        //var x = spiaggia.id;
+        //var t = spiaggia.name;
+        _getFavValue(spiaggia.id).then((value){
+          if (value == 1) {
+            var y = value;
+            listFav.add(spiaggia);
+          }
+        });
+      });
       setState(() {
         list = listFav;
-        _spiagge = spiagge;
       });
     });
   }
@@ -56,27 +64,23 @@ class _FavouritesState extends State<Favourites>{
   Widget build(BuildContext context){
     return Scaffold(
       body: CarouselSlider(
-        options: CarouselOptions(
-          initialPage: 0,
-          scrollDirection: Axis.horizontal,
-          onPageChanged: (index, _){
-            setState(() {
-              _current = index;
-            });
-          }
+          options: CarouselOptions(
+            initialPage: 0,
+            scrollDirection: Axis.horizontal,
+            onPageChanged: (index, _){
+              setState(() {
+                _current = index;
+              });
+            }
+          ),
+          items: list.map((item) {
+            return Builder(
+                builder: (BuildContext contex){
+                  return BeachDetails(spiaggia: item);
+                }
+            );
+          }).toList(),
         ),
-        items: list.map((item) {
-          return Builder(
-              builder: (BuildContext contex){
-                return Container(
-                  child: Center(
-                    child: Text(item.name),
-                  ),
-                );
-              }
-          );
-        }).toList(),
-      ),
     );
   }
 }

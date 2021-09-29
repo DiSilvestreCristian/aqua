@@ -1,3 +1,4 @@
+import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
 import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
 import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
 import 'package:aqua/value/strings.dart';
@@ -13,30 +14,35 @@ class Rank extends StatefulWidget {
 
 class _RankState extends State<Rank> {
 
-  List<SpiaggiaRidotto> _spiagge = [];
-
   String pollutantChose = ostreopsisName;
   List listItem =[
     ostreopsisName, escherichiaName, enterococcusName
   ];
 
+  List<SpiaggiaRidotto> _spiagge = [];
+
+  Future<List<SpiaggiaRidotto>> getSingleton(){
+    var singleton = new SingletonSpiagge();
+    final spiagge = singleton.spiagge;
+    return spiagge;
+  }
+
   @override
   void initState() {
     super.initState();
-      ServicesRidotto.getSpiaggeRidotto().then((spiagge){
-        setState(() {
+    getSingleton().then((spiagge){
+      setState(() {
         _spiagge = spiagge;
       });
     });
   }
 
-
   /*@override
-  void initState(){
+  void initState() {
     super.initState();
-    Services.getSpiagge().then((spiagge) {
-      setState(() {
-        _spiagge = FutureService().getInstanceSpiagge();
+      ServicesRidotto.getSpiaggeRidotto().then((spiagge){
+        setState(() {
+        _spiagge = spiagge;
       });
     });
   }*/
