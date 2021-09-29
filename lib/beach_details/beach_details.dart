@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../pollutant_details.dart';
+import '../pollutant_details/pollutant_details.dart';
 
 class BeachDetails extends StatelessWidget {
 

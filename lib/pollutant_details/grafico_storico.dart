@@ -38,7 +38,7 @@ class _GraficoStoricoState extends State<GraficoStorico> {
       _min = min;
       _max = max;
       _Y = widget.storico.map((p) => p.value.toDouble()).toList();
-      _X = widget.storico.map((p) => "${mesiIniziali[p.data.month]}\n${p.data.day}").toList();
+      _X = widget.storico.map((p) => "${p.data.day}\n${mesiIniziali[p.data.month]}").toList();
     });
   }
 

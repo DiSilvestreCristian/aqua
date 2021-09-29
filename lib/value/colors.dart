@@ -6,6 +6,7 @@ Color colorPrimary = Color(0xFF0066FF);
 Color colorSecondary = Color(0xFF666666);
 Color colorItemBackground = Color(0xFFD8DDE3);
 Color colorItemBackgroundSecondary = Color(0xFFFFFFFF);
+Color colorItemBackgroundTertiary = Color(0x00FFFFFF);
 
 Color colorTextPrimary = Color(0xFF000000);
 Color colorTextSecondary = Color(0xFFFFFFFF);

@@ -15,15 +15,10 @@ class ChartPainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
 
-    final dotPaintfill = Paint()
-      ..color = colorItemBackgroundSecondary
-      ..style = PaintingStyle.fill
-      ..strokeWidth = 1.0;
-
     final linePaint = Paint()
       ..color = colorPollutant
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
+      ..strokeWidth = 2.0;
 
     final labelStyle = TextStyle(
       color: colorPollutant,
@@ -32,7 +27,7 @@ class ChartPainter extends CustomPainter{
 
     final clipRect = Rect.fromLTWH(0, 0, size.width, size.height);
     canvas.clipRect(clipRect);
-    canvas.drawPaint(Paint()..color = colorItemBackgroundSecondary);
+    canvas.drawPaint(Paint()..color = colorItemBackgroundTertiary);
 
     final drawableHeight = size.height - 2.0 * border;
     final drawableWidth = size.width - 2.0 * border;
@@ -50,30 +45,35 @@ class ChartPainter extends CustomPainter{
     final left = border;
     final top = border;
     var c = Offset(left + wd /2.0, top + height/2.0);
-    _drawOutline(canvas, c, wd, height);
+    //_drawOutline(canvas, c, wd, height);
 
     final points = _computePoints(c, wd, height, hr);
     final path = _computePath(points);
     final labels = _computeLabel();
 
     canvas.drawPath(path, linePaint);
-    _drawdDataPoints(points, labels, canvas, c, wd, dotPaintfill);
+    _drawdDataPoints(points, labels, canvas, c, wd);
 
     var c1 = Offset(c.dx, top + 4 * hd);
     _drawXLabels(canvas, c1, wd);
   }
 
-  void _drawdDataPoints(List<Offset> points, List<String> labels, Canvas canvas, Offset c, double wd, Paint dotPaintfill) {
+  void _drawdDataPoints(List<Offset> points, List<String> labels, Canvas canvas, Offset c, double wd) {
 
-    final linePaint = Paint()
+    final dotPaintfill = Paint()
+      ..color = colorItemBackgroundSecondary
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 1.0;
+
+    final dotLinePaint = Paint()
       ..color = colorPollutant
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.0;
+      ..strokeWidth = 2.0;
 
     for(var i = 0; i<points.length; i++){
       final dp = points[i];
       canvas.drawCircle(dp, radius, dotPaintfill);
-      canvas.drawCircle(dp, radius, linePaint);
+      canvas.drawCircle(dp, radius, dotLinePaint);
     }
   }
 

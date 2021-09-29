@@ -1,12 +1,12 @@
-import 'package:aqua/grafico_storico.dart';
+import 'package:aqua/pollutant_details/grafico_storico.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'value/strings.dart';
-import 'fetch_parse_JSON/services_storico.dart';
-import 'fetch_parse_JSON/spiagge_ridotto.dart';
-import 'fetch_parse_JSON/storico.dart';
+import '../value/strings.dart';
+import '../fetch_parse_JSON/services_storico.dart';
+import '../fetch_parse_JSON/spiagge_ridotto.dart';
+import '../fetch_parse_JSON/storico.dart';
 
 class PollutantDetails extends StatefulWidget {
   final SpiaggiaRidotto spiaggia;
@@ -27,9 +27,9 @@ class _PollutantDetailsState extends State<PollutantDetails> {
   late TextSpan namePollutant;
   late Color colorPollutant;
 
-  late int currentMonth;
-  late int secondMonth;
-  late int thirdMonth;
+  late int currentMonth,  secondMonth, thirdMonth;
+
+  late String valoreAttuale, soglia, unitaMisura;
 
   int getMedia(int month) {
     int count = 0;
@@ -75,6 +75,8 @@ class _PollutantDetailsState extends State<PollutantDetails> {
           iconPollutant = AssetImage('/images/icon_ostreopsis.png');
           namePollutant = ostreopsisLabel;
           colorPollutant = colorOstreopsis;
+          soglia = sogliaOstreopsis;
+          unitaMisura = unitaOstreopsis;
           break;
         }
       case escherichiaName:
@@ -84,6 +86,8 @@ class _PollutantDetailsState extends State<PollutantDetails> {
               text: escherichiaName,
               style: TextStyle(fontStyle: FontStyle.normal));
           colorPollutant = colorEscherichia;
+          soglia = sogliaEscherichia;
+          unitaMisura = unitaEscherichia;
           break;
         }
       case enterococcusName:
@@ -93,6 +97,8 @@ class _PollutantDetailsState extends State<PollutantDetails> {
               text: enterococcusName,
               style: TextStyle(fontStyle: FontStyle.normal));
           colorPollutant = colorEnterococcus;
+          soglia = sogliaEnterococcus;
+          unitaMisura = unitaEnterococcus;
           break;
         }
     }
@@ -100,6 +106,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
     ServicesStorico.getStorico().then((storico) {
       setState(() {
         _storico = storico;
+        _storico.sort((a,b) => a.data.compareTo(b.data));
 
         currentMonth = storico[0].data.month;
 
@@ -184,17 +191,17 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                                                 fontWeight: FontWeight.bold)),
                                         Row(
                                           children: [
-                                            Text(widget.spiaggia.ostreopsis.toString(),
+                                            Text(_storico[0].value.toString(),
                                                 style: TextStyle(
                                                   fontSize: 40,
                                                 )),
                                             Text.rich(
                                               TextSpan(
-                                                text: sogliaOstreopsis,
+                                                text: soglia,
                                                 style: TextStyle(fontSize: 25),
                                                 children: <TextSpan>[
                                                   TextSpan(
-                                                      text: unitaOstreopsis,
+                                                      text: unitaMisura,
                                                       style: TextStyle(fontSize: 15)),
                                                 ],
                                               ),
@@ -289,9 +296,12 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                               fontWeight: FontWeight.bold)),
                     ),
                   ),
-                          SizedBox(
+                          Container(
                             height: 200,
-                              child: GraficoStorico(storico: _storico.reversed.toList(), colorPollutant: colorPollutant,)
+                              child: GraficoStorico(
+                                storico: _storico.reversed.toList(),
+                                colorPollutant: colorPollutant,
+                              )
                           )
                     ])),
                   )
