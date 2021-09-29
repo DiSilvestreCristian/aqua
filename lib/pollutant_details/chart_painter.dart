@@ -79,7 +79,7 @@ class ChartPainter extends CustomPainter{
 
   void _drawXLabels(Canvas canvas, Offset c, double wd){
     final xLabelStyle = TextStyle(
-      color: colorPollutant,
+      color: colorTextPrimary,
       fontSize: 14,
       fontWeight: FontWeight.bold
     );

@@ -4,6 +4,7 @@ import 'package:aqua/value/numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../value/strings.dart';
+import '../value/colors.dart';
 import '../fetch_parse_JSON/services_storico.dart';
 import '../fetch_parse_JSON/spiagge_ridotto.dart';
 import '../fetch_parse_JSON/storico.dart';
@@ -27,7 +28,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
   late TextSpan namePollutant;
   late Color colorPollutant;
 
-  late int currentMonth,  secondMonth, thirdMonth;
+  late int currentMonth, secondMonth, thirdMonth;
 
   late String valoreAttuale, soglia, unitaMisura;
 
@@ -72,7 +73,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
     switch (widget.inquinante) {
       case ostreopsisName:
         {
-          iconPollutant = AssetImage('/images/icon_ostreopsis.png');
+          iconPollutant = AssetImage('images/icon_ostreopsis.png');
           namePollutant = ostreopsisLabel;
           colorPollutant = colorOstreopsis;
           soglia = sogliaOstreopsis;
@@ -81,7 +82,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
         }
       case escherichiaName:
         {
-          iconPollutant = AssetImage('/images/icon_escherichia.png');
+          iconPollutant = AssetImage('images/icon_escherichia.png');
           namePollutant = TextSpan(
               text: escherichiaName,
               style: TextStyle(fontStyle: FontStyle.normal));
@@ -92,7 +93,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
         }
       case enterococcusName:
         {
-          iconPollutant = AssetImage('/images/icon_enterococcus.png');
+          iconPollutant = AssetImage('images/icon_enterococcus.png');
           namePollutant = TextSpan(
               text: enterococcusName,
               style: TextStyle(fontStyle: FontStyle.normal));
@@ -105,8 +106,8 @@ class _PollutantDetailsState extends State<PollutantDetails> {
 
     ServicesStorico.getStorico().then((storico) {
       setState(() {
-        _storico = storico;
-        _storico.sort((a,b) => a.data.compareTo(b.data));
+        _storico = new List<Rilevazione>.from(storico);
+        _storico.sort((a, b) => a.data.compareTo(b.data));
 
         currentMonth = storico[0].data.month;
 
@@ -135,176 +136,211 @@ class _PollutantDetailsState extends State<PollutantDetails> {
             padding: EdgeInsets.only(top: 50.0),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      padding: (EdgeInsets.only(left: 15.0)),
-                      child: Text(
-                        widget.spiaggia.name,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
-                      ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  padding: (EdgeInsets.only(left: 15.0)),
+                  child: Text(
+                    widget.spiaggia.name,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Row(
+                  children: [
+                    Image(
+                      image: iconPollutant,
+                      height: 40,
+                      width: 40,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: Row(
-                      children: [
-                        /*Image(
-                                      image: AssetImage('/images/icon_ostreopsis.png'),
-                                      height: 40,
-                                      width: 40,
-                                    ),*/
-                        SizedBox(
-                          width: 8.0,
-                        ),
-                        Text.rich(namePollutant,
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold)),
-                      ],
+                    SizedBox(
+                      width: 8.0,
                     ),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  SingleChildScrollView(
-                    child: Container(
-                        child: Column(children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                            child: Card(
-                                color: colorItemBackground,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      left: 15.0, top: 5.0, bottom: 5.0),
-                                  height: 100,
-                                  child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Text.rich(namePollutant,
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                    physics: ScrollPhysics(),
+                    child: Column(children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Card(
+                            color: colorItemBackground,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: 15.0, top: 5.0, bottom: 5.0),
+                              height: 100,
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(labelSituazioneAttuale,
+                                        style: TextStyle(
+                                            color: colorPollutant,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold)),
+                                    Row(
                                       children: [
-                                        Text(labelSituazioneAttuale,
+                                        Text(_storico[0].value.toString(),
                                             style: TextStyle(
-                                                color: colorPollutant,
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.bold)),
-                                        Row(
-                                          children: [
-                                            Text(_storico[0].value.toString(),
-                                                style: TextStyle(
-                                                  fontSize: 40,
-                                                )),
-                                            Text.rich(
+                                              fontSize: 40,
+                                            )),
+                                        Text.rich(
+                                          TextSpan(
+                                            text: soglia,
+                                            style: TextStyle(fontSize: 25),
+                                            children: <TextSpan>[
                                               TextSpan(
-                                                text: soglia,
-                                                style: TextStyle(fontSize: 25),
-                                                children: <TextSpan>[
-                                                  TextSpan(
-                                                      text: unitaMisura,
-                                                      style: TextStyle(fontSize: 15)),
-                                                ],
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ]),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                            child: Card(
+                                                  text: unitaMisura,
+                                                  style:
+                                                      TextStyle(fontSize: 15)),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ]),
+                            )),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                        child: Card(
+                            color: colorItemBackground,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Container(
+                              padding: EdgeInsets.only(
+                                  left: 15.0,
+                                  top: 5.0,
+                                  right: 15.0,
+                                  bottom: 8.0),
+                              height: 260,
+                              child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(labelMedieMensili,
+                                        style: TextStyle(
+                                            color: colorPollutant,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold)),
+                                    Text(
+                                      getMonthName(currentMonth),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    LinearPercentIndicator(
+                                      percent: getPercentageMedia(currentMonth)
+                                          .toDouble(),
+                                      animation: false,
+                                      backgroundColor:
+                                          colorLinearProgressBarBackground,
+                                      progressColor: colorPollutant,
+                                      lineHeight: 25,
+                                    ),
+                                    Text(
+                                      getMonthName(secondMonth),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    LinearPercentIndicator(
+                                      percent: getPercentageMedia(secondMonth)
+                                          .toDouble(),
+                                      animation: false,
+                                      backgroundColor:
+                                          colorLinearProgressBarBackground,
+                                      progressColor: colorPollutant,
+                                      lineHeight: 25,
+                                    ),
+                                    Text(
+                                      getMonthName(thirdMonth),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    LinearPercentIndicator(
+                                      percent: getPercentageMedia(thirdMonth)
+                                          .toDouble(),
+                                      animation: false,
+                                      backgroundColor:
+                                          colorLinearProgressBarBackground,
+                                      progressColor: colorPollutant,
+                                      lineHeight: 25,
+                                    ),
+                                  ]),
+                            )),
+                      ),
+                      SizedBox(
+                        height: 8.0,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 25.0),
+                          child: Text(labelStoricoValori,
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                      Container(
+                          height: 200,
+                          child: GraficoStorico(
+                            storico: _storico.reversed.toList(),
+                            colorPollutant: colorPollutant,
+                          )),
+                      ListView.builder(
+                          primary: false,
+                          shrinkWrap: true,
+                          itemCount: null == _storico ? 0 : _storico.length,
+                          itemBuilder: (context, index) {
+                            Rilevazione elem = _storico[index];
+                            return ListTile(
+                                title: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 15.0),
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
                                 color: colorItemBackground,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Container(
-                                  padding: EdgeInsets.only(
-                                      left: 15.0, top: 5.0, right: 15.0, bottom: 8.0),
-                                  height: 260,
-                                  child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(labelMedieMensili,
-                                            style: TextStyle(
-                                                color: colorPollutant,
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.bold)),
-                                        Text(
-                                          getMonthName(currentMonth),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        LinearPercentIndicator(
-                                          percent: getPercentageMedia(currentMonth)
-                                              .toDouble(),
-                                          animation: false,
-                                          backgroundColor:
-                                              colorLinearProgressBarBackground,
-                                          progressColor: colorPollutant,
-                                          lineHeight: 25,
-                                        ),
-                                        Text(
-                                          getMonthName(secondMonth),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        LinearPercentIndicator(
-                                          percent: getPercentageMedia(secondMonth)
-                                              .toDouble(),
-                                          animation: false,
-                                          backgroundColor:
-                                              colorLinearProgressBarBackground,
-                                          progressColor: colorPollutant,
-                                          lineHeight: 25,
-                                        ),
-                                        Text(
-                                          getMonthName(thirdMonth),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        LinearPercentIndicator(
-                                          percent:
-                                              getPercentageMedia(thirdMonth).toDouble(),
-                                          animation: false,
-                                          backgroundColor:
-                                              colorLinearProgressBarBackground,
-                                          progressColor: colorPollutant,
-                                          lineHeight: 25,
-                                        ),
-                                      ]),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 25.0),
-                      child: Text(labelStoricoValori,
-                          style: TextStyle(
-                              color: colorPollutant,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                          Container(
-                            height: 200,
-                              child: GraficoStorico(
-                                storico: _storico.reversed.toList(),
-                                colorPollutant: colorPollutant,
-                              )
-                          )
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "${elem.value}${soglia}${unitaMisura}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                    fontSize: 20.0)),
+                                  Text(
+                                      "${elem.data.day}/${elem.data.month}/${elem.data.year}",
+                                      style: TextStyle(fontWeight: FontWeight.bold)),
+                                ],
+                              ),
+                            ));
+                          }),
                     ])),
-                  )
-                ])));
+              ),
+            ])));
   }
 }
