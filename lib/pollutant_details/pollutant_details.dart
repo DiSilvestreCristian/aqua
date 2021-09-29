@@ -216,7 +216,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                             )),
                       ),
                       SizedBox(
-                        height: 8.0,
+                        height: 12.0,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -291,7 +291,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                             )),
                       ),
                       SizedBox(
-                        height: 8.0,
+                        height: 12.0,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,

@@ -385,7 +385,7 @@ double getPercentage(int val, String pollutant){
     default: toleranceLevel = ostreopsisEmergencyTheshold;
   }
 
-  if (val/toleranceLevel == 0) return 0.1;
+  if (val/toleranceLevel == 0) return 0.001;
   if (val/toleranceLevel > 1) return 1;
   return (val/toleranceLevel);
 }
