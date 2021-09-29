@@ -1,4 +1,4 @@
-import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:http/http.dart' as http;
 
 class ServicesRidotto {

@@ -1,6 +1,7 @@
 import 'package:aqua/beach_details/beach_details.dart';
-import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
-import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/services/sercices_ridotto.dart';
+import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -38,11 +39,17 @@ class _FavouritesState extends State<Favourites>{
     return value;
   }
 
+  Future<List<SpiaggiaRidotto>> getSingleton(){
+    var singleton = new SingletonSpiagge();
+    final spiagge = singleton.spiagge;
+    return spiagge;
+  }
+
   @override
   void initState(){
     List<SpiaggiaRidotto> listFav= [];
     super.initState();
-    ServicesRidotto.getSpiaggeRidotto().then((spiagge){
+    getSingleton().then((spiagge){
       spiagge.forEach((spiaggia){
         //var x = spiaggia.id;
         //var t = spiaggia.name;

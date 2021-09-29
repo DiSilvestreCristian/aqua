@@ -1,4 +1,4 @@
-import 'package:aqua/fetch_parse_JSON/storico.dart';
+import 'package:aqua/model/storico.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 

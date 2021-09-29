@@ -1,6 +1,7 @@
 import 'package:aqua/beach_details/beach_details.dart';
-import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
-import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/services/sercices_ridotto.dart';
+import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
@@ -74,6 +75,12 @@ class _HomaPageState extends State<HomaPage> {
     });
   }
 
+  Future<List<SpiaggiaRidotto>> getSingleton(){
+    var singleton = new SingletonSpiagge();
+    final spiagge = singleton.spiagge;
+    return spiagge;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -81,7 +88,7 @@ class _HomaPageState extends State<HomaPage> {
     _getUserLocation();
     controller = FloatingSearchBarController();
     _filteredSearchResults = filterSearchTerms(filter: "");
-    ServicesRidotto.getSpiaggeRidotto().then((spiaggeRidotto) {
+    getSingleton().then((spiaggeRidotto) {
       String _quality ="";
       setState(() {
         _spiagge = spiaggeRidotto;

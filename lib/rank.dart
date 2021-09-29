@@ -1,6 +1,6 @@
-import 'package:aqua/fetch_parse_JSON/instance_spiagge.dart';
-import 'package:aqua/fetch_parse_JSON/sercices_ridotto.dart';
-import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/services/sercices_ridotto.dart';
+import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'beach_details/beach_details.dart';

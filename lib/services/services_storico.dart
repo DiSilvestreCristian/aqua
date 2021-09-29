@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'storico.dart';
+import '../model/storico.dart';
 
 class ServicesStorico {
 

@@ -1,5 +1,5 @@
 import 'package:aqua/beach_details/map_utils.dart';
-import 'package:aqua/fetch_parse_JSON/spiagge_ridotto.dart';
+import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/numbers.dart';
 import 'package:aqua/value/strings.dart';

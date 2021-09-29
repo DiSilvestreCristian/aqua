@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import '../value/strings.dart';
 import '../value/colors.dart';
-import '../fetch_parse_JSON/services_storico.dart';
-import '../fetch_parse_JSON/spiagge_ridotto.dart';
-import '../fetch_parse_JSON/storico.dart';
+import '../services/services_storico.dart';
+import '../model/spiagge_ridotto.dart';
+import '../model/storico.dart';
 
 class PollutantDetails extends StatefulWidget {
   final SpiaggiaRidotto spiaggia;
