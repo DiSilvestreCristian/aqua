@@ -309,36 +309,45 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                             storico: _storico.reversed.toList(),
                             colorPollutant: colorPollutant,
                           )),
-                      ListView.builder(
-                          primary: false,
-                          shrinkWrap: true,
-                          itemCount: null == _storico ? 0 : _storico.length,
-                          itemBuilder: (context, index) {
-                            Rilevazione elem = _storico[index];
-                            return ListTile(
-                                title: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 15.0),
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                color: colorItemBackground,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "${elem.value}${soglia}${unitaMisura}",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                    fontSize: 20.0)),
-                                  Text(
-                                      "${elem.data.day}/${elem.data.month}/${elem.data.year}",
+                      MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        child: ListView.builder(
+                            primary: false,
+                            shrinkWrap: true,
+                            itemCount: null == _storico ? 0 : _storico.length,
+                            itemBuilder: (context, index) {
+                              Rilevazione elem = _storico[index];
+                              return ListTile(
+                                  title: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 15.0),
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  color: colorItemBackground,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        text: elem.value.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold, fontSize: 23.0, color: colorTextPrimary),
+                                        children: <TextSpan>[
+                                          TextSpan(text: '${soglia}${unitaMisura}',
+                                              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18.0)),
+                                        ],
+                                      ),
+                                    ),
+                                    Text("${elem.data.day}/${elem.data.month}/${elem.data.year}",
                                       style: TextStyle(fontWeight: FontWeight.bold)),
-                                ],
-                              ),
-                            ));
-                          }),
+                                  ],
+                                ),
+                              ));
+                            }),
+                      ),
                     ])),
               ),
             ])));

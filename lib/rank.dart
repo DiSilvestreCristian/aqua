@@ -1,5 +1,4 @@
 import 'package:aqua/instance_spiagge.dart';
-import 'package:aqua/services/sercices_ridotto.dart';
 import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
