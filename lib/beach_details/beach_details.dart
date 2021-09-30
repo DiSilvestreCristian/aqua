@@ -21,122 +21,76 @@ class BeachDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 50.0),
-      child: Column(
-        children: [
-          Container(
-              padding: (EdgeInsets.only(left: 15.0)),
-               child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                    spiaggia.name,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
+        padding: EdgeInsets.only(top: 50.0),
+        child: Column(
+          children: [
+            Container(
+                padding: (EdgeInsets.only(left: 15.0)),
+                 child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                      spiaggia.name,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
+                    ),
                   ),
-                ),
-            ),
-          Container(
-            height: 260,
-            padding: const EdgeInsets.only(left: 18.0, right: 18.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 6.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        child: Icon(Icons.place,
-                          size: 45,
-                          color: colorPrimary,
+              ),
+            Container(
+              height: 260,
+              padding: const EdgeInsets.only(left: 18.0, right: 18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 6.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          child: Icon(Icons.place,
+                            size: 45,
+                            color: colorPrimary,
+                          ),
+                          onTap: () => MapUtils.openMap(spiaggia.coordinates.x as String, spiaggia.coordinates.y as String),
                         ),
-                        onTap: () => MapUtils.openMap(spiaggia.coordinates.x as String, spiaggia.coordinates.y as String),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                CircularPercentIndicator(
-                  radius: 250,
-                  lineWidth: 25,
-                  percent: getPercentage(spiaggia.ostreopsis, ostreopsisName),
-                  progressColor: colorOstreopsis,
-                  circularStrokeCap: CircularStrokeCap.round,
-                  center: CircularPercentIndicator(
-                    radius: 180,
+                  CircularPercentIndicator(
+                    radius: 250,
                     lineWidth: 25,
-                    percent: getPercentage(spiaggia.escherichia, escherichiaName),
-                    progressColor: colorEscherichia,
+                    percent: getPercentage(spiaggia.ostreopsis, ostreopsisName),
+                    progressColor: colorOstreopsis,
                     circularStrokeCap: CircularStrokeCap.round,
-                    center:
-                    CircularPercentIndicator(
-                      radius: 110,
+                    center: CircularPercentIndicator(
+                      radius: 180,
                       lineWidth: 25,
-                      percent: getPercentage(spiaggia.enterococcus, enterococcusName),
-                      progressColor: colorEnterococcus,
+                      percent: getPercentage(spiaggia.escherichia, escherichiaName),
+                      progressColor: colorEscherichia,
                       circularStrokeCap: CircularStrokeCap.round,
+                      center:
+                      CircularPercentIndicator(
+                        radius: 110,
+                        lineWidth: 25,
+                        percent: getPercentage(spiaggia.enterococcus, enterococcusName),
+                        progressColor: colorEnterococcus,
+                        circularStrokeCap: CircularStrokeCap.round,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  width: 50,
-                  padding: const EdgeInsets.only(bottom: 6.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      FavIcon(id: spiaggia.id)
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(left: 8.0, top: 10.0, right: 8.0),
-            child: Column(
-              children: [
-                Card(
-                  color: colorItemBackground,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Container(
-                    height: 50,
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Container(
+                    width: 50,
+                    padding: const EdgeInsets.only(bottom: 6.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(qualitaAcqua,
-                          style: TextStyle(fontSize: 20),),
-                        Text(getQuality(spiaggia.quality),
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+                        FavIcon(id: spiaggia.id)
                       ],
                     ),
                   ),
-                ),
-                Card(
-                  color: colorItemBackground,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Container(
-                    height: 50,
-                    padding: EdgeInsets.only(left: 15.0, right: 15.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(situazioneAlga,
-                          style: TextStyle(fontSize: 20),),
-                        Text(getSituationOstreopsis(spiaggia.ostreopsis),
-                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            child: Container(
+            Container(
               padding: EdgeInsets.only(left: 8.0, top: 10.0, right: 8.0),
               child: Column(
                 children: [
@@ -146,229 +100,279 @@ class BeachDetails extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                     ),
                     child: Container(
-                      height: 100,
-                      padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
+                      height: 50,
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image(
-                                    image: AssetImage('images/icon_ostreopsis.png'),
-                                    height: 40,
-                                    width: 40,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(width: 15.0,),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text.rich (
-                                    ostreopsisLabel,
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                      color: colorOstreopsis,
-                                      fontWeight: FontWeight.bold)
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        spiaggia.ostreopsis.toString(),
-                                          style: TextStyle(fontSize: 40)
-                                      ),
-                                      Text.rich(
-                                        TextSpan(text: sogliaOstreopsis, style: TextStyle(fontSize: 25),
-                                            children:<TextSpan>[
-                                            TextSpan(text: unitaOstreopsis, style: TextStyle(fontSize: 15)),
-                                          ],
-                                      ),
-                                  )
-                                ],
-                              ),
+                          Text(qualitaAcqua,
+                            style: TextStyle(fontSize: 20),),
+                          Text(getQuality(spiaggia.quality),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                         ],
                       ),
-                            ],
-                          ),
-                          GestureDetector(
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: colorPrimary,
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageRouteBuilder(pageBuilder: (_, __, ___) =>
-                                    PollutantDetails(
-                                      inquinante: ostreopsisName,
-                                      spiaggia: spiaggia,
-                                    )),
-                              );
-                            },
-                          ),
-                      ]
                     ),
-                  )
                   ),
                   Card(
-                      color: colorItemBackground,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+                    color: colorItemBackground,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Container(
+                      height: 50,
+                      padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(situazioneAlga,
+                            style: TextStyle(fontSize: 20),),
+                          Text(getSituationOstreopsis(spiaggia.ostreopsis),
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+                        ],
                       ),
-                      child: Container(
-                        height: 100,
-                        padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                            Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Image(
-                                     image: AssetImage('images/icon_escherichia.png'),
-                                      height: 40,
-                                      width: 40,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(width: 15.0,),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        escherichiaName,
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            color: colorEscherichia,
-                                            fontWeight: FontWeight.bold)
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                            spiaggia.escherichia.toString(),
-                                            style: TextStyle(fontSize: 40)
-                                        ),
-                                        Text.rich(
-                                          TextSpan(text: sogliaEscherichia, style: TextStyle(fontSize: 25),
-                                            children:<TextSpan>[
-                                              TextSpan(text: unitaEscherichia, style: TextStyle(fontSize: 15)),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                              GestureDetector(
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: colorPrimary,
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    PageRouteBuilder(pageBuilder: (_, __, ___) =>
-                                        PollutantDetails(
-                                          inquinante: escherichiaName,
-                                          spiaggia: spiaggia,
-                                        )),
-                                  );
-                                },
-                              ),
-                            ]
-                        ),
-                      )
-                  ),
-                  Card(
-                      color: colorItemBackground,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        height: 100,
-                        padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-
-                              Row(
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Image(
-                                        image: AssetImage('images/icon_enterococcus.png'),
-                                        height: 40,
-                                        width: 40,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(width: 15.0,),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          enterococcusName,
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              color: colorEnterococcus,
-                                              fontWeight: FontWeight.bold)
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                              spiaggia.enterococcus.toString(),
-                                              style: TextStyle(fontSize: 40)
-                                          ),
-                                          Text.rich(
-                                            TextSpan(text: sogliaEnterococcus, style: TextStyle(fontSize: 25),
-                                              children:<TextSpan>[
-                                                TextSpan(text: unitaEnterococcus, style: TextStyle(fontSize: 15)),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              GestureDetector(
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: colorPrimary,
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    PageRouteBuilder(pageBuilder: (_, __, ___) =>
-                                        PollutantDetails(
-                                          inquinante: enterococcusName,
-                                          spiaggia: spiaggia,
-                                        )),
-                                  );
-                                },
-                              ),
-                            ]
-                        ),
-                      )
+                    ),
                   ),
                 ],
               ),
             ),
-          )
-        ],
-      ),
+            MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child:Expanded(
+              child: Container(
+                padding: EdgeInsets.only(left: 8.0, top: 10.0, right: 8.0),
+                  child: ListView(
+                    children: [
+                      Card(
+                          color: colorItemBackground,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Container(
+                            height: 100,
+                            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Image(
+                                            image: AssetImage('images/icon_ostreopsis.png'),
+                                            height: 40,
+                                            width: 40,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(width: 15.0,),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text.rich (
+                                              ostreopsisLabel,
+                                              style: TextStyle(
+                                                  fontSize: 25,
+                                                  color: colorOstreopsis,
+                                                  fontWeight: FontWeight.bold)
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  spiaggia.ostreopsis.toString(),
+                                                  style: TextStyle(fontSize: 40)
+                                              ),
+                                              Text.rich(
+                                                TextSpan(text: sogliaOstreopsis, style: TextStyle(fontSize: 25),
+                                                  children:<TextSpan>[
+                                                    TextSpan(text: unitaOstreopsis, style: TextStyle(fontSize: 15)),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  GestureDetector(
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: colorPrimary,
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(pageBuilder: (_, __, ___) =>
+                                            PollutantDetails(
+                                              inquinante: ostreopsisName,
+                                              spiaggia: spiaggia,
+                                            )),
+                                      );
+                                    },
+                                  ),
+                                ]
+                            ),
+                          )
+                      ),
+                      Card(
+                          color: colorItemBackground,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Container(
+                            height: 100,
+                            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Image(
+                                            image: AssetImage('images/icon_escherichia.png'),
+                                            height: 40,
+                                            width: 40,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(width: 15.0,),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              escherichiaName,
+                                              style: TextStyle(
+                                                  fontSize: 25,
+                                                  color: colorEscherichia,
+                                                  fontWeight: FontWeight.bold)
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  spiaggia.escherichia.toString(),
+                                                  style: TextStyle(fontSize: 40)
+                                              ),
+                                              Text.rich(
+                                                TextSpan(text: sogliaEscherichia, style: TextStyle(fontSize: 25),
+                                                  children:<TextSpan>[
+                                                    TextSpan(text: unitaEscherichia, style: TextStyle(fontSize: 15)),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  GestureDetector(
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: colorPrimary,
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(pageBuilder: (_, __, ___) =>
+                                            PollutantDetails(
+                                              inquinante: escherichiaName,
+                                              spiaggia: spiaggia,
+                                            )),
+                                      );
+                                    },
+                                  ),
+                                ]
+                            ),
+                          )
+                      ),
+                      Card(
+                          color: colorItemBackground,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Container(
+                            height: 100,
+                            padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 8.0, bottom: 8.0),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+
+                                  Row(
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Image(
+                                            image: AssetImage('images/icon_enterococcus.png'),
+                                            height: 40,
+                                            width: 40,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(width: 15.0,),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              enterococcusName,
+                                              style: TextStyle(
+                                                  fontSize: 25,
+                                                  color: colorEnterococcus,
+                                                  fontWeight: FontWeight.bold)
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  spiaggia.enterococcus.toString(),
+                                                  style: TextStyle(fontSize: 40)
+                                              ),
+                                              Text.rich(
+                                                TextSpan(text: sogliaEnterococcus, style: TextStyle(fontSize: 25),
+                                                  children:<TextSpan>[
+                                                    TextSpan(text: unitaEnterococcus, style: TextStyle(fontSize: 15)),
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  GestureDetector(
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: colorPrimary,
+                                    ),
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        PageRouteBuilder(pageBuilder: (_, __, ___) =>
+                                            PollutantDetails(
+                                              inquinante: enterococcusName,
+                                              spiaggia: spiaggia,
+                                            )),
+                                      );
+                                    },
+                                  ),
+                                ]
+                            ),
+                          )
+                      ),
+                    ],
+                  )
+                ),
+            ),
+            )
+          ],
+        ),
     );
   }
 }
