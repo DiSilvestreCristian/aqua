@@ -1,9 +1,6 @@
 import 'package:aqua/beach_details/beach_details.dart';
 import 'package:aqua/instance_spiagge.dart';
-import 'package:aqua/services/sercices_ridotto.dart';
 import 'package:aqua/model/spiagge_ridotto.dart';
-import 'package:aqua/value/colors.dart';
-import 'package:aqua/value/strings.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,10 +13,9 @@ class Favourites extends StatefulWidget {
 }
 
 class _FavouritesState extends State<Favourites>{
-
+  List<SpiaggiaRidotto> listFav= [];
   List<SpiaggiaRidotto> _spiagge = [];
-  List<SpiaggiaRidotto> list = [];
-
+  int _value = 0;
   List<SpiaggiaRidotto> createListFav () {
     int x = 0;
     List<SpiaggiaRidotto> list = [];
@@ -47,27 +43,25 @@ class _FavouritesState extends State<Favourites>{
 
   @override
   void initState(){
-    List<SpiaggiaRidotto> listFav= [];
     super.initState();
     getSingleton().then((spiagge){
-      spiagge.forEach((spiaggia){
-        //var x = spiaggia.id;
-        //var t = spiaggia.name;
+      setState(() {
+        _spiagge = spiagge;
+      });
+      spiagge.forEach((spiaggia) {
         _getFavValue(spiaggia.id).then((value){
           if (value == 1) {
-            var y = value;
-            listFav.add(spiaggia);
+            setState(() {
+              listFav.add(spiaggia);
+            });
           }
         });
-      });
-      setState(() {
-        list = listFav;
       });
     });
   }
 
   int _current = 0;
-
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       body: CarouselSlider(
@@ -80,10 +74,10 @@ class _FavouritesState extends State<Favourites>{
               });
             }
           ),
-          items: list.map((item) {
+          items: listFav.map((item) {
             return Builder(
                 builder: (BuildContext contex){
-                  return BeachDetails(spiaggia: item);
+                  return Center(child: Text("${item.name}"));
                 }
             );
           }).toList(),

@@ -2,10 +2,8 @@ import 'package:aqua/route/route.dart';
 import 'package:flutter/material.dart';
 
 
-void main() /*async*/{
-  //Singleton.register(SingletonSpiagge.loadAppSettings());
-  //Singleton.register(FutureService.createInstance());
-  //await Singleton.ensureInstanceFor([SingletonSpiagge(), FutureService]);
+void main() {
+
   runApp(MyApp());
 }
 
