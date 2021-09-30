@@ -141,7 +141,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                 child: Container(
                   padding: (EdgeInsets.only(left: 15.0)),
                   child: Text(
-                    widget.spiaggia.name,
+                    widget.spiaggia.comune,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
                   ),
                 ),

@@ -28,7 +28,7 @@ class _HomaPageState extends State<HomaPage> {
     }){
     if (filter != "" && filter.isNotEmpty){
       return _spiagge
-          .where((term) => term.name.toLowerCase().startsWith(filter)).toList();
+          .where((term) => term.comune.toLowerCase().startsWith(filter)).toList();
     } else {
       return [];
     }
@@ -93,7 +93,7 @@ class _HomaPageState extends State<HomaPage> {
       setState(() {
         _spiagge = spiaggeRidotto;
         for (SpiaggiaRidotto elem in spiaggeRidotto){
-          _quality = elem.quality;
+          _quality = elem.qualita;
           iconMarker = iconMarkerGreen;
           if (_quality == "Buona") iconMarker = iconMarkerYellow;
           else if (_quality == "Sufficiente") iconMarker = iconMarkerOrange;
@@ -101,9 +101,9 @@ class _HomaPageState extends State<HomaPage> {
           _markers.add(
             Marker(
                 markerId: MarkerId(elem.id),
-                position: LatLng(elem.coordinates.x, elem.coordinates.y),
+                position: LatLng(elem.coordinate.x, elem.coordinate.y),
                 infoWindow: InfoWindow(
-                  title: elem.name,
+                  title: elem.comune,
                   snippet: "$infoBoxMarker $_quality",
                   onTap: () {
                     Navigator.push(
@@ -119,7 +119,7 @@ class _HomaPageState extends State<HomaPage> {
                       CameraUpdate.newCameraPosition(
                           CameraPosition(
                             target: LatLng(
-                                elem.coordinates.x, elem.coordinates.y),
+                                elem.coordinate.x, elem.coordinate.y),
                             zoom: 12.0,
                             tilt: 50.0,
                           )
@@ -235,7 +235,7 @@ class _HomaPageState extends State<HomaPage> {
                     mainAxisSize: MainAxisSize.min,
                     children: _filteredSearchResults.map((term) => ListTile(
                       title: Text(
-                          term.name,
+                          term.comune,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                       ),
@@ -245,7 +245,7 @@ class _HomaPageState extends State<HomaPage> {
                         googleMapController.animateCamera(
                             CameraUpdate.newCameraPosition(
                                 CameraPosition(
-                                  target: LatLng(term.coordinates.x, term.coordinates.y),
+                                  target: LatLng(term.coordinate.x, term.coordinate.y),
                                   zoom: 12.0,
                                   tilt: 50.0,
                                 )

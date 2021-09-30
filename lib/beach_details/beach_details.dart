@@ -29,7 +29,7 @@ class BeachDetails extends StatelessWidget {
                  child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                      spiaggia.name,
+                      spiaggia.comune,
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
                     ),
                   ),
@@ -50,7 +50,7 @@ class BeachDetails extends StatelessWidget {
                             size: 45,
                             color: colorPrimary,
                           ),
-                          onTap: () => MapUtils.openMap(spiaggia.coordinates.x as String, spiaggia.coordinates.y as String),
+                          onTap: () => MapUtils.openMap(spiaggia.coordinate.x as String, spiaggia.coordinate.y as String),
                         ),
                       ],
                     ),
@@ -107,7 +107,7 @@ class BeachDetails extends StatelessWidget {
                         children: [
                           Text(qualitaAcqua,
                             style: TextStyle(fontSize: 20),),
-                          Text(getQuality(spiaggia.quality),
+                          Text(getQuality(spiaggia.qualita),
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                         ],
                       ),

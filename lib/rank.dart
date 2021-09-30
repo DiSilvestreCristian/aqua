@@ -145,7 +145,7 @@ class _RankState extends State<Rank> {
                           child: Row(
                             children:[ Expanded(
                               child: Text(
-                                spiaggia.name,
+                                spiaggia.comune,
                                 style: TextStyle(fontSize: 30,),
                               ),
                             ),

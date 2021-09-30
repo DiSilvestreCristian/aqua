@@ -7,49 +7,53 @@ String spiaggiaRidottoToJson(List<SpiaggiaRidotto> data) => json.encode(List<dyn
 class SpiaggiaRidotto {
   SpiaggiaRidotto({
     required this.id,
-    required this.name,
-    required this.coordinates,
-    required this.lastCheck,
-    required this.quality,
+    required this.comune,
+    required this.descrizione,
+    required this.coordinate,
+    required this.qualita,
+    required this.stazioneVicina,
     required this.ostreopsis,
     required this.escherichia,
     required this.enterococcus,
   });
 
   String id;
-  String name;
-  Coordinates coordinates;
-  int lastCheck;
-  String quality;
+  String comune;
+  String descrizione;
+  Coordinate coordinate;
+  String qualita;
+  String stazioneVicina;
   int ostreopsis;
   int escherichia;
   int enterococcus;
 
   factory SpiaggiaRidotto.fromJson(Map<String, dynamic> json) => SpiaggiaRidotto(
     id: json["id"],
-    name: json["name"],
-    coordinates: Coordinates.fromJson(json["coordinates"]),
-    lastCheck: json["last_check"],
-    quality: json["quality"],
-    ostreopsis: json["ostreopsis"],
+    comune: json["comune"],
+    descrizione: json["descrizione"],
+    coordinate: Coordinate.fromJson(json["coordinate"]),
+    qualita: json["qualita"],
+    stazioneVicina: json["stazione_vicina"] == null ? null : json["stazione_vicina"],
+    ostreopsis: json["ostreopsis"] == null ? null : json["ostreopsis"],
     escherichia: json["escherichia"],
     enterococcus: json["enterococcus"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "name": name,
-    "coordinates": coordinates.toJson(),
-    "last_check": lastCheck,
-    "quality": quality,
-    "ostreopsis": ostreopsis,
+    "comune": comune,
+    "descrizione": descrizione,
+    "coordinate": coordinate.toJson(),
+    "qualita": qualita,
+    "stazione_vicina": stazioneVicina == null ? null : stazioneVicina,
+    "ostreopsis": ostreopsis == null ? null : ostreopsis,
     "escherichia": escherichia,
     "enterococcus": enterococcus,
   };
 }
 
-class Coordinates {
-  Coordinates({
+class Coordinate {
+  Coordinate({
     required this.x,
     required this.y,
   });
@@ -57,7 +61,7 @@ class Coordinates {
   double x;
   double y;
 
-  factory Coordinates.fromJson(Map<String, dynamic> json) => Coordinates(
+  factory Coordinate.fromJson(Map<String, dynamic> json) => Coordinate(
     x: json["x"].toDouble(),
     y: json["y"].toDouble(),
   );
@@ -67,3 +71,5 @@ class Coordinates {
     "y": y,
   };
 }
+
+
