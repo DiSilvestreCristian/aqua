@@ -28,7 +28,8 @@ class _HomaPageState extends State<HomaPage> {
     }){
     if (filter != "" && filter.isNotEmpty){
       return _spiagge
-          .where((term) => term.comune.toLowerCase().startsWith(filter)).toList();
+          .where((term) => (term.comune.toLowerCase().startsWith(filter.toLowerCase())) ||
+          (term.descrizione.toLowerCase().contains(filter.toLowerCase()))).toList();
     } else {
       return [];
     }
@@ -238,6 +239,11 @@ class _HomaPageState extends State<HomaPage> {
                           term.comune,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        term.descrizione,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                       leading: const Icon(Icons.place),
                       onTap: (){

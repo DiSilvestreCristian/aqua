@@ -1,6 +1,7 @@
 import 'package:aqua/instance_spiagge.dart';
 import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
+import 'package:aqua/value/numbers.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'beach_details/beach_details.dart';
@@ -116,7 +117,7 @@ class _RankState extends State<Rank> {
               removeTop: true,
               child: Expanded(
                 child: ListView.builder(
-                  itemCount: null == _spiagge ? 0 : _spiagge.length,
+                  itemCount: null == _spiagge ? 0 : numberBeachOnRank,
                   itemBuilder: (context, index) {
                     SpiaggiaRidotto spiaggia = _spiagge[index];
                     return ListTile(
@@ -135,7 +136,7 @@ class _RankState extends State<Rank> {
                           )
                       ),
                       title: Container(
-                        height: 50,
+                        height: 65,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: colorItemBackground,
@@ -144,9 +145,20 @@ class _RankState extends State<Rank> {
                           padding: EdgeInsets.only(left: 20.0,),
                           child: Row(
                             children:[ Expanded(
-                              child: Text(
-                                spiaggia.comune,
-                                style: TextStyle(fontSize: 30,),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                      spiaggia.comune,
+                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                    ),
+                                  Text(
+                                      spiaggia.descrizione,
+                                      style: TextStyle(fontSize: 13,),
+                                    ),
+
+                                ],
                               ),
                             ),
                               Padding(
