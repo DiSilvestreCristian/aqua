@@ -6,6 +6,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../add_favourites.dart';
+
 class Favourites extends StatefulWidget {
   const Favourites({Key? key}) : super(key: key);
 
@@ -63,6 +65,7 @@ class _FavouritesState extends State<Favourites>{
         setState(() {
           listFav = updateList();
     }));
+    if (listFav.length == 0) return AddFavourites();
     return Scaffold(
       body: Column(
         children: [

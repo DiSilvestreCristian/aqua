@@ -52,6 +52,10 @@ const String descrizioneNotificaPosizione = "Ricevi notifiche se il livello "
 /* -- SCREEN CLASSIFICA -- */
 
 //Titolo
+const String addFavourite = "Non hai aggiunto alcuna spiaggia preferita";
+/* -- SCREEN CLASSIFICA -- */
+
+//Titolo
 const String titoloRank = "Classifica";
 
 /* -- SCREEN DETTAGLI_SPIAGGIA -- */
