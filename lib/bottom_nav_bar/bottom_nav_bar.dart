@@ -68,7 +68,7 @@ class _BottomNavBar extends State<BottomNavBar>{
               label: 'Preferiti'
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.grade),
+              icon: Icon(Icons.sort),
               label: 'Classifica'
           ),
           BottomNavigationBarItem(
