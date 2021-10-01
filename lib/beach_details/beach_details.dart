@@ -70,20 +70,20 @@ class BeachDetails extends StatelessWidget {
                   CircularPercentIndicator(
                     radius: 250,
                     lineWidth: 25,
-                    percent: getPercentage(spiaggia.ostreopsis, ostreopsisName),
+                    percent: getPercentage(spiaggia.ostreopsis == null? 0 : spiaggia.ostreopsis, ostreopsisName),
                     progressColor: colorOstreopsis,
                     circularStrokeCap: CircularStrokeCap.round,
                     center: CircularPercentIndicator(
                       radius: 180,
                       lineWidth: 25,
-                      percent: getPercentage(spiaggia.escherichia, escherichiaName),
+                      percent: getPercentage(spiaggia.escherichia == null? 0 : spiaggia.escherichia, escherichiaName),
                       progressColor: colorEscherichia,
                       circularStrokeCap: CircularStrokeCap.round,
                       center:
                       CircularPercentIndicator(
                         radius: 110,
                         lineWidth: 25,
-                        percent: getPercentage(spiaggia.enterococcus, enterococcusName),
+                        percent: getPercentage(spiaggia.enterococcus == null? 0 : spiaggia.enterococcus, enterococcusName),
                         progressColor: colorEnterococcus,
                         circularStrokeCap: CircularStrokeCap.round,
                       ),
@@ -138,7 +138,7 @@ class BeachDetails extends StatelessWidget {
                         children: [
                           Text(situazioneAlga,
                             style: TextStyle(fontSize: 20),),
-                          Text(getSituationOstreopsis(spiaggia.ostreopsis),
+                          Text(getSituationOstreopsis(spiaggia.ostreopsis == null? -1 : spiaggia.ostreopsis),
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                         ],
                       ),
@@ -193,13 +193,13 @@ class BeachDetails extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                  spiaggia.ostreopsis.toString(),
+                                                  spiaggia.ostreopsis == null? valoreNonRilevato :spiaggia.ostreopsis.toString(),
                                                   style: TextStyle(fontSize: 40)
                                               ),
                                               Text.rich(
-                                                TextSpan(text: sogliaOstreopsis, style: TextStyle(fontSize: 25),
+                                                TextSpan(text: spiaggia.ostreopsis == null? "" : sogliaOstreopsis, style: TextStyle(fontSize: 25),
                                                   children:<TextSpan>[
-                                                    TextSpan(text: unitaOstreopsis, style: TextStyle(fontSize: 15)),
+                                                    TextSpan(text: spiaggia.ostreopsis == null? "" : unitaOstreopsis, style: TextStyle(fontSize: 15)),
                                                   ],
                                                 ),
                                               )
@@ -267,13 +267,13 @@ class BeachDetails extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                  spiaggia.escherichia.toString(),
+                                                  spiaggia.escherichia == null? valoreNonRilevato :spiaggia.escherichia.toString(),
                                                   style: TextStyle(fontSize: 40)
                                               ),
                                               Text.rich(
-                                                TextSpan(text: sogliaEscherichia, style: TextStyle(fontSize: 25),
+                                                TextSpan(text: spiaggia.escherichia == null? "" : sogliaEscherichia, style: TextStyle(fontSize: 25),
                                                   children:<TextSpan>[
-                                                    TextSpan(text: unitaEscherichia, style: TextStyle(fontSize: 15)),
+                                                    TextSpan(text: spiaggia.escherichia == null? "" : unitaEscherichia, style: TextStyle(fontSize: 15)),
                                                   ],
                                                 ),
                                               )
@@ -342,13 +342,13 @@ class BeachDetails extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                  spiaggia.enterococcus.toString(),
+                                                  spiaggia.enterococcus == null? valoreNonRilevato :spiaggia.enterococcus.toString(),
                                                   style: TextStyle(fontSize: 40)
                                               ),
                                               Text.rich(
-                                                TextSpan(text: sogliaEnterococcus, style: TextStyle(fontSize: 25),
+                                                TextSpan(text: spiaggia.enterococcus == null? "" : sogliaEnterococcus, style: TextStyle(fontSize: 25),
                                                   children:<TextSpan>[
-                                                    TextSpan(text: unitaEnterococcus, style: TextStyle(fontSize: 15)),
+                                                    TextSpan(text: spiaggia.enterococcus == null? "" : unitaEnterococcus, style: TextStyle(fontSize: 15)),
                                                   ],
                                                 ),
                                               )
@@ -424,7 +424,8 @@ return quality;
 
 String getSituationOstreopsis (int value){
   String situation;
-  if (value>=0 && value<ostreopsisAllertTheshold) situation = regularSituation;
+  if (value == -1) situation = notClassifiedSituation;
+  else if (value>=0 && value<ostreopsisAllertTheshold) situation = regularSituation;
   else if (value>=ostreopsisAllertTheshold && value<ostreopsisEmergencyTheshold) situation = allertSituation;
   else (situation=emergencySituation);
   return situation;

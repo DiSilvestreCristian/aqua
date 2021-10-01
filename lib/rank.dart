@@ -38,19 +38,30 @@ class _RankState extends State<Rank> {
     });
   }
 
-  createList(){
+  orderList(){
+
     switch(pollutantChose){
-      case ostreopsisName : _spiagge.sort((a,b)=>a.ostreopsis.compareTo(b.ostreopsis));
-      break;
-      case escherichiaName: _spiagge.sort((a,b)=>a.escherichia.compareTo(b.escherichia));
-      break;
-      case enterococcusName: _spiagge.sort((a,b)=>a.enterococcus.compareTo(b.enterococcus));
-      break;
+      case ostreopsisName : {
+        _spiagge.removeWhere((item) => item.ostreopsis == null);
+        _spiagge.sort((a,b)=> a.ostreopsis.compareTo(b.ostreopsis));
+        break;
+      }
+      case escherichiaName: {
+        _spiagge.removeWhere((item) => item.escherichia == null);
+        _spiagge.sort((a,b)=> a.escherichia.compareTo(b.escherichia));
+        break;
+      }
+      case enterococcusName: {
+        _spiagge.removeWhere((item) => item.enterococcus == null);
+        _spiagge.sort((a,b)=> a.enterococcus.compareTo(b.enterococcus));
+        break;
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    orderList();
     return Scaffold(
       body:
       Padding(
@@ -98,10 +109,10 @@ class _RankState extends State<Rank> {
                       ),
                       value: pollutantChose,
                       onChanged: (newPollutant){
-                        setState(() {
+                        this.setState(() {
                           pollutantChose = newPollutant.toString();
-                          createList();
                         });
+                        orderList();
                       },
                       items: listItem.map((valueItem){
                         return DropdownMenuItem(
@@ -117,7 +128,8 @@ class _RankState extends State<Rank> {
               removeTop: true,
               child: Expanded(
                 child: ListView.builder(
-                  itemCount: null == _spiagge ? 0 : numberBeachOnRank,
+                  itemCount: null == _spiagge ? 0 :
+                  (_spiagge.length < numberBeachOnRank ? _spiagge.length : numberBeachOnRank),
                   itemBuilder: (context, index) {
                     SpiaggiaRidotto spiaggia = _spiagge[index];
                     return ListTile(

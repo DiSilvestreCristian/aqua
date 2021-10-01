@@ -60,6 +60,9 @@ const String titoloRank = "Classifica";
 
 /* -- SCREEN DETTAGLI_SPIAGGIA -- */
 
+//Valore non rilevato
+const String valoreNonRilevato = "Non rilevato";
+
 //Schede qualità e alga
 const String qualitaAcqua = "Qualità dell'acqua:";
 const String situazioneAlga = "Situazione alga: ";
@@ -77,6 +80,7 @@ const String qualityGood = "BUONA";
 const String qualityExelent = "OTTIMA";
 
 //Situazione alga
+const String notClassifiedSituation = "NON CLASSIFICATA";
 const String regularSituation = "REGOLARE";
 const String allertSituation = "ALLERTA";
 const String emergencySituation = "EMERGENZA";
