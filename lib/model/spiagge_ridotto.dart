@@ -11,6 +11,7 @@ class SpiaggiaRidotto {
     required this.descrizione,
     required this.coordinate,
     required this.qualita,
+    required this.situazioneOstreopsis,
     required this.stazioneVicina,
     required this.ostreopsis,
     required this.escherichia,
@@ -22,6 +23,7 @@ class SpiaggiaRidotto {
   String descrizione;
   Coordinate coordinate;
   String qualita;
+  String situazioneOstreopsis;
   String stazioneVicina;
   int ostreopsis;
   int escherichia;
@@ -33,6 +35,7 @@ class SpiaggiaRidotto {
     descrizione: json["descrizione"],
     coordinate: Coordinate.fromJson(json["coordinate"]),
     qualita: json["qualita"],
+    situazioneOstreopsis: json["situazione_ostreopsis"],
     stazioneVicina: json["stazione_vicina"] == null ? null : json["stazione_vicina"],
     ostreopsis: json["ostreopsis"] == null ? null : json["ostreopsis"],
     escherichia: json["escherichia"],
@@ -45,6 +48,7 @@ class SpiaggiaRidotto {
     "descrizione": descrizione,
     "coordinate": coordinate.toJson(),
     "qualita": qualita,
+    "situazione_ostreopsis": situazioneOstreopsis,
     "stazione_vicina": stazioneVicina == null ? null : stazioneVicina,
     "ostreopsis": ostreopsis == null ? null : ostreopsis,
     "escherichia": escherichia,

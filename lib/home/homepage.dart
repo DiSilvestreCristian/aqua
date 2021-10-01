@@ -96,9 +96,9 @@ class _HomaPageState extends State<HomaPage> {
         for (SpiaggiaRidotto elem in spiaggeRidotto){
           _quality = elem.qualita;
           iconMarker = iconMarkerGreen;
-          if (_quality == "Buona") iconMarker = iconMarkerYellow;
-          else if (_quality == "Sufficiente") iconMarker = iconMarkerOrange;
-          else if (_quality == "Scarsa") iconMarker = iconMarkerRed;
+          if (_quality == "BUONA") iconMarker = iconMarkerYellow;
+          else if (_quality == "SUFFICIENTE") iconMarker = iconMarkerOrange;
+          else if (_quality == "SCARSA") iconMarker = iconMarkerRed;
           _markers.add(
             Marker(
                 markerId: MarkerId(elem.id),
