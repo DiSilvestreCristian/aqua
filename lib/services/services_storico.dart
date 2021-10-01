@@ -4,6 +4,7 @@ import '../model/storico.dart';
 class ServicesStorico {
 
   static const String url = 'https://pastebin.com/raw/y5aVYmE0';
+  static const String urlNull = 'https://pastebin.com/raw/9xqGCRAF';
 
   static Future<List<Rilevazione>> getStorico(/*String pollutant, String idSpiaggia*/) async {
 
@@ -14,7 +15,7 @@ class ServicesStorico {
     */
 
     try{
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(Uri.parse(urlNull));
       if (200 == response.statusCode){
         final List<Rilevazione> storico = rilevazioneFromJson(response.body);
         return storico;

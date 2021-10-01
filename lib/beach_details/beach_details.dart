@@ -26,23 +26,21 @@ class BeachDetails extends StatelessWidget {
           children: [
             Container(
                 padding: (EdgeInsets.only(left: 15.0)),
-                 child: Column(
-                   children: [
-                     Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                          spiaggia.comune,
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
-                        ),
-                      ),
-                     Align(
-                       alignment: Alignment.centerLeft,
-                       child: Text(
-                         spiaggia.descrizione,
-                         style: TextStyle(fontSize: 16),
-                       ),
-                     ),
-                   ],
+                 child: Align(
+                   alignment: Alignment.centerLeft,
+                   child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Text(
+                            spiaggia.comune,
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                          ),
+                       Text(
+                           spiaggia.descrizione,
+                           style: TextStyle(fontSize: 16),
+                         ),
+                     ],
+                   ),
                  ),
               ),
             SizedBox(height: 8,),

@@ -101,9 +101,21 @@ const mesiIniziali = [
   "", "Gen", "Feb", "Mar", "Apr", "Mag", "Giu",
   "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
 
-//Storico valori"
+//Storico valori
 const String labelStoricoValori = "Storico Valori";
 
+//Storico vuoto
+TextSpan storicoVuoto = TextSpan(
+    text: "Non è presente alcuna rilevazione valida dell'inquinante selezionato per questa spiaggia.",
+    style: TextStyle(fontSize: 23.0)
+);
+TextSpan noOstreopsis = TextSpan(text: "Spiaggia non affetta da presenza dell'alga ", style: TextStyle(fontSize: 23.0),
+    children:<TextSpan>[
+      TextSpan(text: "Ostreopsis ", style: TextStyle(fontStyle: FontStyle.italic)),
+      TextSpan(text: "cf. ", style: TextStyle(fontStyle: FontStyle.normal)),
+      TextSpan(text: "ovata.", style: TextStyle(fontStyle: FontStyle.italic)),
+    ]
+);
 /* -- SCREEN INFO-- */
 
 //Titolo
