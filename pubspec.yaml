@@ -38,7 +38,9 @@ dependencies:
   rxdart: ^0.23.1
   material_floating_search_bar: ^0.2.6
   geolocator: ^6.0.0
+  fluster: ^1.2.0
   syncfusion_flutter_charts: ^19.2.62
+  flutter_map_marker_cluster: ^0.4.0
 
 dev_dependencies:
   flutter_test:

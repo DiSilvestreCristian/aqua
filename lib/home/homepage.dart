@@ -1,9 +1,9 @@
 import 'package:aqua/beach_details/beach_details.dart';
 import 'package:aqua/instance_spiagge.dart';
-import 'package:aqua/services/sercices_ridotto.dart';
 import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
-import 'package:aqua/value/strings.dart';
+import 'package:aqua/value/marker_visible.dart';
+import 'package:aqua/value/numbers.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -34,6 +34,8 @@ class _HomaPageState extends State<HomaPage> {
       return [];
     }
   }
+
+  late double _currentZoom;
 
   Set<Marker> _markers = {};
   late BitmapDescriptor iconMarker;
@@ -82,34 +84,108 @@ class _HomaPageState extends State<HomaPage> {
     return spiagge;
   }
 
+
+
   @override
   void initState() {
     super.initState();
+    _currentZoom = 8.7;
     setCustomMarker();
     _getUserLocation();
     controller = FloatingSearchBarController();
     _filteredSearchResults = filterSearchTerms(filter: "");
     getSingleton().then((spiaggeRidotto) {
       String _quality ="";
+      bool visibility = false;
       setState(() {
         _spiagge = spiaggeRidotto;
         for (SpiaggiaRidotto elem in spiaggeRidotto){
+          visibility = false;
+          if (firstLevelMarker.contains(elem.id)) {
+            visibility = true;
+          }
+            _quality = elem.qualita;
+            iconMarker = iconMarkerGreen;
+            if (_quality == "BUONA")
+              iconMarker = iconMarkerYellow;
+            else if (_quality == "SUFFICIENTE")
+              iconMarker = iconMarkerOrange;
+            else if (_quality == "SCARSA")
+              iconMarker = iconMarkerRed;
+            else if (_quality == "NON CLASSIFICATA")
+              iconMarker = iconMarkerRed;
+            _markers.add(
+              Marker(
+                  markerId: MarkerId(elem.id),
+                  visible: visibility,
+                  position: LatLng(elem.coordinate.x, elem.coordinate.y),
+                  infoWindow: InfoWindow(
+                    title: elem.comune,
+                    snippet: elem.descrizione,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            pageBuilder: (_, __, ___) =>
+                                BeachDetails(spiaggia: elem)),
+                      );
+                    },
+                  ),
+                  icon: iconMarker,
+                  //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+                  onTap: () {
+                    googleMapController.animateCamera(
+                        CameraUpdate.newCameraPosition(CameraPosition(
+                      target: LatLng(elem.coordinate.x, elem.coordinate.y),
+                          zoom: markerSelectedMapZoom,
+                          tilt: markerSelectedMapTilt,
+                    )));
+                  }),
+            );
+
+        }
+      });
+    });
+  }
+
+  updateMarker(){
+
+    if (_currentZoom<secondLevelZoom){
+      setState(() {
+        _markers.clear();
+      });
+      String _quality ="";
+      bool visibility = false;
+      setState(() {
+        for (SpiaggiaRidotto elem in _spiagge){
+          visibility = false;
+          if (firstLevelMarker.contains(elem.id)) {
+            visibility = true;
+          }
           _quality = elem.qualita;
           iconMarker = iconMarkerGreen;
-          if (_quality == "BUONA") iconMarker = iconMarkerYellow;
-          else if (_quality == "SUFFICIENTE") iconMarker = iconMarkerOrange;
-          else if (_quality == "SCARSA") iconMarker = iconMarkerRed;
+          if (_quality == "BUONA")
+            iconMarker = iconMarkerYellow;
+          else if (_quality == "SUFFICIENTE")
+            iconMarker = iconMarkerOrange;
+          else if (_quality == "SCARSA")
+            iconMarker = iconMarkerRed;
+          else if (_quality == "NON CLASSIFICATA")
+            iconMarker = iconMarkerRed;
           _markers.add(
             Marker(
                 markerId: MarkerId(elem.id),
+                visible: visibility,
                 position: LatLng(elem.coordinate.x, elem.coordinate.y),
                 infoWindow: InfoWindow(
                   title: elem.comune,
-                  snippet: "$infoBoxMarker $_quality",
+                  snippet: elem.descrizione,
                   onTap: () {
                     Navigator.push(
                       context,
-                      PageRouteBuilder(pageBuilder: (_, __, ___) => BeachDetails(spiaggia: elem)),
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) =>
+                              BeachDetails(spiaggia: elem)),
                     );
                   },
                 ),
@@ -117,21 +193,120 @@ class _HomaPageState extends State<HomaPage> {
                 //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
                 onTap: () {
                   googleMapController.animateCamera(
-                      CameraUpdate.newCameraPosition(
-                          CameraPosition(
-                            target: LatLng(
-                                elem.coordinate.x, elem.coordinate.y),
-                            zoom: 12.0,
-                            tilt: 50.0,
-                          )
-                      )
-                  );
-                }
-            ),
+                      CameraUpdate.newCameraPosition(CameraPosition(
+                        target: LatLng(elem.coordinate.x, elem.coordinate.y),
+                        zoom: markerSelectedMapZoom,
+                        tilt: markerSelectedMapTilt,
+                      )));
+                }),
           );
         }
       });
-    });
+    }
+
+    if (_currentZoom>=secondLevelZoom && _currentZoom<thirdLevelZoom){
+      setState(() {
+        _markers.clear();
+      });
+      String _quality ="";
+      bool visibility = false;
+      setState(() {
+        for (SpiaggiaRidotto elem in _spiagge){
+          visibility = false;
+          if (firstLevelMarker.contains(elem.id) || secondLevelMarker.contains(elem.id)) {
+            visibility = true;
+          }
+            _quality = elem.qualita;
+            iconMarker = iconMarkerGreen;
+            if (_quality == "BUONA")
+              iconMarker = iconMarkerYellow;
+            else if (_quality == "SUFFICIENTE")
+              iconMarker = iconMarkerOrange;
+            else if (_quality == "SCARSA")
+              iconMarker = iconMarkerRed;
+            else if (_quality == "NON CLASSIFICATA")
+              iconMarker = iconMarkerRed;
+            _markers.add(
+              Marker(
+                  markerId: MarkerId(elem.id),
+                  visible: visibility,
+                  position: LatLng(elem.coordinate.x, elem.coordinate.y),
+                  infoWindow: InfoWindow(
+                    title: elem.comune,
+                    snippet: elem.descrizione,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            pageBuilder: (_, __, ___) =>
+                                BeachDetails(spiaggia: elem)),
+                      );
+                    },
+                  ),
+                  icon: iconMarker,
+                  //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+                  onTap: () {
+                    googleMapController.animateCamera(
+                        CameraUpdate.newCameraPosition(CameraPosition(
+                          target: LatLng(elem.coordinate.x, elem.coordinate.y),
+                          zoom: markerSelectedMapZoom,
+                          tilt: markerSelectedMapTilt,
+                        )));
+                  }),
+            );
+        }
+      });
+    }
+
+    if (_currentZoom>=thirdLevelZoom){
+      setState(() {
+        _markers.clear();
+      });
+      String _quality ="";
+      bool visibility = true;
+      setState(() {
+        for (SpiaggiaRidotto elem in _spiagge){
+          _quality = elem.qualita;
+          iconMarker = iconMarkerGreen;
+          if (_quality == "BUONA")
+            iconMarker = iconMarkerYellow;
+          else if (_quality == "SUFFICIENTE")
+            iconMarker = iconMarkerOrange;
+          else if (_quality == "SCARSA")
+            iconMarker = iconMarkerRed;
+          else if (_quality == "NON CLASSIFICATA")
+            iconMarker = iconMarkerRed;
+          _markers.add(
+            Marker(
+                markerId: MarkerId(elem.id),
+                visible: visibility,
+                position: LatLng(elem.coordinate.x, elem.coordinate.y),
+                infoWindow: InfoWindow(
+                  title: elem.comune,
+                  snippet: elem.descrizione,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) =>
+                              BeachDetails(spiaggia: elem)),
+                    );
+                  },
+                ),
+                icon: iconMarker,
+                //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+                onTap: () {
+                  googleMapController.animateCamera(
+                      CameraUpdate.newCameraPosition(CameraPosition(
+                        target: LatLng(elem.coordinate.x, elem.coordinate.y),
+                        zoom: markerSelectedMapZoom,
+                        tilt: markerSelectedMapTilt,
+                      )));
+                }),
+          );
+        }
+      });
+    }
   }
 
   @override
@@ -144,6 +319,14 @@ class _HomaPageState extends State<HomaPage> {
             myLocationButtonEnabled: false,
             initialCameraPosition: _initialcameraPosition,
             onMapCreated: (controller) => googleMapController = controller,
+            onCameraMove: (position) {
+              setState(() {
+                _currentZoom = position.zoom;
+              });
+            },
+            onCameraIdle: (
+            updateMarker()
+            ),
           ),
           floatingActionButton: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -252,8 +435,8 @@ class _HomaPageState extends State<HomaPage> {
                             CameraUpdate.newCameraPosition(
                                 CameraPosition(
                                   target: LatLng(term.coordinate.x, term.coordinate.y),
-                                  zoom: 12.0,
-                                  tilt: 50.0,
+                                  zoom: markerSelectedMapZoom,
+                                  tilt: markerSelectedMapTilt,
                                 )
                             )
                         );

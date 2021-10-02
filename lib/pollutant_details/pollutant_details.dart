@@ -71,7 +71,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
         }
     }
 
-    ServicesStorico.getStorico().then((storico) {
+    ServicesStorico.getStorico(widget.inquinante, widget.spiaggia.id).then((storico) {
       setState(() {
         _storico = new List<Rilevazione>.from(storico);
         _storico.removeWhere((element) => element.value == null);

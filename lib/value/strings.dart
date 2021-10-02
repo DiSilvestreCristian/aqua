@@ -27,10 +27,22 @@ const String unitaOstreopsis = "[cell/L]";
 const String unitaEscherichia = "[ufc/100ml]";
 const String unitaEnterococcus = "[ufc/100ml]";
 
+//Qualità acqua
+const String qualityBad = "SCARSA";
+const String qualitySufficient = "SUFFICIENTE";
+const String qualityGood = "BUONA";
+const String qualityExelent = "ECCELLENTE";
+const String qualityNotClassified = "NON CLASSIFICATA";
+
 /* -- MAPPA - HOME -- */
 
 //InfoBox
 const String infoBoxMarker = "Qualità acqua: ";
+
+//Ricerca
+const String searchBarHint = "Cerca...";
+const String searchBariniziaRicerca = "Inizia la ricerca";
+const String searchBarNessunRisultato = "Spiaggia non trovata";
 
 /* -- SCREEN NOTIFICHE - SIDEBAR HOME -- */
 
@@ -72,12 +84,6 @@ const String qualityJSONBad = "0";
 const String qualityJSONSufficient = "1";
 const String qualityJSONGood = "2";
 const String qualityJSONExelent = "3";
-
-//Qualità acqua
-const String qualityBad = "SCARSA";
-const String qualitySufficient = "SUFFICIENTE";
-const String qualityGood = "BUONA";
-const String qualityExelent = "OTTIMA";
 
 //Situazione alga
 const String notClassifiedSituation = "NON CLASSIFICATA";

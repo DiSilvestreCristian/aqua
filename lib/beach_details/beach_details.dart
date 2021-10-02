@@ -117,7 +117,7 @@ class BeachDetails extends StatelessWidget {
                         children: [
                           Text(qualitaAcqua,
                             style: TextStyle(fontSize: 20),),
-                          Text(getQuality(spiaggia.qualita),
+                          Text(spiaggia.qualita,
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                         ],
                       ),
@@ -402,22 +402,6 @@ double getPercentage(int val, String pollutant){
   if (val/toleranceLevel == 0) return 0.001;
   if (val/toleranceLevel > 1) return 1;
   return (val/toleranceLevel);
-}
-
-String getQuality (String value){
-String quality;
-switch(value){
-  case qualityJSONBad: quality = qualityBad;
-  break;
-  case qualityJSONSufficient: quality = qualitySufficient;
-  break;
-  case qualityJSONGood: quality = qualityGood;
-  break;
-  case qualityJSONExelent: quality = qualityExelent;
-  break;
-  default: quality = qualityExelent;
-}
-return quality;
 }
 
 String getSituationOstreopsis (int value){
