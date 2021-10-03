@@ -14,7 +14,7 @@ class ServicesStorico {
     final url = "http://193.205.129.120:63434/spiagge/${idSpiaggia}/${idPollutant}";
 
     try{
-      final response = await http.get(Uri.parse(urlProva));
+      final response = await http.get(Uri.parse(url));
       if (200 == response.statusCode){
         final List<Rilevazione> storico = rilevazioneFromJson(response.body);
         return storico;

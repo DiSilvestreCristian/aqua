@@ -7,7 +7,7 @@ class ServicesRidotto {
   static const String urlStatico = 'https://pastebin.com/raw/eJjavwYQ';
   static Future<List<SpiaggiaRidotto>> getSpiaggeRidotto() async {
     try{
-      final response = await http.get(Uri.parse(urlStatico));
+      final response = await http.get(Uri.parse(url));
       if (200 == response.statusCode){
         final List<SpiaggiaRidotto> spiaggeRidotto = spiaggiaRidottoFromJson(response.body);
         return spiaggeRidotto;
