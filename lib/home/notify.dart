@@ -1,6 +1,7 @@
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Notify extends StatefulWidget {
   const Notify({Key? key}) : super(key: key);
@@ -10,11 +11,41 @@ class Notify extends StatefulWidget {
 }
 
 class _NotifyState extends State<Notify> {
-  bool notify = false;
-  bool notifyFavourites = false;
-  bool notifyPosition = false;
 
+  late bool _notify;
+  late bool _notifyFavourites;
+  late bool _notifyPosition;
 
+  _setNotifyState (String idNotify, bool value) async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(idNotify, true);
+  }
+
+  Future<bool> _getNotifyState (String idNotify) async{
+    final prefs = await SharedPreferences.getInstance();
+    var value = (prefs.getBool(idNotify) ?? false);
+    return value;
+  }
+
+  @override
+  void initState() {
+    _getNotifyState(idGeneralNotify).then((value){
+      setState(() {
+        _notify = value;
+      });
+    });
+    _getNotifyState(idFavouritesNotify).then((value){
+      setState(() {
+        _notifyFavourites = value;
+      });
+    });
+    _getNotifyState(idPositionNotify).then((value){
+      setState(() {
+        _notifyPosition = value;
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,8 +61,17 @@ class _NotifyState extends State<Notify> {
                 ),
                 SizedBox(width: 20,),
                 Switch.adaptive(
-                  value: notify,
-                  onChanged: (value) => setState(() => this.notify = value),
+                  value: _notify,
+                  onChanged: (value) => setState(() {
+                    this._notify = value;
+                    _setNotifyState(idGeneralNotify, value);
+                    if(!value){
+                      _notifyPosition = value;
+                      _notifyFavourites = value;
+                      _setNotifyState(idFavouritesNotify, value);
+                      _setNotifyState(idPositionNotify, value);
+                    }
+                  }),
                   activeColor: colorPrimary,
                   inactiveTrackColor: colorSecondary,
                 ),
@@ -39,7 +79,7 @@ class _NotifyState extends State<Notify> {
             ),
           ),
           Visibility(
-              visible: notify,
+              visible: _notify,
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Column(
@@ -56,8 +96,11 @@ class _NotifyState extends State<Notify> {
                              )
                          ),
                          Checkbox(
-                             value: notifyFavourites,
-                             onChanged: (value) => setState(() => this.notifyFavourites = value!,
+                             value: _notifyFavourites,
+                             onChanged: (value) => setState(() {
+                               this._notifyFavourites = value!;
+                               _setNotifyState(idFavouritesNotify, value);
+                             }
                              )
                          )
                        ],
@@ -83,8 +126,12 @@ class _NotifyState extends State<Notify> {
                              ),
                            ),
                            Checkbox(
-                               value: notifyPosition,
-                               onChanged: (value) => setState(() => this.notifyPosition = value!)
+                               value: _notifyPosition,
+                               onChanged: (value) => setState(() {
+                                    this._notifyPosition = value!;
+                                    _setNotifyState(idPositionNotify, value);
+                                }
+                                )
                            )
                          ],
                        ),

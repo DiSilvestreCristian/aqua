@@ -44,7 +44,7 @@ const String searchBarHint = "Cerca...";
 const String searchBarIniziaRicerca = "Inizia la ricerca";
 const String searchBarNessunRisultato = "Spiaggia non trovata";
 
-/* -- SCREEN NOTIFICHE - SIDEBAR HOME -- */
+/* -- NOTIFICHE - SIDEBAR HOME -- */
 
 //Titolo
 const String titoloNotifiche = "Notifiche";
@@ -61,6 +61,10 @@ const String descrizioneNotificaPosizione = "Ricevi notifiche se il livello "
     "di inquinamento delle località vicine alla tua posizione supera uno o più "
     "valori di soglia.";
 
+//ID notifiche
+const String idGeneralNotify = "generalNotify";
+const String idPositionNotify = "positionNotify";
+const String idFavouritesNotify = "favouritesNotify";
 /* -- SCREEN CLASSIFICA -- */
 
 //Titolo
