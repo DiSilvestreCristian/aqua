@@ -41,7 +41,7 @@ const String infoBoxMarker = "Qualità acqua: ";
 
 //Ricerca
 const String searchBarHint = "Cerca...";
-const String searchBariniziaRicerca = "Inizia la ricerca";
+const String searchBarIniziaRicerca = "Inizia la ricerca";
 const String searchBarNessunRisultato = "Spiaggia non trovata";
 
 /* -- SCREEN NOTIFICHE - SIDEBAR HOME -- */
