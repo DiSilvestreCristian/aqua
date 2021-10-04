@@ -240,3 +240,9 @@ TextSpan ostreopsisInfo = TextSpan(text: "Ostreopsis ", style: TextStyle(fontSty
 
 //Error message
 const String errorMessage = "ERROR";
+
+/* -- WORKMANAGER TASK -- */
+
+//Nomi dei task
+const String taskFavouritesNotification = "TaskFavouritesNotification";
+const String taskPositionNotification = "TaskPositionNotification";
