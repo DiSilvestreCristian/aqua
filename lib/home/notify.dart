@@ -12,39 +12,45 @@ class Notify extends StatefulWidget {
 
 class _NotifyState extends State<Notify> {
 
-  late bool _notify;
-  late bool _notifyFavourites;
-  late bool _notifyPosition;
+  bool _notify = false;
+  bool _notifyFavourites = false;
+  bool _notifyPosition = false;
 
   _setNotifyState (String idNotify, bool value) async{
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(idNotify, true);
+    await prefs.setBool(idNotify, value);
   }
 
   Future<bool> _getNotifyState (String idNotify) async{
     final prefs = await SharedPreferences.getInstance();
-    var value = (prefs.getBool(idNotify) ?? false);
-    return value;
+    return (prefs.getBool(idNotify) ?? false);
+
   }
 
   @override
   void initState() {
+    super.initState();
     _getNotifyState(idGeneralNotify).then((value){
-      setState(() {
-        _notify = value;
-      });
+      if (value == true) {
+        setState(() {
+          _notify = value;
+        });
+      }
     });
     _getNotifyState(idFavouritesNotify).then((value){
-      setState(() {
-        _notifyFavourites = value;
-      });
+      if (value == true) {
+        setState(() {
+          _notifyFavourites = value;
+        });
+      }
     });
     _getNotifyState(idPositionNotify).then((value){
-      setState(() {
-        _notifyPosition = value;
-      });
+      if ( value == true) {
+        setState(() {
+          _notifyPosition = value;
+        });
+      }
     });
-    super.initState();
   }
   @override
   Widget build(BuildContext context) {
