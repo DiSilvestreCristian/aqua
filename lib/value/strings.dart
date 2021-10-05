@@ -240,7 +240,6 @@ TextSpan ostreopsisInfo = TextSpan(text: "Ostreopsis ", style: TextStyle(fontSty
 
 //Error message
 const String errorMessage = "ERROR";
-const String errorOpenMap = "!!Could not open the map!!";
 
 /* -- WORKMANAGER TASK -- */
 

@@ -1,4 +1,3 @@
-import 'package:aqua/value/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MapUtils{
@@ -8,7 +7,7 @@ class MapUtils{
     if (await canLaunch(_googleUrl)) {
       await launch(_googleUrl);
     } else {
-      throw errorOpenMap;
+      throw "!!Could not open the map!!";
     }
   }
 }

@@ -5,7 +5,8 @@ import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'model/instance_spiagge.dart';
+
+import 'instance_spiagge.dart';
 import 'model/spiagge_ridotto.dart';
 
 Future<bool> _getNotifyValue () async{
@@ -85,7 +86,7 @@ void main() {
       isInDebugMode: false);
   Workmanager.registerPeriodicTask(
       taskFavouritesNotification, taskFavouritesNotification,
-      frequency: Duration(days: 1),
+      frequency: Duration(minutes: 15),
       initialDelay: Duration(minutes: 1)
   );
   runApp(MyApp());
