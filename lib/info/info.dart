@@ -25,130 +25,137 @@ class Info extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8),
-                  GestureDetector(
-                  onTap: () {
-                    //Navigator.of(context).pushNamed('/home');
-                    Navigator.push(
-                      context,
-                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: ostreopsisName)),
-                    );
-                  },
-                    child: Card(
-                      color: colorItemBackground,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                            'images/ostreopsis.jpg',
-                            height: 170,
-                            width: 420,
-                            fit: BoxFit.cover
-                        ),
-                        Container(
-                            padding: EdgeInsets.all(8.0),
-                            child: Row(
-                                children: [
-                                  Expanded(
-                                      child: Text.rich (
-                                        ostreopsisPreview,
-                                        style: TextStyle(fontSize: 18),
-                                        softWrap: true,)
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: colorPrimary)
-                                ]
-                            )
-                        )
-                      ],
-                    ),
-                  ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: escherichiaName)),
-                      );
-                    },
-                    child: Card(
-                        color: colorItemBackground,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                                'images/escherichia.jpg',
-                                height: 170,
-                                width: 420,
-                                fit: BoxFit.cover
-                            ),
-                            Container(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Text (
-                                            escherichiaPreview,
-                                            style: TextStyle(fontSize: 18),
-                                            softWrap: true,)
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: colorPrimary)
-                                    ]
-                                )
-                            )
-                          ],
-                        )
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: enterococcusName)),
-                      );
-                    },
-                    child: Card(
-                        color: colorItemBackground,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          children: [
-                            Image.asset(
-                                'images/enterococcus.jpg',
-                                height: 170,
-                                width: 420,
-                                fit: BoxFit.cover
-                            ),
-                            Container(
-                                padding: EdgeInsets.all(8.0),
-                                child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: Text (
-                                            enterococcusPreview,
-                                            style: TextStyle(fontSize: 18),
-                                            softWrap: true,)
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: colorPrimary)
-                                    ]
-                                )
-                            )
-                          ],
-                        )
-                    ),
-                  )
+                 Expanded(
+                     child: SingleChildScrollView(
+                       child: Column(
+                           children:[
+                             GestureDetector(
+                               onTap: () {
+                                 //Navigator.of(context).pushNamed('/home');
+                                 Navigator.push(
+                                   context,
+                                   PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: ostreopsisName)),
+                                 );
+                               },
+                               child: Card(
+                                 color: colorItemBackground,
+                                 clipBehavior: Clip.antiAliasWithSaveLayer,
+                                 shape: RoundedRectangleBorder(
+                                   borderRadius: BorderRadius.circular(20.0),
+                                 ),
+                                 child: Column(
+                                   children: [
+                                     Image.asset(
+                                         'images/ostreopsis.jpg',
+                                         height: 170,
+                                         width: 420,
+                                         fit: BoxFit.cover
+                                     ),
+                                     Container(
+                                         padding: EdgeInsets.all(8.0),
+                                         child: Row(
+                                             children: [
+                                               Expanded(
+                                                   child: Text.rich (
+                                                     ostreopsisPreview,
+                                                     style: TextStyle(fontSize: 18),
+                                                     softWrap: true,)
+                                               ),
+                                               Icon(
+                                                   Icons.arrow_forward_ios,
+                                                   color: colorPrimary)
+                                             ]
+                                         )
+                                     )
+                                   ],
+                                 ),
+                               ),
+                             ),
+                             GestureDetector(
+                               onTap: () {
+                                 Navigator.push(
+                                   context,
+                                   PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: escherichiaName)),
+                                 );
+                               },
+                               child: Card(
+                                   color: colorItemBackground,
+                                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                                   shape: RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.circular(20.0),
+                                   ),
+                                   child: Column(
+                                     children: [
+                                       Image.asset(
+                                           'images/escherichia.jpg',
+                                           height: 170,
+                                           width: 420,
+                                           fit: BoxFit.cover
+                                       ),
+                                       Container(
+                                           padding: EdgeInsets.all(8.0),
+                                           child: Row(
+                                               children: [
+                                                 Expanded(
+                                                     child: Text (
+                                                       escherichiaPreview,
+                                                       style: TextStyle(fontSize: 18),
+                                                       softWrap: true,)
+                                                 ),
+                                                 Icon(
+                                                     Icons.arrow_forward_ios,
+                                                     color: colorPrimary)
+                                               ]
+                                           )
+                                       )
+                                     ],
+                                   )
+                               ),
+                             ),
+                             GestureDetector(
+                               onTap: () {
+                                 Navigator.push(
+                                   context,
+                                   PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: enterococcusName)),
+                                 );
+                               },
+                               child: Card(
+                                   color: colorItemBackground,
+                                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                                   shape: RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.circular(20.0),
+                                   ),
+                                   child: Column(
+                                     children: [
+                                       Image.asset(
+                                           'images/enterococcus.jpg',
+                                           height: 170,
+                                           width: 420,
+                                           fit: BoxFit.cover
+                                       ),
+                                       Container(
+                                           padding: EdgeInsets.all(8.0),
+                                           child: Row(
+                                               children: [
+                                                 Expanded(
+                                                     child: Text (
+                                                       enterococcusPreview,
+                                                       style: TextStyle(fontSize: 18),
+                                                       softWrap: true,)
+                                                 ),
+                                                 Icon(
+                                                     Icons.arrow_forward_ios,
+                                                     color: colorPrimary)
+                                               ]
+                                           )
+                                       )
+                                     ],
+                                   )
+                               ),
+                             )
+                           ]),
+                     )
+                 )
                 ],
               ),
             )
