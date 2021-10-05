@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aqua">
    <application
-        android:label="aqua"
+        android:label="Aqua"
         android:icon="@mipmap/ic_launcher">
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyBvxiuwK6QtpYBISr62W3KJ6xMTjcXb6HI"/>
