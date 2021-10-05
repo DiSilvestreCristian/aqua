@@ -4,8 +4,8 @@ import '../model/storico.dart';
 
 class ServicesStorico {
 
-  static const String urlProva = 'https://pastebin.com/raw/y5aVYmE0';
-  static const String urlNull = 'https://pastebin.com/raw/9xqGCRAF';
+  //static const String urlProva = 'https://pastebin.com/raw/y5aVYmE0';
+  //static const String urlNull = 'https://pastebin.com/raw/9xqGCRAF';
 
   static Future<List<Rilevazione>> getStorico(String pollutant, String idSpiaggia) async {
 
