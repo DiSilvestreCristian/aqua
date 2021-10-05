@@ -80,14 +80,14 @@ void callbackDispatcher()async {
 }
 
 void main() {
-  /*WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   Workmanager.initialize(callbackDispatcher,
       isInDebugMode: false);
   Workmanager.registerPeriodicTask(
       taskFavouritesNotification, taskFavouritesNotification,
       frequency: Duration(days: 1),
       initialDelay: Duration(minutes: 1)
-  );*/
+  );
   runApp(MyApp());
 }
 
