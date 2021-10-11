@@ -39,8 +39,8 @@ class _HomaPageState extends State<HomaPage> {
   late double _currentZoom;
 
   Set<Marker> _markers = {};
-  late BitmapDescriptor iconMarker;
-  late BitmapDescriptor iconMarkerGreen;
+  late double iconMarker;
+/*late BitmapDescriptor iconMarkerGreen;
   late BitmapDescriptor iconMarkerYellow;
   late BitmapDescriptor iconMarkerOrange;
   late BitmapDescriptor iconMarkerRed;
@@ -53,7 +53,7 @@ class _HomaPageState extends State<HomaPage> {
     iconMarkerOrange = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_arancione');
     iconMarkerRed = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_rosso');
     iconMarkerGrey = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'images/marker_grigio');
-  }
+  }*/
 
 
   static const _initialcameraPosition = CameraPosition(
@@ -91,7 +91,7 @@ class _HomaPageState extends State<HomaPage> {
   void initState() {
     super.initState();
     _currentZoom = initialMapZoom;
-    setCustomMarker();
+    //setCustomMarker();
     _getUserLocation();
     controller = FloatingSearchBarController();
     _filteredSearchResults = filterSearchTerms(filter: "");
@@ -115,15 +115,15 @@ class _HomaPageState extends State<HomaPage> {
   setMarker(SpiaggiaRidotto spiaggia, bool visibility){
     setState(() {
       String _quality = spiaggia.qualita;
-      iconMarker = iconMarkerGreen;
+      iconMarker = BitmapDescriptor.hueGreen ;
       if (_quality == qualityGood)
-        iconMarker = iconMarkerYellow;
+        iconMarker = BitmapDescriptor.hueYellow;
       else if (_quality == qualitySufficient)
-        iconMarker = iconMarkerOrange;
+        iconMarker = BitmapDescriptor.hueOrange;
       else if (_quality == qualityBad)
-        iconMarker = iconMarkerRed;
+        iconMarker = BitmapDescriptor.hueRed;
       else if (_quality == qualityNotClassified)
-        iconMarker = iconMarkerGrey;
+        iconMarker = BitmapDescriptor.hueAzure;
       _markers.add(
         Marker(
             markerId: MarkerId(spiaggia.id),
@@ -141,8 +141,7 @@ class _HomaPageState extends State<HomaPage> {
                 );
               },
             ),
-            icon: iconMarker,
-            //BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+            icon: BitmapDescriptor.defaultMarkerWithHue(iconMarker),
             onTap: () {
               googleMapController.animateCamera(
                   CameraUpdate.newCameraPosition(CameraPosition(
@@ -227,7 +226,7 @@ class _HomaPageState extends State<HomaPage> {
               FloatingActionButton (
                 backgroundColor: colorItemBackgroundSecondary,
                 foregroundColor: colorPrimary,
-                onPressed: () => googleMapController.animateCamera(
+                onPressed: ()=> googleMapController.animateCamera(
                   CameraUpdate.newCameraPosition( CameraPosition(
                     target: userCurrentPosition,
                     zoom: initialMapZoom,
