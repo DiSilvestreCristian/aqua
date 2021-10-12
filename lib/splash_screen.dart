@@ -29,14 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Image(
-          image: AssetImage('images/logo.png'),
-            height: 130,
-            width: 130,
-        ),
-      )
+    return WillPopScope(
+      child: Scaffold(
+        body: Center(
+          child: Image(
+            image: AssetImage('images/logo.png'),
+              height: 130,
+              width: 130,
+          ),
+        )
+      ),
+      onWillPop: () {
+        return Future.value(false);
+      },
     );
   }
 }

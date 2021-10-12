@@ -7,11 +7,16 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-          children: <Widget> [
-            HomaPage(),
-            SideBar(),
-          ]
+    return WillPopScope(
+      child: Stack(
+            children: <Widget> [
+              HomaPage(),
+              SideBar(),
+            ]
+      ),
+      onWillPop: () {
+        return Future.value(false);
+      },
     );
   }
 }
