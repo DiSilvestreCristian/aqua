@@ -22,6 +22,9 @@ class _RankState extends State<Rank> {
 
   List<SpiaggiaRidotto> _spiagge = [];
 
+  late String presenza;
+  late String orderSelected;
+
   Future<List<SpiaggiaRidotto>> getSingleton(){
     var singleton = new SingletonSpiagge();
     final spiagge = singleton.spiagge;
@@ -36,6 +39,10 @@ class _RankState extends State<Rank> {
         _spiagge = spiagge;
       });
     });
+    setState(() {
+      presenza = minorPresenzaRank;
+      orderSelected = ordineCrescente;
+    });
   }
 
   orderList(){
@@ -44,7 +51,9 @@ class _RankState extends State<Rank> {
       case ostreopsisName : {
         _spiagge.removeWhere((item) => item.ostreopsis == null);
         _spiagge.sort((a,b) {
-          int cmp = a.ostreopsis.compareTo(b.ostreopsis);
+          int cmp  = 0;
+          if (orderSelected == ordineCrescente) cmp = a.ostreopsis.compareTo(b.ostreopsis);
+          if (orderSelected == ordineDecrescente) cmp = b.ostreopsis.compareTo(a.ostreopsis);
           if (cmp != 0) return cmp;
           return a.comune.compareTo(b.comune);
         });
@@ -53,7 +62,9 @@ class _RankState extends State<Rank> {
       case escherichiaName: {
         _spiagge.removeWhere((item) => item.escherichia == null);
         _spiagge.sort((a,b){
-          int cmp = b.escherichia.compareTo(a.escherichia);
+          int cmp = 0;
+          if (orderSelected == ordineCrescente) cmp = a.escherichia.compareTo(b.escherichia);
+          if (orderSelected == ordineDecrescente) cmp = b.escherichia.compareTo(a.escherichia);
           if (cmp != 0) return cmp;
           return b.comune.compareTo(a.comune);
         });
@@ -62,13 +73,35 @@ class _RankState extends State<Rank> {
       case enterococcusName: {
         _spiagge.removeWhere((item) => item.enterococcus == null);
         _spiagge.sort((a,b){
-          int cmp = a.enterococcus.compareTo(b.enterococcus);
+          int cmp = 0;
+          if (orderSelected == ordineCrescente) cmp = a.enterococcus.compareTo(b.enterococcus);
+          if (orderSelected == ordineDecrescente) cmp = b.enterococcus.compareTo(a.enterococcus);
           if (cmp != 0) return cmp;
           return a.comune.compareTo(b.comune);
         });
         break;
       }
     }
+  }
+
+  Widget customRadio (String text, String selected){
+    return OutlineButton(
+        onPressed: (){
+          setState(() {
+            orderSelected = selected;
+            if (selected == ordineCrescente) presenza = minorPresenzaRank;
+            if (selected == ordineDecrescente) presenza = maggiorPresenzaRank;
+          });
+        },
+      child: Text(
+        text,
+        style: TextStyle(
+          color: (orderSelected == selected ? colorPrimary : colorSecondary)
+        ),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      borderSide: BorderSide(color: (orderSelected == selected ? colorPrimary : colorSecondary)),
+    );
   }
 
   @override
@@ -87,14 +120,29 @@ class _RankState extends State<Rank> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Classifica",
+                    titoloRank,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 45),
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Siti con la minor presenza di:",
+                    selezionaOrdinamento,
+                    style: TextStyle(color: colorTextPrimary,fontSize: 25),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    customRadio(ordineCrescente, ordineCrescente),
+                    SizedBox(width: 10,),
+                    customRadio(ordineDecrescente, ordineDecrescente)
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    presenza,
                     style: TextStyle(color: colorTextPrimary,fontSize: 25),
                   ),
                 ),

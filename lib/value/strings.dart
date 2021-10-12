@@ -75,6 +75,17 @@ const String addFavourite = "Non hai aggiunto alcuna spiaggia preferita";
 //Titolo
 const String titoloRank = "Classifica";
 
+//Stringa minor/magior presenza
+const String minorPresenzaRank = "Siti con la minor presenza di:";
+const String maggiorPresenzaRank = "Siti con la maggior presenza di:";
+
+//Ordine selezionato
+const String ordineCrescente = "Crescente";
+const String ordineDecrescente = "Decrescente";
+
+//Stringa seleziona ordinamento
+const String selezionaOrdinamento = "Selezionare il metodo di ordinamento:";
+
 /* -- SCREEN DETTAGLI_SPIAGGIA -- */
 
 //Valore non rilevato
