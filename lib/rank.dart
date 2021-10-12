@@ -37,20 +37,16 @@ class _RankState extends State<Rank> {
       });
     });
   }
-/*pollsList.sort((a, b) {
-  int cmp = b.actualStartDatetime.compareTo(a.actualStartDatetime);
-  if (cmp != 0) return cmp;
-  return b.active.compareTo(a.active);
-});*/
+
   orderList(){
 
     switch(pollutantChose){
       case ostreopsisName : {
         _spiagge.removeWhere((item) => item.ostreopsis == null);
         _spiagge.sort((a,b) {
-          int cmp = b.ostreopsis.compareTo(a.ostreopsis);
+          int cmp = a.ostreopsis.compareTo(b.ostreopsis);
           if (cmp != 0) return cmp;
-          return b.comune.compareTo(a.comune);
+          return a.comune.compareTo(b.comune);
         });
         break;
       }
@@ -66,9 +62,9 @@ class _RankState extends State<Rank> {
       case enterococcusName: {
         _spiagge.removeWhere((item) => item.enterococcus == null);
         _spiagge.sort((a,b){
-          int cmp = b.enterococcus.compareTo(a.enterococcus);
+          int cmp = a.enterococcus.compareTo(b.enterococcus);
           if (cmp != 0) return cmp;
-          return b.comune.compareTo(a.comune);
+          return a.comune.compareTo(b.comune);
         });
         break;
       }
@@ -184,7 +180,8 @@ class _RankState extends State<Rank> {
                                   Text(
                                       spiaggia.descrizione,
                                       style: TextStyle(fontSize: 13,),
-                                    ),
+                                      overflow: TextOverflow.ellipsis,
+                                  ),
 
                                 ],
                               ),

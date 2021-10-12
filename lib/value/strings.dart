@@ -65,10 +65,11 @@ const String descrizioneNotificaPosizione = "Ricevi notifiche se il livello "
 const String idGeneralNotify = "generalNotify";
 const String idPositionNotify = "positionNotify";
 const String idFavouritesNotify = "favouritesNotify";
-/* -- SCREEN CLASSIFICA -- */
+/* -- SCREEN PREFERITI -- */
 
 //Titolo
 const String addFavourite = "Non hai aggiunto alcuna spiaggia preferita";
+
 /* -- SCREEN CLASSIFICA -- */
 
 //Titolo
@@ -82,12 +83,6 @@ const String valoreNonRilevato = "Non rilevato";
 //Schede qualità e alga
 const String qualitaAcqua = "Qualità dell'acqua:";
 const String situazioneAlga = "Situazione alga: ";
-
-//Valori json qualità acqua
-const String qualityJSONBad = "0";
-const String qualityJSONSufficient = "1";
-const String qualityJSONGood = "2";
-const String qualityJSONExelent = "3";
 
 //Situazione alga
 const String notClassifiedSituation = "NON CLASSIFICATA";

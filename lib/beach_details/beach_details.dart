@@ -120,9 +120,9 @@ class BeachDetails extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(qualitaAcqua,
-                                    style: TextStyle(fontSize: 20),),
+                                    style: TextStyle(fontSize: 18),),
                                   Text(spiaggia.qualita,
-                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
                                 ],
                               ),
                             ),
@@ -139,9 +139,9 @@ class BeachDetails extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(situazioneAlga,
-                                    style: TextStyle(fontSize: 20),),
+                                    style: TextStyle(fontSize: 18),),
                                   Text(getSituationOstreopsis(spiaggia.ostreopsis == null? -1 : spiaggia.ostreopsis),
-                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
                                 ],
                               ),
                             ),
