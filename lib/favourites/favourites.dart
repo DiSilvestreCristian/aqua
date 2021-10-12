@@ -93,11 +93,12 @@ class _FavouritesState extends State<Favourites>{
             children: listFav.map((fav) {
               int index = listFav.indexOf(fav);
               return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
+                width: 10.0,
+                height: 10.0,
+                margin: EdgeInsets.only(top: 25.0, right: 4.0, left: 4.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+
                   color: _current == index
                       ? colorPrimary
                       : colorSecondary,

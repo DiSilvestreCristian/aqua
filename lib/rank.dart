@@ -207,50 +207,52 @@ class _RankState extends State<Rank> {
                             ),
                           )
                       ),
-                      title: Container(
-                        height: 65,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: colorItemBackground,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 20.0,),
-                          child: Row(
-                            children:[ Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                      spiaggia.comune,
-                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      title: GestureDetector(
+                        child: Container(
+                          height: 65,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: colorItemBackground,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 20.0,),
+                            child: Row(
+                              children:[ Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                        spiaggia.comune,
+                                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                      ),
+                                    Text(
+                                        spiaggia.descrizione,
+                                        style: TextStyle(fontSize: 13,),
+                                        overflow: TextOverflow.ellipsis,
                                     ),
-                                  Text(
-                                      spiaggia.descrizione,
-                                      style: TextStyle(fontSize: 13,),
-                                      overflow: TextOverflow.ellipsis,
-                                  ),
 
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                              Padding(
+                                Padding(
                                   padding: EdgeInsets.only(right: 20.0,),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        PageRouteBuilder(pageBuilder: (_, __, ___) => BeachDetails(spiaggia: spiaggia)),
-                                      );
-                                    },
-                                    child: Icon(
+                                  child: Icon(
                                       Icons.arrow_forward_ios,
                                       color: colorPrimary,),
-                                  )
-                              ),
-                            ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return  BeachDetails(spiaggia: spiaggia);
+                            }),
+                          );
+                        },
                       ),
                     );
                   },

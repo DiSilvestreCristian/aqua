@@ -135,9 +135,9 @@ class _HomaPageState extends State<HomaPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  PageRouteBuilder(
-                      pageBuilder: (_, __, ___) =>
-                          BeachDetails(spiaggia: spiaggia)),
+                  MaterialPageRoute(builder: (context) {
+                    return  BeachDetails(spiaggia: spiaggia);
+                  }),
                 );
               },
             ),
@@ -208,7 +208,8 @@ class _HomaPageState extends State<HomaPage> {
           body: GoogleMap(
             markers: _markers,
             zoomControlsEnabled: false,
-            myLocationButtonEnabled: false,
+            rotateGesturesEnabled: false,
+            mapToolbarEnabled: false,
             initialCameraPosition: _initialcameraPosition,
             onMapCreated: (controller) => googleMapController = controller,
             onCameraMove: (position) {

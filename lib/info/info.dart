@@ -10,7 +10,7 @@ class Info extends StatelessWidget {
     return Scaffold(
         body: Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 50.0),
+              padding: EdgeInsets.only(top: 50.0, left: 8, right: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -31,10 +31,11 @@ class Info extends StatelessWidget {
                            children:[
                              GestureDetector(
                                onTap: () {
-                                 //Navigator.of(context).pushNamed('/home');
                                  Navigator.push(
                                    context,
-                                   PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: ostreopsisName)),
+                                   MaterialPageRoute(builder: (context) {
+                                     return  InfoDetails(pollutant: ostreopsisName,);
+                                   }),
                                  );
                                },
                                child: Card(
@@ -71,11 +72,14 @@ class Info extends StatelessWidget {
                                  ),
                                ),
                              ),
+                             SizedBox(height: 8,),
                              GestureDetector(
                                onTap: () {
                                  Navigator.push(
                                    context,
-                                   PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: escherichiaName)),
+                                   MaterialPageRoute(builder: (context) {
+                                     return  InfoDetails(pollutant: escherichiaName,);
+                                   }),
                                  );
                                },
                                child: Card(
@@ -112,11 +116,14 @@ class Info extends StatelessWidget {
                                    )
                                ),
                              ),
+                             SizedBox(height: 8,),
                              GestureDetector(
                                onTap: () {
                                  Navigator.push(
                                    context,
-                                   PageRouteBuilder(pageBuilder: (_, __, ___) => InfoDetails(pollutant: enterococcusName)),
+                                   MaterialPageRoute(builder: (context) {
+                                     return  InfoDetails(pollutant: enterococcusName,);
+                                   }),
                                  );
                                },
                                child: Card(
@@ -152,7 +159,7 @@ class Info extends StatelessWidget {
                                      ],
                                    )
                                ),
-                             )
+                             ),
                            ]),
                      )
                  )

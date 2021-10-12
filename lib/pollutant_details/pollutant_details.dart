@@ -23,6 +23,7 @@ class PollutantDetails extends StatefulWidget {
 
 class _PollutantDetailsState extends State<PollutantDetails> {
   List<Rilevazione> _storico = [];
+  List<Rilevazione> _storicoIntero = [];
 
   late AssetImage iconPollutant;
   late TextSpan namePollutant;
@@ -73,9 +74,17 @@ class _PollutantDetailsState extends State<PollutantDetails> {
 
     ServicesStorico.getStorico(widget.inquinante, widget.spiaggia.id).then((storico) {
       setState(() {
-        _storico = new List<Rilevazione>.from(storico);
-        _storico.removeWhere((element) => element.value == null);
-        _storico.sort((a, b) => a.data.compareTo(b.data));
+        _storicoIntero = new List<Rilevazione>.from(storico);
+        _storicoIntero.removeWhere((element) => element.value == null);
+        _storicoIntero.sort((a, b) => b.data.compareTo(a.data));
+        _storico = new List<Rilevazione>.from(_storicoIntero);
+        int index = 0;
+        _storicoIntero.forEach((element) {
+          if (index>=12){
+            _storico.remove(element);
+          }
+          index++;
+        });
       });
     });
   }
@@ -83,6 +92,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: colorItemBackgroundSecondary,
         body: Padding(
             padding: EdgeInsets.only(top: 50.0),
             child:
@@ -132,7 +142,7 @@ class _PollutantDetailsState extends State<PollutantDetails> {
                   if(_storico.isNotEmpty)
                     Storico(
                       valoreAttuale: valoreAttuale,
-                      storico: _storico.reversed.toList(),
+                      storico: _storico,
                       inquinante: widget.inquinante,
                       soglia: soglia,
                       unitaMisura: unitaMisura,
