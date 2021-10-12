@@ -72,7 +72,7 @@ class _FavouritesState extends State<Favourites>{
           CarouselSlider(
                 options: CarouselOptions(
                     viewportFraction: 1,
-                    height: MediaQuery.of(context).size.height - 120.0,
+                    height: MediaQuery.of(context).size.height - 90.0,
                     initialPage: 0,
                     scrollDirection: Axis.horizontal,
                     onPageChanged: (index, _){
@@ -95,7 +95,7 @@ class _FavouritesState extends State<Favourites>{
               return Container(
                 width: 10.0,
                 height: 10.0,
-                margin: EdgeInsets.only(top: 25.0, right: 4.0, left: 4.0),
+                margin: EdgeInsets.only(top: 12.0, right: 4.0, left: 4.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
 
