@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/bottomNavBar',
+      initialRoute: '/splashScreen',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

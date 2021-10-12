@@ -1,4 +1,5 @@
 import 'package:aqua/route/error_route.dart';
+import 'package:aqua/splash_screen.dart';
 import 'package:flutter/material.dart';
 import '../bottom_nav_bar/bottom_nav_bar.dart';
 
@@ -8,6 +9,8 @@ class RouteGenerator{
     final args = settings.arguments;
 
     switch (settings.name){
+      case '/splashScreen':
+        return MaterialPageRoute(builder: (_) => SplashScreen());
       case '/bottomNavBar':
         return MaterialPageRoute(builder: (_) => BottomNavBar());
       default:
