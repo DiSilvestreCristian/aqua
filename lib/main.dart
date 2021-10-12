@@ -1,11 +1,13 @@
 import 'package:aqua/route/route.dart';
-import 'package:aqua/services/services_storico.dart';
+import 'package:aqua/value/colors.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+/*import 'package:aqua/services/services_storico.dart';
 import 'package:aqua/value/numbers.dart';
 import 'package:aqua/value/strings.dart';
-import 'package:flutter/material.dart';
 import 'package:workmanager/workmanager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'instance_spiagge.dart';
 import 'model/spiagge_ridotto.dart';
 
@@ -78,17 +80,22 @@ void callbackDispatcher()async {
     }
     return Future.value(true);
   });
-}
+}*/
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Workmanager.initialize(callbackDispatcher,
+  /*Workmanager.initialize(callbackDispatcher,
       isInDebugMode: false);
   Workmanager.registerPeriodicTask(
       taskFavouritesNotification, taskFavouritesNotification,
       frequency: Duration(minutes: 15),
       initialDelay: Duration(minutes: 1)
-  );
+  );*/
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,// transparent status bar
+    statusBarBrightness: Brightness.dark, //dark text on iOS status bar
+    statusBarIconBrightness: Brightness.dark, //dark text on Andoird status bar
+  ));
   runApp(MyApp());
 }
 
