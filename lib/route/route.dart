@@ -1,7 +1,7 @@
+import 'package:aqua/UI/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:aqua/route/error_route.dart';
 import 'package:aqua/splash_screen.dart';
 import 'package:flutter/material.dart';
-import '../bottom_nav_bar/bottom_nav_bar.dart';
 
 class RouteGenerator{
   static Route<dynamic> generateRoute(RouteSettings settings){

@@ -1,4 +1,4 @@
-import 'package:aqua/info/info_details.dart';
+import 'package:aqua/UI/info/info_details.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';

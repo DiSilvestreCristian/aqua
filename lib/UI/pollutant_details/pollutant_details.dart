@@ -1,13 +1,11 @@
 import 'package:aqua/model/storico.dart';
-import 'package:aqua/pollutant_details/storico.dart';
-import 'package:aqua/pollutant_details/storico_vuoto.dart';
+import 'package:aqua/UI/pollutant_details/storico.dart';
+import 'package:aqua/UI/pollutant_details/storico_vuoto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:flutter/material.dart';
-import '../value/strings.dart';
-import '../value/colors.dart';
-import '../services/services_storico.dart';
-import '../model/spiagge_ridotto.dart';
-import '../model/storico.dart';
+import 'package:aqua/value/strings.dart';
+import 'package:aqua/services/services_storico.dart';
+import 'package:aqua/model/spiagge_ridotto.dart';
 
 class PollutantDetails extends StatefulWidget {
   final SpiaggiaRidotto spiaggia;

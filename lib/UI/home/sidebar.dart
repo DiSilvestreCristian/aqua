@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:aqua/home/notify.dart';
+import 'package:aqua/UI/home/notify.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';

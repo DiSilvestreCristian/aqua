@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'instance_spiagge.dart';
+import 'model/instance_spiagge.dart';
 import 'model/spiagge_ridotto.dart';
 
 class SplashScreen extends StatefulWidget {

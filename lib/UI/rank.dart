@@ -1,10 +1,10 @@
-import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/model/instance_spiagge.dart';
 import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/numbers.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
-import 'beach_details/beach_details.dart';
+import '../UI/beach_details/beach_details.dart';
 
 class Rank extends StatefulWidget {
   const Rank({Key? key}) : super(key: key);

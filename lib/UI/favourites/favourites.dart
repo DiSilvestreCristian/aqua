@@ -1,5 +1,5 @@
-import 'package:aqua/beach_details/beach_details.dart';
-import 'package:aqua/instance_spiagge.dart';
+import 'package:aqua/UI/beach_details/beach_details.dart';
+import 'package:aqua/model/instance_spiagge.dart';
 import 'package:aqua/model/spiagge_ridotto.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';

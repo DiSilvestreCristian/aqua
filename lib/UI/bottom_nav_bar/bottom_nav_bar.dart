@@ -1,4 +1,4 @@
-import 'package:aqua/bottom_nav_bar/tab_navigator.dart';
+import 'package:aqua/UI/bottom_nav_bar/tab_navigator.dart';
 import 'package:aqua/value/colors.dart';
 import 'package:flutter/material.dart';
 
