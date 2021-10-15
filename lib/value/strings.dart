@@ -1,5 +1,6 @@
 library strings.globals;
 
+import 'package:aqua/value/colors.dart';
 import 'package:flutter/material.dart';
 
 /* -- GENERALI -- */
@@ -207,7 +208,7 @@ const String enterococcusInfo = " - Lorem ipsum dolor sit amet, consectetur adip
     "in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur "
     "sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt "
     "mollit anim id est laborum.";
-TextSpan ostreopsisInfo = TextSpan(text: "Ostreopsis ", style: TextStyle(fontStyle: FontStyle.italic),
+TextSpan ostreopsisInfo = TextSpan(text: "Ostreopsis ", style: TextStyle(fontStyle: FontStyle.italic, color: colorTextPrimary),
     children:<TextSpan>[
       TextSpan(text: "cf. ", style: TextStyle(fontStyle: FontStyle.normal)),
       TextSpan(text: "ovata", style: TextStyle(fontStyle: FontStyle.italic)),

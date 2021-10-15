@@ -67,7 +67,7 @@ class InfoEscherichia extends StatelessWidget{
       padding: EdgeInsets.all(8.0),
       child: Expanded(
           child: Text.rich (
-            TextSpan(text: escherichiaName, style: TextStyle(fontStyle: FontStyle.italic),
+            TextSpan(text: escherichiaName, style: TextStyle(fontStyle: FontStyle.italic, color: colorTextPrimary),
                 children:<TextSpan>[
                   TextSpan(text: escherichiaInfo, style: TextStyle(fontStyle: FontStyle.normal)),
                 ]
@@ -87,7 +87,7 @@ class InfoEnterococcus extends StatelessWidget{
       padding: EdgeInsets.all(8.0),
       child: Expanded(
           child: Text.rich (
-            TextSpan(text: enterococcusName, style: TextStyle(fontStyle: FontStyle.italic),
+            TextSpan(text: enterococcusName, style: TextStyle(fontStyle: FontStyle.italic, color: colorTextPrimary),
                 children:<TextSpan>[
                   TextSpan(text: enterococcusInfo, style: TextStyle(fontStyle: FontStyle.normal)),
                 ]
