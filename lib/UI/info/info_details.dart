@@ -2,7 +2,7 @@ import 'package:aqua/value/colors.dart';
 import 'package:aqua/value/strings.dart';
 import 'package:flutter/material.dart';
 
-class InfoDetails extends StatelessWidget {
+class InfoDetails extends StatefulWidget {
 
   final String pollutant;
 
@@ -11,18 +11,37 @@ class InfoDetails extends StatelessWidget {
     required this.pollutant,
   }) : super(key: key);
 
-  Widget build(BuildContext context) {
+  @override
+  State<InfoDetails> createState() => _InfoDetailsState();
+}
 
-    Widget infoPollutant ;
-    switch (pollutant){
-      case ostreopsisName : infoPollutant = InfoOstreopsis();
+class _InfoDetailsState extends State<InfoDetails> {
+
+  late  Widget infoPollutant ;
+
+  @override
+  void initState() {
+    super.initState();
+    switch (widget.pollutant){
+      case ostreopsisName : setState(() {
+        infoPollutant = InfoOstreopsis();
+      });
       break;
-      case escherichiaName : infoPollutant = InfoEscherichia();
+      case escherichiaName : setState(() {
+        infoPollutant = InfoEscherichia();
+      });
       break;
-      case enterococcusName : infoPollutant = InfoEnterococcus();
+      case enterococcusName : setState(() {
+        infoPollutant = InfoEnterococcus();
+      });
       break;
-      default : infoPollutant = InfoOstreopsis();
+      default : setState(() {
+        infoPollutant = InfoOstreopsis();
+      });
     }
+  }
+
+  Widget build(BuildContext context) {
 
     return Scaffold(
         backgroundColor: colorItemBackgroundSecondary,
