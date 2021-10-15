@@ -21,6 +21,7 @@ class _RankState extends State<Rank> {
   ];
 
   List<SpiaggiaRidotto> _spiagge = [];
+  List<SpiaggiaRidotto> _list = [];
 
   late String presenza;
   late String orderSelected;
@@ -46,11 +47,11 @@ class _RankState extends State<Rank> {
   }
 
   orderList(){
-
+    _list = new List<SpiaggiaRidotto>.from(_spiagge);
     switch(pollutantChose){
       case ostreopsisName : {
-        _spiagge.removeWhere((item) => item.ostreopsis == null);
-        _spiagge.sort((a,b) {
+        _list.removeWhere((item) => item.ostreopsis == null);
+        _list.sort((a,b) {
           int cmp  = 0;
           if (orderSelected == ordineCrescente) cmp = a.ostreopsis.compareTo(b.ostreopsis);
           if (orderSelected == ordineDecrescente) cmp = b.ostreopsis.compareTo(a.ostreopsis);
@@ -60,8 +61,8 @@ class _RankState extends State<Rank> {
         break;
       }
       case escherichiaName: {
-        _spiagge.removeWhere((item) => item.escherichia == null);
-        _spiagge.sort((a,b){
+        _list.removeWhere((item) => item.escherichia == null);
+        _list.sort((a,b){
           int cmp = 0;
           if (orderSelected == ordineCrescente) cmp = a.escherichia.compareTo(b.escherichia);
           if (orderSelected == ordineDecrescente) cmp = b.escherichia.compareTo(a.escherichia);
@@ -71,8 +72,8 @@ class _RankState extends State<Rank> {
         break;
       }
       case enterococcusName: {
-        _spiagge.removeWhere((item) => item.enterococcus == null);
-        _spiagge.sort((a,b){
+        _list.removeWhere((item) => item.enterococcus == null);
+        _list.sort((a,b){
           int cmp = 0;
           if (orderSelected == ordineCrescente) cmp = a.enterococcus.compareTo(b.enterococcus);
           if (orderSelected == ordineDecrescente) cmp = b.enterococcus.compareTo(a.enterococcus);
@@ -188,10 +189,10 @@ class _RankState extends State<Rank> {
               removeTop: true,
               child: Expanded(
                 child: ListView.builder(
-                  itemCount: null == _spiagge ? 0 :
-                  (_spiagge.length < numberBeachOnRank ? _spiagge.length : numberBeachOnRank),
+                  itemCount: null == _list ? 0 :
+                  (_list.length < numberBeachOnRank ? _list.length : numberBeachOnRank),
                   itemBuilder: (context, index) {
-                    SpiaggiaRidotto spiaggia = _spiagge[index];
+                    SpiaggiaRidotto spiaggia = _list[index];
                     return ListTile(
                       leading: Container(
                           width: 50,
